@@ -1,0 +1,43 @@
+
+/* Left Side */
+.leftside{
+    width: 300px;
+    height: 100vh;
+    position: fixed;
+    padding: 30px 0;
+}
+.leftside_content{
+    width: 200px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.logo{
+    color: #002033;
+    font-weight: 700;
+    font-size: 22px;
+   
+}
+.logo:hover{
+    color: #002033;
+}
+.menu{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+/* Header */
+.header{
+    display: none;
+}
+
+
+/* Footer  */
+.footer_content ul{
+    display: flex;
+    gap: 10px;
+    margin: 0;
+}
