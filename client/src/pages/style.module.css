@@ -2,8 +2,15 @@
     font-weight: 600;
     font-size: 20px;
     color: black;
+    margin-bottom: 40px;
+}
+.language_box{
+    display: flex;
+    gap: 20px;
 }
 .microphone{
+    width: 520px;
+    min-height: 250px;
     display: flex;
     flex-direction: column;
     border-radius: 16px;
@@ -13,18 +20,111 @@
 }
 .microphone h3{
     font-size: 20px;
+    margin: 6px 0 18px;
+}
+.text_box{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 textarea {
     width: 100%; 
-    height: 150px; 
+    height: 100%; 
     padding: 4px; 
-    border-radius: 8px; 
     resize: none; 
-
+    overflow: hidden;
 }
 .equipments{
     display: flex;
     justify-content: space-between;
     padding: 0 15px;
 }
-  
+
+.eq_leftside{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.eq_leftside img{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-top: 2px;
+}
+/* .translatedText{
+    height: 165px; 
+    overflow-x: auto;
+    margin: 0;
+    padding: 4px; 
+} */
+
+.languageSelector{
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+/* Translate_file */
+
+.container {
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+}
+
+.fileUploadArea {
+    width: 100%;
+    padding: 20px;
+    border: 2px dashed #007BFF;
+    border-radius: 10px;
+    background-color: #f1f1f1;
+    position: relative;
+    text-align: center;
+}
+
+.fileInput {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.dragDrop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    font-size: 18px;
+    color: #007BFF;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid #007BFF;
+    border-radius: 8px;
+}
+
+.processingText {
+    color: #FF4500;
+    font-size: 16px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.resultText {
+    margin-top: 20px;
+    width: 100%;
+    height: 250px;
+    padding: 10px;
+    font-size: 16px;
+    color: #333;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    resize: none;
+    background-color: #f9f9f9;
+}
+
+.resultText::placeholder {
+    color: #aaa;
+}

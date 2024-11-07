@@ -1,7 +1,6 @@
 .allbody{
   display: flex;
   gap: 12px;
-  background: rgb(248, 245, 245);
 }
 
 .wrapper{
@@ -10,7 +9,6 @@
   flex-direction: column;
   margin-left: 300px;
   padding: 30px 15px 0;
-  border: 2px solid red;
 }
 .main{
   flex: 1 1 auto;

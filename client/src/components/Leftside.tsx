@@ -6,12 +6,12 @@ export function Leftside(){
         <>
             <div className={cn.leftside}>
                 <div className={cn.leftside_content}>
-                    <a href="#" className={cn.logo}>Free Translate Hub</a>
+                    <a href="/" className={cn.logo}>Free Translate Hub</a>
 
                     <ul className={cn.menu}>
-                        <li><a href="#">О нас</a></li>
-                        <li><a href="#">Соц сеть</a></li>
-                        <li><a href="#">Больше</a></li>
+                        <li><a href="/">Перевести текст</a></li>
+                        <li><a href="/file">Перевести файл</a></li>
+                        <li><a href="/about">О нас</a></li>
                     </ul>
                 </div>
             </div>
