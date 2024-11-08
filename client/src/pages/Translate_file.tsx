@@ -115,6 +115,7 @@ export function Translate_file() {
             <textarea
                 value={fileText}
                 onChange={(e) => setFileText(e.target.value)}
+                readOnly
                 className={cn.resultText}
                 placeholder="Распознанный текст из файла отобразится здесь..."
             />

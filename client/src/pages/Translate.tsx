@@ -8,6 +8,7 @@ import cn from "./style.module.css";
 export function Translate() {
     const apiKey = 'AIzaSyCiConrcZiaumOPZRNOxbryaUH-3udEODc';
     const [text, setText] = useState("");
+    const [sourceLanguage, setSourceLanguage] = useState(null);
     const [targetLanguage, setTargetLanguage] = useState("en");
     const [translatedText, setTranslatedText] = useState("");
     const [editableTranslatedText, setEditableTranslatedText] = useState("");
@@ -79,17 +80,16 @@ export function Translate() {
                     const detectedLangCode = detectResponse.data.data.detections[0][0].language;
                     setDetectedLanguage(detectedLangCode);
         
-                    // Заменяем символы новой строки на маркеры
                     const formattedText = text.replace(/\n/g, '__NEWLINE__');
                     
                     const response = await axios.post(url, {
                         q: formattedText,
+                        source: sourceLanguage,  
                         target: targetLanguage,
                     });
         
                     let translated = response.data.data.translations[0].translatedText;
         
-                    // Возвращаем маркеры в символы новой строки
                     translated = translated.replace(/__NEWLINE__/g, '\n');
                     translated = decodeHTML(translated);
         
@@ -101,13 +101,13 @@ export function Translate() {
                 }
             } else {
                 setTranslatedText("");
+                setEditableTranslatedText("");
                 setDetectedLanguage(null);
             }
         };
-        
 
         translateAndDetectLanguage();
-    }, [text, targetLanguage]);
+    }, [text, sourceLanguage, targetLanguage]);
 
     function decodeHTML(html) {
         const txt = document.createElement('textarea');
@@ -116,7 +116,7 @@ export function Translate() {
     }
 
     function speakText(isTranslated) {
-        const textToSpeak = isTranslated ? editableTranslatedText : text; 
+        const textToSpeak = isTranslated ? editableTranslatedText : text;
     
         if (!textToSpeak) {
             alert(isTranslated ? "Пожалуйста, сначала выполните перевод." : "Пожалуйста, введите текст.");
@@ -133,21 +133,59 @@ export function Translate() {
             setIsSpeaking(false);
         } else {
             const utterance = new SpeechSynthesisUtterance(textToSpeak);
-            utterance.lang = isTranslated ? targetLanguage : detectedLanguage; 
+            utterance.lang = isTranslated ? targetLanguage : detectedLanguage;
             utterance.volume = 1;
-            utterance.rate = 0.8;
+            utterance.rate = 0.9;
             utterance.pitch = 1;
     
-            const languageVoices = voices.filter(voice => voice.lang.startsWith(utterance.lang));
-            if (languageVoices.length > 0) {
-                utterance.voice = languageVoices[0];
+            // Устанавливаем голос для русского языка
+            if (utterance.lang.startsWith("ru")) {
+                const russianVoices = voices.filter(voice => voice.lang.startsWith("ru"));
+                // Пример: выберем второй доступный голос, если есть несколько
+                if (russianVoices.length > 1) {
+                    utterance.voice = russianVoices[1]; // Выбор другого голоса
+                } else if (russianVoices.length > 0) {
+                    utterance.voice = russianVoices[0];
+                }
+            } else {
+                // Выбор голоса для других языков
+                const languageVoices = voices.filter(voice => voice.lang.startsWith(utterance.lang));
+                if (languageVoices.length > 0) {
+                    utterance.voice = languageVoices[0];
+                } else {
+                    alert("Не удалось найти подходящий голос для выбранного языка. Используется голос по умолчанию.");
+                }
             }
+    
+            utterance.onboundary = function(event) {
+                const text = textToSpeak;
+                const start = event.charIndex;
+                const end = start + (event.charLength || 1); // Если `charLength` недоступен, просто выделяем по одному символу
+                highlightText(start, end, isTranslated);
+            };
+    
+            utterance.onend = () => {
+                setIsSpeaking(false);
+                clearHighlight(isTranslated);
+            };
     
             window.speechSynthesis.cancel();
             window.speechSynthesis.speak(utterance);
             setIsSpeaking(true);
         }
     }
+    
+    // Функции `highlightText` и `clearHighlight` остаются такими же, как и ранее
+    
+    
+    function highlightText(start, end, isTranslated) {
+        const textArea = isTranslated ? translatedTextAreaRef.current : textAreaRef.current;
+        if (textArea) {
+            textArea.focus();
+            textArea.setSelectionRange(start, end);
+        }
+    }
+    
     
     function startRecognition() {
         if (recognition) {
@@ -176,13 +214,39 @@ export function Translate() {
         element.style.height = `${element.scrollHeight}px`; 
     };
 
+    const detectLanguage = async (text) => {
+        if (text.trim()) {
+            const detectUrl = `https://translation.googleapis.com/language/translate/v2/detect?key=${apiKey}`;
+            try {
+                const detectResponse = await axios.post(detectUrl, { q: text });
+                const detectedLangCode = detectResponse.data.data.detections[0][0].language;
+                setSourceLanguage(detectedLangCode);
+            } catch (error) {
+                console.error("Ошибка при определении языка:", error);
+            }
+        }
+    };
+    useEffect(() => {
+        if (text.trim() && !sourceLanguage) {
+            detectLanguage(text); 
+        }
+    }, [text, sourceLanguage]);
+    
+
     return (
         <div>
             <h3 className={cn.title}>Бесплатный онлайн-переводчик</h3>
 
             <div className={cn.language_box}>
                 <div className={cn.microphone}>
-                    <h3>{detectedLanguage ? `${languageNames[detectedLanguage] || detectedLanguage}` : "Определить язык"}</h3>
+                    <Select
+                        value={languageOptions.find(option => option.value === sourceLanguage)}
+                        onChange={(selectedOption) => setSourceLanguage(selectedOption.value)}  
+                        options={[{ value: null, label: 'Определить язык' }, ...languageOptions]}
+                        className={cn.languageSelector}
+                        classNamePrefix="react-select"
+                        placeholder="Определить язык"
+                    />
 
                     <div className={cn.text_box}>
                         <textarea

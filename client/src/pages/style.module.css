@@ -123,6 +123,7 @@ textarea {
     border-radius: 8px;
     resize: none;
     background-color: #f9f9f9;
+    overflow: auto;
 }
 
 .resultText::placeholder {
