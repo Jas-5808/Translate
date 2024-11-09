@@ -17,6 +17,8 @@ export function Translate() {
     const [selectedVoice, setSelectedVoice] = useState(null);
     const [recognition, setRecognition] = useState(null);
     const [isSpeaking, setIsSpeaking] = useState(false);
+    const [originalCharCount, setOriginalCharCount] = useState(0);
+    const [translatedCharCount, setTranslatedCharCount] = useState(0);
 
     const languageNames = {
         af: "Afrikaans", sq: "Albanian", am: "Amharic", ar: "Arabic", hy: "Armenian", az: "Azerbaijani",
@@ -95,6 +97,8 @@ export function Translate() {
         
                     setTranslatedText(translated);
                     setEditableTranslatedText(translated);
+
+                    setTranslatedCharCount(countCharsWithoutSpaces(translated));
                 } catch (error) {
                     console.error("Ошибка:", error);
                     setTranslatedText("Произошла ошибка при переводе.");
@@ -232,10 +236,18 @@ export function Translate() {
         }
     }, [text, sourceLanguage]);
     
+    const countCharsWithoutSpaces = (text) => {
+        return text.replace(/\s/g, '').length;
+    };
 
+    
+    
     return (
         <div>
-            <h3 className={cn.title}>Бесплатный онлайн-переводчик</h3>
+            <div className={cn.title}>
+                <h3>Бесплатный онлайн-переводчик</h3>
+                <a href="/file">Перевести файл</a>
+            </div>
 
             <div className={cn.language_box}>
                 <div className={cn.microphone}>
@@ -253,15 +265,21 @@ export function Translate() {
                             ref={textAreaRef}
                             value={text}
                             onChange={(e) => {
-                                setText(e.target.value);
+                                const newText = e.target.value;
+                                setText(newText);
                                 adjustHeight(e.target); 
+                                setOriginalCharCount(countCharsWithoutSpaces(newText));
                             }}
                             placeholder="Введите текст для перевода..."
                         />
                         <div className={cn.equipments}>
-                            <button onClick={startRecognition}>
-                                <FaMicrophone />
-                            </button>
+                            <div className={cn.charCount}>
+                                <button onClick={startRecognition}>
+                                    <FaMicrophone />
+                                </button>
+                                <p>К-во симв: {originalCharCount}</p>
+                            </div>
+                            
 
                             <div className={cn.eq_leftside}>
                                 <button onClick={copyToClipboardOriginal}>
@@ -294,14 +312,18 @@ export function Translate() {
                             className={cn.translatedText}
                             value={editableTranslatedText}
                             onChange={(e) => {
-                                setEditableTranslatedText(e.target.value);
+                                const newText = e.target.value;
+                                setEditableTranslatedText(newText);
                                 adjustHeight(e.target); 
+                                setTranslatedCharCount(countCharsWithoutSpaces(newText));
                             }}
                             onInput={(e) => adjustHeight(e.target)}
                         />
 
                         <div className={cn.equipments}>
-                            <div></div>
+                            <div className={cn.charCount}>
+                                <p>К-во симв: {translatedCharCount}</p>
+                            </div>
                             <div className={cn.eq_leftside}>
                                 <button onClick={copyToClipboardTranslated}>
                                     <FaCopy />
@@ -315,6 +337,11 @@ export function Translate() {
                     </div>
 
                 </div>
+            </div>
+
+            <div className={cn.description}>
+                <h2>Многоязычный переводчик</h2>
+                <p>На этой странице пользователи могут ввести текст и сразу перевести его на 10 различных языков. Переводчик позволяет легко и быстро получить перевод на несколько языков одновременно, что идеально подходит для людей, которые хотят понимать текст на разных языках без необходимости делать это по очереди.</p>
             </div>
         </div>
     );

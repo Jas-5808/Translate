@@ -5,11 +5,11 @@ export function ErrorPage(){
     return(
         <>
             <div className={cn.errorPage}>
-                <div className="container">
+                <div className={cn.errorPage_content}>
                     <h2>404</h2>
 
-                    <p>Страница в разработке</p>
-                    <NavLink to="">Main</NavLink>
+                    <p>Что-то пошло не так</p>
+                    <NavLink to="/">Main</NavLink>
                 </div>
             </div>
         </>

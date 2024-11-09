@@ -9,8 +9,8 @@ export function Leftside(){
                     <a href="/" className={cn.logo}>Free Translate Hub</a>
 
                     <ul className={cn.menu}>
-                        <li><a href="/">Перевести текст</a></li>
-                        <li><a href="/file">Перевести файл</a></li>
+                        <li><a href="/">Переводчик</a></li>
+                        <li><a href="/colorPicker">Color Picker</a></li>
                         <li><a href="/about">О нас</a></li>
                     </ul>
                 </div>
