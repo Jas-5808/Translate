@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { FaCopy } from 'react-icons/fa'; // Импорт иконки копирования
+import { FaCopy } from 'react-icons/fa';
 
 export function ColorPicker() {
   const canvasRef = useRef(null);
@@ -9,7 +9,7 @@ export function ColorPicker() {
   const [isColorSelected, setIsColorSelected] = useState(false);
   const [zoomLevel, setZoomLevel] = useState(1);
   const [hoveredArea, setHoveredArea] = useState({ x: 0, y: 0 });
-  const [isZoomVisible, setIsZoomVisible] = useState(false); // Флаг для отображения увеличенной области
+  const [isZoomVisible, setIsZoomVisible] = useState(false); 
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -46,7 +46,7 @@ export function ColorPicker() {
     setHoveredArea({ x, y });
 
     if (!isZoomVisible) {
-      setIsZoomVisible(true); // Показываем окно увеличения при первом движении мыши
+      setIsZoomVisible(true); 
     }
   };
 
@@ -85,7 +85,7 @@ export function ColorPicker() {
   const handleWheel = (e) => {
     e.preventDefault();
     const newZoom = zoomLevel + e.deltaY * -0.01;
-    setZoomLevel(Math.min(Math.max(1, newZoom), 3)); // Устанавливаем лимит для зума
+    setZoomLevel(Math.min(Math.max(1, newZoom), 3)); 
   };
 
   return (
@@ -128,8 +128,8 @@ export function ColorPicker() {
                 <div
                   className="zoomed-area"
                   style={{
-                    position: 'static', // Окно будет статичным
-                    marginTop: '20px', // Добавляем отступ сверху, чтобы окно было под результатами
+                    position: 'static', 
+                    marginTop: '20px', 
                     width: '150px',
                     height: '150px',
                     backgroundImage: `url(${img.src})`,
@@ -140,16 +140,16 @@ export function ColorPicker() {
                     boxShadow: '0px 0px 10px rgba(0,0,0,0.2)',
                     pointerEvents: 'none',
                     transition: 'opacity 0.3s ease-in-out',
-                    display: 'flex', // Используем flexbox для центрирования содержимого
-                    justifyContent: 'center', // Горизонтальное выравнивание по центру
-                    alignItems: 'center', // Вертикальное выравнивание по центру
+                    display: 'flex', 
+                    justifyContent: 'center', 
+                    alignItems: 'center', 
                   }}
                 >
                   <div
                     style={{
-                      fontSize: '36px', // Размер плюса
-                      color: 'white',  // Цвет плюса
-                      pointerEvents: 'none', // Не мешает взаимодействию
+                      fontSize: '36px', 
+                      color: 'white', 
+                      pointerEvents: 'none', 
                     }}
                   >
                     +
