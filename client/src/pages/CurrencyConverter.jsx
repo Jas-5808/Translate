@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import * as pdfjsLib from "pdfjs-dist";
 import mammoth from "mammoth";
 import { jsPDF } from "jspdf";
-import JSZip from "jszip"; // Архивация изображений
+import JSZip from "jszip";
 
 export function FileConverter() {
     const [file, setFile] = useState(null);
@@ -13,16 +13,16 @@ export function FileConverter() {
     const [loading, setLoading] = useState(false);
     const [previewImage, setPreviewImage] = useState(null);
     const [progress, setProgress] = useState(0);
-    const [dragOver, setDragOver] = useState(false); // Для визуальных эффектов при перетаскивании
-    const [fileName, setFileName] = useState(""); // Для отображения имени файла
+    const [dragOver, setDragOver] = useState(false); 
+    const [fileName, setFileName] = useState(""); 
 
     pdfjsLib.GlobalWorkerOptions.workerSrc =
         "//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js";
 
-    // Функция обработки файла при изменении
+    
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
-        if (selectedFile.size > 10 * 1024 * 1024) { // Ограничение на 10MB
+        if (selectedFile.size > 10 * 1024 * 1024) { 
             setError("Файл слишком большой. Пожалуйста, загрузите файл размером не более 10 МБ.");
             return;
         }
@@ -48,7 +48,7 @@ export function FileConverter() {
         }
     };
 
-    // Функция для предварительного просмотра изображения
+
     const previewImageFile = (file) => {
         const reader = new FileReader();
         reader.onload = (e) => {
@@ -57,12 +57,12 @@ export function FileConverter() {
         reader.readAsDataURL(file);
     };
 
-    // Функция для выбора формата вывода
+   
     const handleOutputTypeChange = (e) => {
         setOutputType(e.target.value);
     };
 
-    // Функция конверсии
+
     const convertFile = async () => {
         if (!file) {
             setError("Пожалуйста, выберите файл.");
@@ -73,22 +73,22 @@ export function FileConverter() {
         setProgress(0);
 
         try {
-            // Конвертация изображения
+           
             if (inputType.startsWith("image") && outputType.startsWith("image")) {
                 await convertImage();
             }
-            // Конвертация PDF
+           
             else if (inputType === "application/pdf" && outputType === "application/pdf") {
                 setConvertedFile(URL.createObjectURL(file));
                 setLoading(false);
             } else if (inputType === "application/pdf" && outputType.startsWith("image")) {
                 await convertPdfToImage();
             }
-            // Конвертация Word в PDF
+           
             else if (inputType === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" && outputType === "application/pdf") {
                 await convertWordToPdf();
             }
-            // Конвертация TXT в PDF
+           
             else if (inputType === "text/plain" && outputType === "application/pdf") {
                 await convertTxtToPdf();
             }
@@ -103,7 +103,7 @@ export function FileConverter() {
         }
     };
 
-    // Конвертация изображения в выбранный формат
+
     const convertImage = async () => {
         const reader = new FileReader();
         reader.onload = (e) => {
@@ -131,7 +131,7 @@ export function FileConverter() {
         reader.readAsDataURL(file);
     };
 
-    // Конвертация PDF в изображения
+
     const convertPdfToImage = async () => {
         const pdfBytes = await file.arrayBuffer();
         const pdfDoc = await pdfjsLib.getDocument(pdfBytes).promise;
@@ -156,11 +156,11 @@ export function FileConverter() {
             const imageData = canvas.toDataURL(outputType);
             zip.file(`page_${pageNum}.jpg`, imageData.split(',')[1], { base64: true });
 
-            // Обновляем прогресс
+            
             setProgress((prevProgress) => prevProgress + progressIncrement);
         }
 
-        // Создаем и загружаем архив
+        
         zip.generateAsync({ type: "blob" }).then(function (content) {
             const newFile = new File([content], "converted_images.zip", { type: "application/zip" });
             setConvertedFile(URL.createObjectURL(newFile));
@@ -168,7 +168,7 @@ export function FileConverter() {
         });
     };
 
-    // Конвертация Word в PDF
+    
     const convertWordToPdf = async () => {
         const arrayBuffer = await file.arrayBuffer();
         const result = await mammoth.convertToHtml({ arrayBuffer });
@@ -191,54 +191,53 @@ export function FileConverter() {
         });
     };
 
-    // Конвертация TXT в PDF
-   // Конвертация TXT в PDF с улучшением для длинных строк и пустых строк
+   
 const convertTxtToPdf = async () => {
-    // Чтение текстового файла
+   
     const text = await file.text();
 
-    // Инициализация объекта jsPDF
+    
     const pdf = new jsPDF();
 
-    // Настройка шрифта и размеров
+    
     pdf.setFontSize(12);
     const pageWidth = pdf.internal.pageSize.getWidth();
-    const margin = 10; // Отступы от края
-    const maxWidth = pageWidth - 2 * margin; // Максимальная ширина для текста
+    const margin = 10; 
+    const maxWidth = pageWidth - 2 * margin; 
 
-    // Разбиваем текст на строки с учетом максимальной ширины
+   
     const textLines = pdf.splitTextToSize(text, maxWidth);
 
-    // Высота строки для текста
+  
     const lineHeight = 6;
-    let currentHeight = margin; // Начинаем с верхнего отступа
+    let currentHeight = margin; 
 
-    // Добавляем текст в PDF с переносом строк и добавлением новой страницы при необходимости
+    
     textLines.forEach(line => {
-        // Добавляем строку текста
+       
         pdf.text(line, margin, currentHeight);
         currentHeight += lineHeight;
 
-        // Если текст не помещается на странице, добавляем новую страницу
+
         if (currentHeight + lineHeight > pdf.internal.pageSize.getHeight() - margin) {
             pdf.addPage();
-            currentHeight = margin; // Сбрасываем высоту для новой страницы
+            currentHeight = margin; 
         }
     });
 
-    // Генерация PDF и создание файла
+
     const pdfOutput = pdf.output("blob");
     const newFile = new File([pdfOutput], file.name.replace(/\.[^/.]+$/, ".pdf"), {
         type: "application/pdf",
     });
 
-    // Устанавливаем ссылку на загруженный файл
+
     setConvertedFile(URL.createObjectURL(newFile));
     setLoading(false);
 };
 
 
-    // Получение доступных типов вывода
+
     const getAvailableOutputTypes = () => {
         if (inputType.startsWith("image")) {
             return ["image/jpeg", "image/png", "image/gif", "image/bmp"];
@@ -253,7 +252,7 @@ const convertTxtToPdf = async () => {
         }
     };
 
-    // Обработчик события перетаскивания
+
     const handleDrop = useCallback((e) => {
         e.preventDefault();
         e.stopPropagation();
