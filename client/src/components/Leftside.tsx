@@ -24,6 +24,11 @@ export function Leftside() {
                             <i className="material-symbols-outlined">palette</i> Color Picker
                         </a>
                     </li>
+                    <li className={`${cn.menuItem} ${location.pathname === '/currencyConverter' ? cn.active : ''}`}>
+                        <a href="/currencyConverter" className={cn.menuLink}>
+                            <i className="material-symbols-outlined">palette</i> Currency Converter
+                        </a>
+                    </li>   
                     <li className={`${cn.menuItem} ${location.pathname === '/about' ? cn.active : ''}`}>
                         <a href="/about" className={cn.menuLink}>
                             <i className="fa fa-info-circle"></i> О нас
