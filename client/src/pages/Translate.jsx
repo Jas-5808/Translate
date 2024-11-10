@@ -74,45 +74,38 @@ export function Translate() {
 
     useEffect(() => {
         const translateAndDetectLanguage = async () => {
-            if (text.trim()) {
-                const url = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
-                const detectUrl = `https://translation.googleapis.com/language/translate/v2/detect?key=${apiKey}`;
-                
-                try {
-                    const detectResponse = await axios.post(detectUrl, { q: text });
-                    const detectedLangCode = detectResponse.data.data.detections[0][0].language;
-                    setDetectedLanguage(detectedLangCode);
-        
-                    const formattedText = text.replace(/\n/g, '__NEWLINE__');
-                    
-                    const response = await axios.post(url, {
-                        q: formattedText,
-                        source: sourceLanguage,  
-                        target: targetLanguage,
-                    });
-        
-                    let translated = response.data.data.translations[0].translatedText;
-        
-                    translated = translated.replace(/__NEWLINE__/g, '\n');
-                    translated = decodeHTML(translated);
-        
-                    setTranslatedText(translated);
-                    setEditableTranslatedText(translated);
-
-                    setTranslatedCharCount(countCharsWithoutSpaces(translated));
-                } catch (error) {
-                    console.error("Ошибка:", error);
-                    setTranslatedText("Произошла ошибка при переводе.");
-                }
-            } else {
+            if (!text.trim()) {
                 setTranslatedText("");
                 setEditableTranslatedText("");
                 setDetectedLanguage(null);
+                return;
+            }
+    
+            try {
+                const detectUrl = `https://translation.googleapis.com/language/translate/v2/detect?key=${apiKey}`;
+                const detectResponse = await axios.post(detectUrl, { q: text });
+                const detectedLangCode = detectResponse.data.data.detections[0][0].language;
+                setDetectedLanguage(detectedLangCode);
+    
+                const url = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
+                const response = await axios.post(url, {
+                    q: text,
+                    source: detectedLangCode,
+                    target: targetLanguage,
+                });
+                const translated = response.data.data.translations[0].translatedText.replace(/__NEWLINE__/g, '\n');
+                setTranslatedText(decodeHTML(translated));
+                setEditableTranslatedText(decodeHTML(translated));
+                setTranslatedCharCount(countCharsWithoutSpaces(translated));
+            } catch (error) {
+                console.error("Ошибка при переводе:", error.response?.data || error.message);
+                setTranslatedText("Произошла ошибка при переводе.");
             }
         };
-
+    
         translateAndDetectLanguage();
-    }, [text, sourceLanguage, targetLanguage]);
+    }, [text, targetLanguage]);
+    
 
     function decodeHTML(html) {
         const txt = document.createElement('textarea');
@@ -128,41 +121,49 @@ export function Translate() {
     };
     
     const handleTextChange = (id, newText) => {
-        setContainers((prev) => prev.map(container =>
-            container.id === id ? { ...container, text: newText } : container
-        ));
+        setContainers((prev) =>
+            prev.map((container) =>
+                container.id === id ? { ...container, text: newText } : container
+            )
+        );
     };
     
     const handleLanguageChange = (id, newLanguage) => {
-        setContainers((prev) => prev.map(container =>
-            container.id === id ? { ...container, targetLanguage: newLanguage } : container
-        ));
+        setContainers((prev) =>
+            prev.map((container) =>
+                container.id === id ? { ...container, targetLanguage: newLanguage } : container
+            )
+        );
     };
     
     useEffect(() => {
-        const translateText = async (id) => {
-            const container = containers.find(container => container.id === id);
-            if (container && container.text.trim()) {
+        const translateText = async (id, targetLanguage) => {
+            if (text.trim()) {
                 try {
                     const url = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
                     const response = await axios.post(url, {
-                        q: container.text,
-                        target: container.targetLanguage,
+                        q: text,
+                        target: targetLanguage,
                     });
                     const translated = response.data.data.translations[0].translatedText;
+
                     setContainers((prev) =>
-                        prev.map((c) => (c.id === id ? { ...c, translatedText: translated } : c))
+                        prev.map((container) =>
+                            container.id === id ? { ...container, translatedText: translated } : container
+                        )
                     );
                 } catch (error) {
                     console.error("Ошибка при переводе:", error);
                 }
             }
         };
-    
-        containers.forEach(container => {
-            translateText(container.id);
+
+        containers.forEach((container) => {
+            translateText(container.id, container.targetLanguage);
         });
-    }, [containers]);
+    }, [text, containers]);
+    
+    
 
     function speakText(isTranslated) {
         const textToSpeak = isTranslated ? editableTranslatedText : text;
@@ -343,45 +344,42 @@ export function Translate() {
                 {containers.map((container) => (
                     <div key={container.id} className={cn.microphone}>
                         <Select
-                            value={languageOptions.find(option => option.value === targetLanguage)}
-                            onChange={(selectedOption) => setTargetLanguage(selectedOption.value)}
+                            value={languageOptions.find(option => option.value === container.targetLanguage)}
+                            onChange={(selectedOption) => handleLanguageChange(container.id, selectedOption.value)}
                             options={languageOptions}
                             className={cn.languageSelector}
                             classNamePrefix="react-select"
                             placeholder="Выберите язык"
-                        /> 
-                        <div className={cn.text_box}>
-                        <textarea
-                            ref={translatedTextAreaRef}
-                            id="result"
-                            className={cn.translatedText}
-                            value={editableTranslatedText}
-                            onChange={(e) => {
-                                const newText = e.target.value;
-                                setEditableTranslatedText(newText);
-                                adjustHeight(e.target); 
-                                setTranslatedCharCount(countCharsWithoutSpaces(newText));
-                            }}
-                            onInput={(e) => adjustHeight(e.target)}
                         />
+                        <div className={cn.text_box}>
+                            <textarea
+                                ref={translatedTextAreaRef}
+                                id="result"
+                                className={cn.translatedText}
+                                value={container.translatedText}
+                                onChange={(e) => handleTextChange(container.id, e.target.value)}
+                                onInput={(e) => adjustHeight(e.target)}
+                            />
 
-                        <div className={cn.equipments}>
-                            <div className={cn.charCount}>
-                                <p>К-во симв: {translatedCharCount}</p>
-                            </div>
-                            <div className={cn.eq_leftside}>
-                                <button onClick={copyToClipboardTranslated}>
-                                    <FaCopy />
-                                </button>
+                            <div className={cn.equipments}>
+                                <div className={cn.charCount}>
+                                    <p>К-во симв: {translatedCharCount}</p>
+                                </div>
+                                <div className={cn.eq_leftside}>
+                                    <button onClick={copyToClipboardTranslated}>
+                                        <FaCopy />
+                                    </button>
 
-                                <div className={cn.volume}>
-                                    <img src={volume} alt="" onClick={() => speakText(true)}/>
+                                    <div className={cn.volume}>
+                                        <img src={volume} alt="" onClick={() => speakText(true)} />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    </div>
                 ))}
+
+
             </div>
             <div>
 
