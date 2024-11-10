@@ -1,104 +1,284 @@
-import React, { useState } from "react";
-import Tesseract from "tesseract.js";
-import mammoth from "mammoth";  
-import * as pdfjsLib from "pdfjs-dist/webpack";
 import cn from "./style.module.css";
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js`;
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
+import { FaMicrophone, FaCopy } from 'react-icons/fa';
+import Tesseract from 'tesseract.js';
+import Select from 'react-select';
+import volume from '../assets/volume.png';
+import mammoth from "mammoth";
 
 export function Translate_file() {
-    const [fileText, setFileText] = useState("");
+    const apiKey = 'AIzaSyCiConrcZiaumOPZRNOxbryaUH-3udEODc';
+    const [text, setText] = useState("");
+    const [sourceLanguage, setSourceLanguage] = useState({ value: "auto", label: "Определить автоматически" });
+    const [targetLanguage, setTargetLanguage] = useState({ value: "ru", label: "Russian" });
+    const [translatedText, setTranslatedText] = useState("");
+    const [recognition, setRecognition] = useState(null);
+    const [file, setFile] = useState(null);
     const [isProcessing, setIsProcessing] = useState(false);
 
-    function handleFileUpload(event) {
-        const uploadedFile = event.target.files[0];
-        const fileType = uploadedFile.type;
-        setIsProcessing(true);
+    const languageOptions = [
+        { value: "auto", label: "Detect Automatically" },
+        { value: "en", label: "English" },
+        { value: "es", label: "Spanish" },
+        { value: "fr", label: "French" },
+        { value: "ru", label: "Russian" },
+        { value: "af", label: "Afrikaans" },
+        { value: "sq", label: "Albanian" },
+        { value: "am", label: "Amharic" },
+        { value: "ar", label: "Arabic" },
+        { value: "hy", label: "Armenian" },
+        { value: "az", label: "Azerbaijani" },
+        { value: "eu", label: "Basque" },
+        { value: "be", label: "Belarusian" },
+        { value: "bn", label: "Bengali" },
+        { value: "bs", label: "Bosnian" },
+        { value: "bg", label: "Bulgarian" },
+        { value: "ca", label: "Catalan" },
+        { value: "ceb", label: "Cebuano" },
+        { value: "ny", label: "Chichewa" },
+        { value: "zh", label: "Chinese" },
+        { value: "zh-CN", label: "Chinese (Simplified)" },
+        { value: "zh-TW", label: "Chinese (Traditional)" },
+        { value: "co", label: "Corsican" },
+        { value: "hr", label: "Croatian" },
+        { value: "cs", label: "Czech" },
+        { value: "da", label: "Danish" },
+        { value: "nl", label: "Dutch" },
+        { value: "eo", label: "Esperanto" },
+        { value: "et", label: "Estonian" },
+        { value: "tl", label: "Filipino" },
+        { value: "fi", label: "Finnish" },
+        { value: "fy", label: "Frisian" },
+        { value: "gl", label: "Galician" },
+        { value: "ka", label: "Georgian" },
+        { value: "de", label: "German" },
+        { value: "el", label: "Greek" },
+        { value: "gu", label: "Gujarati" },
+        { value: "ht", label: "Haitian Creole" },
+        { value: "ha", label: "Hausa" },
+        { value: "haw", label: "Hawaiian" },
+        { value: "iw", label: "Hebrew" },
+        { value: "hi", label: "Hindi" },
+        { value: "hmn", label: "Hmong" },
+        { value: "hu", label: "Hungarian" },
+        { value: "is", label: "Icelandic" },
+        { value: "ig", label: "Igbo" },
+        { value: "id", label: "Indonesian" },
+        { value: "ga", label: "Irish" },
+        { value: "it", label: "Italian" },
+        { value: "ja", label: "Japanese" },
+        { value: "jw", label: "Javanese" },
+        { value: "kn", label: "Kannada" },
+        { value: "kk", label: "Kazakh" },
+        { value: "km", label: "Khmer" },
+        { value: "ko", label: "Korean" },
+        { value: "ku", label: "Kurdish (Kurmanji)" },
+        { value: "ky", label: "Kyrgyz" },
+        { value: "lo", label: "Lao" },
+        { value: "la", label: "Latin" },
+        { value: "lv", label: "Latvian" },
+        { value: "lt", label: "Lithuanian" },
+        { value: "lb", label: "Luxembourgish" },
+        { value: "mk", label: "Macedonian" },
+        { value: "mg", label: "Malagasy" },
+        { value: "ms", label: "Malay" },
+        { value: "ml", label: "Malayalam" },
+        { value: "mt", label: "Maltese" },
+        { value: "mi", label: "Maori" },
+        { value: "mr", label: "Marathi" },
+        { value: "mn", label: "Mongolian" },
+        { value: "my", label: "Myanmar (Burmese)" },
+        { value: "ne", label: "Nepali" },
+        { value: "no", label: "Norwegian" },
+        { value: "ps", label: "Pashto" },
+        { value: "fa", label: "Persian" },
+        { value: "pl", label: "Polish" },
+        { value: "pt", label: "Portuguese" },
+        { value: "pa", label: "Punjabi" },
+        { value: "ro", label: "Romanian" },
+        { value: "sm", label: "Samoan" },
+        { value: "gd", label: "Scots Gaelic" },
+        { value: "sr", label: "Serbian" },
+        { value: "st", label: "Sesotho" },
+        { value: "sn", label: "Shona" },
+        { value: "sd", label: "Sindhi" },
+        { value: "si", label: "Sinhala" },
+        { value: "sk", label: "Slovak" },
+        { value: "sl", label: "Slovenian" },
+        { value: "so", label: "Somali" },
+        { value: "su", label: "Sundanese" },
+        { value: "sw", label: "Swahili" },
+        { value: "sv", label: "Swedish" },
+        { value: "tg", label: "Tajik" },
+        { value: "ta", label: "Tamil" },
+        { value: "te", label: "Telugu" },
+        { value: "th", label: "Thai" },
+        { value: "tr", label: "Turkish" },
+        { value: "uk", label: "Ukrainian" },
+        { value: "ur", label: "Urdu" },
+        { value: "uz", label: "Uzbek" },
+        { value: "vi", label: "Vietnamese" },
+        { value: "cy", label: "Welsh" },
+        { value: "xh", label: "Xhosa" },
+        { value: "yi", label: "Yiddish" },
+        { value: "yo", label: "Yoruba" },
+        { value: "zu", label: "Zulu" }
+    ];
+    
 
-        // Обработка изображения (OCR)
-        if (fileType.startsWith("image")) {
-            Tesseract.recognize(uploadedFile, 'eng', {
-                logger: (m) => console.log(m),
-            })
-            .then(({ data: { text } }) => {
-                setFileText(text);
-                setIsProcessing(false);
-            })
-            .catch((error) => {
-                console.error("Ошибка OCR:", error);
-                setIsProcessing(false);
+    const adjustHeight = (element) => {
+        element.style.height = "auto";
+        element.style.height = `${element.scrollHeight}px`;
+    };
+
+    useEffect(() => {
+        const textarea = document.querySelector('textarea');
+        if (textarea) {
+            adjustHeight(textarea);
+        }
+    }, [text]);
+
+    useEffect(() => {
+        if (text && sourceLanguage.value === 'auto') {
+            detectLanguage();
+        } else if (text) {
+            translateText();
+        }
+    }, [text, targetLanguage, sourceLanguage]);
+
+    useEffect(() => {
+        if (window.SpeechRecognition || window.webkitSpeechRecognition) {
+            const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognitionInstance = new SpeechRec();
+            recognitionInstance.lang = sourceLanguage.value;
+            recognitionInstance.continuous = false;
+            recognitionInstance.interimResults = false;
+            setRecognition(recognitionInstance);
+        }
+    }, [sourceLanguage]);
+
+    async function detectLanguage() {
+        const url = `https://translation.googleapis.com/language/translate/v2/detect?key=${apiKey}`;
+        try {
+            const response = await axios.post(url, { q: text }, {
+                headers: { 'Content-Type': 'application/json' },
             });
+            
+            // Получаем код определенного языка
+            const detectedLang = response.data.data.detections[0][0].language;
+            
+            // Ищем язык в списке опций
+            const detectedLangOption = languageOptions.find(lang => lang.value === detectedLang);
+            
+            // Устанавливаем определенный язык или добавляем, если его нет в списке
+            setSourceLanguage(detectedLangOption || { value: detectedLang, label: detectedLang.toUpperCase() });
+            
+            // Выполняем перевод с найденным языком
+            translateText();
+        } catch (error) {
+            console.error("Ошибка определения языка:", error);
         }
+    }
+    function decodeHtmlEntities(text) {
+        const textArea = document.createElement("textarea");
+        textArea.innerHTML = text;
+        return textArea.value;
+    }
 
-        // Обработка PDF
-        else if (fileType === "application/pdf") {
-            const fileReader = new FileReader();
-            fileReader.onload = function () {
-                const pdfData = new Uint8Array(this.result);
-                pdfjsLib.getDocument(pdfData).promise.then(function (pdf) {
-                    let fullText = "";
-                    let pagePromises = [];
 
-                    // Прочитать все страницы
-                    for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-                        pagePromises.push(
-                            pdf.getPage(pageNum).then(function (page) {
-                                return page.getTextContent().then(function (textContent) {
-                                    fullText += textContent.items.map(item => item.str).join(" ") + "\n";
-                                });
-                            })
-                        );
-                    }
-
-                    // Когда все страницы загружены
-                    Promise.all(pagePromises).then(() => {
-                        setFileText(fullText);
-                        setIsProcessing(false);
-                    });
-
-                }).catch((error) => {
-                    console.error("Ошибка при загрузке PDF:", error);
-                    setIsProcessing(false);
-                });
-            };
-            fileReader.readAsArrayBuffer(uploadedFile);
-        }
-
-        // Обработка TXT
-        else if (fileType === "text/plain") {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                setFileText(e.target.result);
-                setIsProcessing(false);
-            };
-            reader.readAsText(uploadedFile);
-        }
-
-        // Обработка DOCX
-        else if (fileType === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                mammoth.extractRawText({ arrayBuffer: e.target.result })
-                    .then(function (result) {
-                        setFileText(result.value);
-                        setIsProcessing(false);
-                    })
-                    .catch(function (err) {
-                        console.error("Ошибка при обработке DOCX:", err);
-                        setIsProcessing(false);
-                    });
-            };
-            reader.readAsArrayBuffer(uploadedFile);
-        } else {
-            setIsProcessing(false);
-            alert("Неподдерживаемый формат файла.");
+    async function translateText() {
+        const url = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
+        try {
+            const response = await axios.post(url, {
+                q: text,
+                source: sourceLanguage.value === 'auto' ? undefined : sourceLanguage.value,
+                target: targetLanguage.value,
+            });
+            let translated = response.data.data.translations[0].translatedText;
+        
+            // Декодируем HTML-символы
+            translated = decodeHtmlEntities(translated);
+            
+            setTranslatedText(translated);
+        } catch (error) {
+            console.error("Ошибка перевода:", error);
+            setTranslatedText("Произошла ошибка при переводе.");
         }
     }
 
+    function speakText(text, language) {
+        if (!text) {
+            alert("Пожалуйста, сначала выполните перевод.");
+            return;
+        }
+    
+        if (!('speechSynthesis' in window)) {
+            alert("Ваш браузер не поддерживает озвучивание текста.");
+            return;
+        }
+    
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = language;
+        utterance.volume = 1;
+        utterance.rate = 0.9;
+        utterance.pitch = 1;
+    
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utterance);
+    }
+    
+
+    function startRecognition() {
+        if (recognition) {
+            recognition.start();
+            recognition.onresult = (event) => {
+                setText(event.results[0][0].transcript);
+            };
+            recognition.onerror = (event) => {
+                console.error('Ошибка распознавания:', event.error);
+            };
+        }
+    }
+
+    function handleFileUpload(event) {
+        const uploadedFile = event.target.files[0];
+        setFile(uploadedFile);
+        setIsProcessing(true);
+    
+        if (uploadedFile.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const arrayBuffer = e.target.result;
+    
+                mammoth.extractRawText({ arrayBuffer: arrayBuffer })
+                    .then((result) => {
+                        setText(result.value);
+                        setIsProcessing(false);
+                    })
+                    .catch((error) => {
+                        console.error("Ошибка при чтении Word файла:", error);
+                        setIsProcessing(false);
+                    });
+            };
+    
+            reader.readAsArrayBuffer(uploadedFile);
+        } else {
+            console.error("Неверный формат файла. Пожалуйста, загрузите файл DOCX.");
+            setIsProcessing(false);
+        }
+    }
+
+    function copyToClipboard(textToCopy) {
+        navigator.clipboard.writeText(textToCopy);
+        alert("Текст скопирован в буфер обмена!");
+    }
+    
+
     return (
-        <div className={cn.container}>
+        <div className={cn.lol}>
             <div className={cn.title}>
-                <h3>Распознать текст онлайн с картинки</h3>
+                <h3>Распознать текст с файла</h3>
                 <a href="/">Перевести текст</a>
             </div>
 
@@ -110,20 +290,68 @@ export function Translate_file() {
                     accept="image/*, .pdf, .txt, .docx"
                 />
                 <div className={cn.dragDrop}>
-                    <p>Перетащите файл сюда или выберите файл для загрузки</p>
+                    <small>Поддерживаемые форматы: изображения, PDF, TXT, DOCX</small>
                 </div>
             </div>
 
-            {isProcessing && <p className={cn.processingText}>Обработка файла...</p>}
+            <div className={cn.language_box}>
+                <div className={cn.microphone}>
+                    <Select
+                        options={languageOptions}
+                        value={sourceLanguage}
+                        onChange={(selected) => setSourceLanguage(selected)}
+                        placeholder="Выберите язык оригинала"
+                        className={cn.languageSelector}
+                    />
+                    <div className={cn.text_box}>
+                        <textarea
+                            value={text}
+                            onChange={(e) => setText(e.target.value)}
+                            placeholder="Введите текст для перевода..."
+                        />
+                        <div className={cn.equipments}>
+                            <button onClick={startRecognition}>
+                                <FaMicrophone />
+                            </button>
 
-            <textarea
-                value={fileText}
-                onChange={(e) => setFileText(e.target.value)}
-                readOnly
-                className={cn.resultText}
-                placeholder="Распознанный текст из файла отобразится здесь..."
-            />
+                            <div className={cn.eq_leftside}>
+                                <div className={cn.volume}>
+                                    <img src={volume} alt="" onClick={() => speakText(text, sourceLanguage.value)} />
+                                </div>
+                                <button onClick={() => copyToClipboard(text)}>
+                                    <FaCopy />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div className={cn.microphone}>
+                    <Select
+                        options={languageOptions}
+                        value={targetLanguage}
+                        onChange={(selected) => setTargetLanguage(selected)}
+                        placeholder="Выберите целевой язык"
+                        className={cn.languageSelector}
+                    />
+                    <div className={cn.text_box}>
+                        <p id="result">{translatedText}</p>
+
+                        <div className={cn.equipments}>
+                            <div></div>
+                            <div className={cn.eq_leftside}>
+                                <div className={cn.volume}>
+                                    <img src={volume} alt="" onClick={() => speakText(translatedText, targetLanguage.value)} />
+                                </div>
+
+                                <button onClick={() => copyToClipboard(translatedText)}>
+                                    <FaCopy />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div className={cn.description}>
                 <h2>Переводчик по фото</h2>
