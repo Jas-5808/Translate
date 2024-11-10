@@ -1,43 +1,93 @@
+/* mainCss.module.css */
 
-/* Left Side */
-.leftside{
-    width: 300px;
-    height: 100vh;
-    position: fixed;
-    padding: 30px 0;
-}
-.leftside_content{
-    width: 200px;
-    margin: auto;
+/* Контейнер для левого меню */
+.leftside {
+    width: 250px; /* Ширина бокового меню */
+    height: 100vh; /* Высота на весь экран */
+    position: fixed; /* Фиксация меню слева */
+    top: 0;
+    left: 0;
+    background-color: #f8f9fa; /* Светлый фон для бокового меню */
+    padding-top: 30px; /* Отступ сверху */
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1); /* Легкая тень для разделения */
+  }
+  
+  /* Контент внутри бокового меню */
+  .leftside_content {
     display: flex;
     flex-direction: column;
-    gap: 30px;
-}
-.logo{
-    color: #002033;
-    font-weight: 700;
-    font-size: 22px;
-   
-}
-.logo:hover{
-    color: #002033;
-}
-.menu{
+    align-items: center;
+    padding: 10px;
+  }
+  
+  /* Логотип и текст */
+  .logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  /* Стили для текста логотипа */
+  .logo_text {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-
-/* Header */
-.header{
-    display: none;
-}
-
-
-/* Footer  */
-.footer_content ul{
-    display: flex;
-    gap: 10px;
+    align-items: center;
+    color: #333; /* Темный цвет для текста */
+    font-size: 1.2rem;
+    text-decoration: none;
+    margin-bottom: 30px;
+    font-weight: bold; /* Толщина шрифта для акцента */
+  }
+  
+  .logo_text:hover {
+    color: #00bcd4; /* Голубой цвет при наведении */
+  }
+  
+  /* Меню */
+  .menu {
+    list-style-type: none;
+    padding: 0;
     margin: 0;
-}
+    width: 100%;
+  }
+  
+  /* Элементы меню */
+  .menuItem {
+    position: relative; /* для псевдоэлемента */
+    width: 100%; /* Чтобы блок меню заполнил всю ширину */
+  }
+  
+  /* Стили для ссылок в меню */
+  .menuLink {
+    color: #495057; /* Темно-серый текст для хорошей читаемости */
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    width: 100%; /* Чтобы ссылка растягивалась на весь блок */
+    border-radius: 4px; /* Скругление углов */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Эффект наведения */
+  .menuItem:hover {
+    background-color: #e2e6ea; /* Легкий серый фон при наведении на элемент */
+  }
+  
+  /* Цвет фона для ссылки при наведении */
+  .menuLink:hover {
+    background-color: #00bcd4; /* Голубой фон при наведении */
+    color: white; /* Белый цвет текста */
+    border-radius: 4px; /* Скругление углов */
+  }
+  
+  /* Добавляем адаптивности */
+  @media (max-width: 768px) {
+    .leftside {
+      width: 200px;
+    }
+  
+    .logo_text {
+      font-size: 1rem; /* Меньший размер для логотипа */
+    }
+  }
+  
