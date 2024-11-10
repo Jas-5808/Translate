@@ -1,12 +1,15 @@
 import React, { useRef, useState } from 'react';
-import cn from "./style.module.css";
+import { FaCopy } from 'react-icons/fa'; // Импорт иконки копирования
 
 export function ColorPicker() {
   const canvasRef = useRef(null);
   const [color, setColor] = useState('#ffffff');
   const [rgbColor, setRgbColor] = useState('rgb(255, 255, 255)');
   const [img, setImg] = useState(null);
-  const [isColorSelected, setIsColorSelected] = useState(false);  // Флаг для отслеживания выбора цвета
+  const [isColorSelected, setIsColorSelected] = useState(false);
+  const [zoomLevel, setZoomLevel] = useState(1);
+  const [hoveredArea, setHoveredArea] = useState({ x: 0, y: 0 });
+  const [isZoomVisible, setIsZoomVisible] = useState(false); // Флаг для отображения увеличенной области
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -26,40 +29,39 @@ export function ColorPicker() {
   };
 
   const handleMouseMove = (e) => {
-    if (!img || isColorSelected) return;  // Прекращаем обновление цвета, если цвет уже выбран
+    if (!img || isColorSelected) return;
 
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     const rect = canvas.getBoundingClientRect();
-
     const x = (e.clientX - rect.left) * (img.width / rect.width);
     const y = (e.clientY - rect.top) * (img.height / rect.height);
-
     const pixelData = ctx.getImageData(x, y, 1, 1).data;
     const hexColor = `#${((1 << 24) + (pixelData[0] << 16) + (pixelData[1] << 8) + pixelData[2]).toString(16).slice(1)}`;
     const rgbColor = `rgb(${pixelData[0]}, ${pixelData[1]}, ${pixelData[2]})`;
 
     setColor(hexColor);
     setRgbColor(rgbColor);
+
+    setHoveredArea({ x, y });
+
+    if (!isZoomVisible) {
+      setIsZoomVisible(true); // Показываем окно увеличения при первом движении мыши
+    }
   };
 
   const handleCanvasClick = (e) => {
     if (!img) return;
 
     if (isColorSelected) {
-      // Если цвет уже выбран, сбрасываем флаг и включаем захват цвета через движение мыши
       setIsColorSelected(false);
     } else {
-      // Если цвет не выбран, фиксируем текущий цвет
       setIsColorSelected(true);
-
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
       const rect = canvas.getBoundingClientRect();
-
       const x = (e.clientX - rect.left) * (img.width / rect.width);
       const y = (e.clientY - rect.top) * (img.height / rect.height);
-
       const pixelData = ctx.getImageData(x, y, 1, 1).data;
       const hexColor = `#${((1 << 24) + (pixelData[0] << 16) + (pixelData[1] << 8) + pixelData[2]).toString(16).slice(1)}`;
       const rgbColor = `rgb(${pixelData[0]}, ${pixelData[1]}, ${pixelData[2]})`;
@@ -70,46 +72,118 @@ export function ColorPicker() {
   };
 
   const resetSelection = () => {
-    setIsColorSelected(false);  // Сбрасываем флаг, чтобы снова можно было выбрать цвет
+    setIsColorSelected(false);
+  };
+
+  const copyToClipboard = (colorType) => {
+    const text = colorType === 'hex' ? color : rgbColor;
+    navigator.clipboard.writeText(text).then(() => {
+      alert(`Copied ${text} to clipboard!`);
+    });
+  };
+
+  const handleWheel = (e) => {
+    e.preventDefault();
+    const newZoom = zoomLevel + e.deltaY * -0.01;
+    setZoomLevel(Math.min(Math.max(1, newZoom), 3)); // Устанавливаем лимит для зума
   };
 
   return (
-    <div className={cn.color_picker}>
-      <div className={cn.title}>
+    <div className="container py-5">
+      <div className="text-center mb-4">
         <h3>Определить цвет пикселя на картинке</h3>
       </div>
 
-      <input
-        type="file"
-        accept="image/*"
-        id="upload"
-        onChange={handleImageUpload}
-        className={cn.hidden_input}
-      />
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <div className="position-relative" onWheel={handleWheel}>
+            <canvas
+              ref={canvasRef}
+              onMouseMove={handleMouseMove}
+              onClick={handleCanvasClick}
+              className="w-100 border rounded shadow"
+              style={{ maxHeight: '500px', cursor: 'crosshair' }}
+            />
+          </div>
+        </div>
 
-      <label htmlFor="upload" className={cn.custom_button}>Загрузить изображение</label>
+        <div className="col-md-4">
+          <div className="p-3 border rounded shadow">
+            <p>Результат:</p>
+            <div className="mb-3" style={{ height: '50px', backgroundColor: color, border: '1px solid #ddd' }} />
+            <div className="d-flex justify-content-between align-items-center">
+              <p><strong>HEX:</strong> <span>{color}</span></p>
+              <button className="btn btn-sm btn-secondary" onClick={() => copyToClipboard('hex')}>
+                <FaCopy />
+              </button>
+            </div>
+            <div className="d-flex justify-content-between align-items-center">
+              <p><strong>RGB:</strong> <span>{rgbColor}</span></p>
+              <button className="btn btn-sm btn-secondary" onClick={() => copyToClipboard('rgb')}>
+                <FaCopy />
+              </button>
+            </div>
+            <div>
+              {img && isZoomVisible && (
+                <div
+                  className="zoomed-area"
+                  style={{
+                    position: 'static', // Окно будет статичным
+                    marginTop: '20px', // Добавляем отступ сверху, чтобы окно было под результатами
+                    width: '150px',
+                    height: '150px',
+                    backgroundImage: `url(${img.src})`,
+                    backgroundSize: `${img.width * zoomLevel}px ${img.height * zoomLevel}px`,
+                    backgroundPosition: `-${hoveredArea.x * zoomLevel - 75}px -${hoveredArea.y * zoomLevel - 75}px`,
+                    border: '2px solid #ccc',
+                    borderRadius: '8px',
+                    boxShadow: '0px 0px 10px rgba(0,0,0,0.2)',
+                    pointerEvents: 'none',
+                    transition: 'opacity 0.3s ease-in-out',
+                    display: 'flex', // Используем flexbox для центрирования содержимого
+                    justifyContent: 'center', // Горизонтальное выравнивание по центру
+                    alignItems: 'center', // Вертикальное выравнивание по центру
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: '36px', // Размер плюса
+                      color: 'white',  // Цвет плюса
+                      pointerEvents: 'none', // Не мешает взаимодействию
+                    }}
+                  >
+                    +
+                  </div>
+                </div>
+              )}
+            </div>
 
-      <div className={cn.picker_img}>
-        <canvas
-          ref={canvasRef}
-          onMouseMove={handleMouseMove}
-          onClick={handleCanvasClick}
-        />
-        <div className={cn.color_info}>
-          <p>Результат:</p>
-          <div className={cn.color_box} style={{ backgroundColor: color }} />
-          <p>HEX: <span className={cn.color_text}>{color}</span></p>
-          <p>RGB: <span className={cn.color_text}>{rgbColor}</span></p>
+          </div>
         </div>
       </div>
 
-      <div className={cn.description}>
+      <div className="text-center mt-4 mb-4">
+        <input
+          type="file"
+          accept="image/*"
+          id="upload"
+          onChange={handleImageUpload}
+          className="d-none"
+        />
+        <label htmlFor="upload" className="btn btn-primary btn-lg">
+          Загрузить изображение
+        </label>
+      </div>
+
+      <div className="text-center mt-4 ">
         <h2>Выбор цвета с изображения</h2>
         <p>На этой странице пользователи могут загрузить изображение и выбрать на нем любой цвет с помощью функции "Color Picker". Простой и удобный инструмент позволяет определить точный цвет в любом месте изображения, а также получить его представление в форматах HEX и RGB. Это идеальное решение для дизайнеров, разработчиков и всех, кто работает с цветами и нуждается в точных цветовых значениях с изображений.</p>
-        <button onClick={resetSelection} className={cn.reset_button}>
+        <button onClick={resetSelection} className="btn btn-danger mb-4">
           Сбросить выбор
         </button>
       </div>
+
+     
     </div>
   );
 }
