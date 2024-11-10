@@ -177,7 +177,6 @@ textarea {
 
 
 /* ColorPicker */
-/* Убираем кастомные стили для большинства элементов, т.к. они уже присутствуют в Bootstrap */
 .color_picker {
     display: flex;
     flex-direction: column;
@@ -251,3 +250,24 @@ textarea {
 .plusButton:hover {
     background-color: #45a049; /* Темнее зеленый при наведении */
 }
+
+/* FileConverter */
+.drag-drop-area {
+    width: 100%;
+    height: 150px;
+    border: 2px dashed #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    cursor: pointer;
+  }
+  
+  .dragging {
+    background-color: #e0f7fa;
+  }
+  
+  .dragOver {
+    border-color: #007bff;
+  }
+  
