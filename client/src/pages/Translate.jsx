@@ -19,7 +19,8 @@ export function Translate() {
     const [isSpeaking, setIsSpeaking] = useState(false);
     const [originalCharCount, setOriginalCharCount] = useState(0);
     const [translatedCharCount, setTranslatedCharCount] = useState(0);
-
+    const [containers, setContainers] = useState([{ id: 0, text: "", translatedText: "", targetLanguage: "en" }]);
+    const maxContainers = 8;
     const languageNames = {
         af: "Afrikaans", sq: "Albanian", am: "Amharic", ar: "Arabic", hy: "Armenian", az: "Azerbaijani",
         eu: "Basque", be: "Belarusian", bn: "Bengali", bs: "Bosnian", bg: "Bulgarian", ca: "Catalan",
@@ -118,6 +119,50 @@ export function Translate() {
         txt.innerHTML = html;
         return txt.value;
     }
+    const handlePlusClick = () => {
+        if (containers.length < maxContainers) {
+            setContainers((prev) => [...prev, { id: prev.length, text: "", translatedText: "", targetLanguage: "en" }]);
+        } else {
+            alert("Достигнут предел количества контейнеров.");
+        }
+    };
+    
+    const handleTextChange = (id, newText) => {
+        setContainers((prev) => prev.map(container =>
+            container.id === id ? { ...container, text: newText } : container
+        ));
+    };
+    
+    const handleLanguageChange = (id, newLanguage) => {
+        setContainers((prev) => prev.map(container =>
+            container.id === id ? { ...container, targetLanguage: newLanguage } : container
+        ));
+    };
+    
+    useEffect(() => {
+        const translateText = async (id) => {
+            const container = containers.find(container => container.id === id);
+            if (container && container.text.trim()) {
+                try {
+                    const url = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
+                    const response = await axios.post(url, {
+                        q: container.text,
+                        target: container.targetLanguage,
+                    });
+                    const translated = response.data.data.translations[0].translatedText;
+                    setContainers((prev) =>
+                        prev.map((c) => (c.id === id ? { ...c, translatedText: translated } : c))
+                    );
+                } catch (error) {
+                    console.error("Ошибка при переводе:", error);
+                }
+            }
+        };
+    
+        containers.forEach(container => {
+            translateText(container.id);
+        });
+    }, [containers]);
 
     function speakText(isTranslated) {
         const textToSpeak = isTranslated ? editableTranslatedText : text;
@@ -295,17 +340,17 @@ export function Translate() {
 
                 </div>
 
-                <div className={cn.microphone}>
-                    <Select
-                        value={languageOptions.find(option => option.value === targetLanguage)}
-                        onChange={(selectedOption) => setTargetLanguage(selectedOption.value)}
-                        options={languageOptions}
-                        className={cn.languageSelector}
-                        classNamePrefix="react-select"
-                        placeholder="Выберите язык"
-                    />   
-
-                    <div className={cn.text_box}>
+                {containers.map((container) => (
+                    <div key={container.id} className={cn.microphone}>
+                        <Select
+                            value={languageOptions.find(option => option.value === targetLanguage)}
+                            onChange={(selectedOption) => setTargetLanguage(selectedOption.value)}
+                            options={languageOptions}
+                            className={cn.languageSelector}
+                            classNamePrefix="react-select"
+                            placeholder="Выберите язык"
+                        /> 
+                        <div className={cn.text_box}>
                         <textarea
                             ref={translatedTextAreaRef}
                             id="result"
@@ -335,10 +380,14 @@ export function Translate() {
                             </div>
                         </div>
                     </div>
-
-                </div>
+                    </div>
+                ))}
             </div>
+            <div>
 
+            <button className={cn.plusButton} onClick={handlePlusClick}>+</button>
+
+            </div>
             <div className={cn.description}>
                 <h2>Многоязычный переводчик</h2>
                 <p>На этой странице пользователи могут ввести текст и сразу перевести его на 10 различных языков. Переводчик позволяет легко и быстро получить перевод на несколько языков одновременно, что идеально подходит для людей, которые хотят понимать текст на разных языках без необходимости делать это по очереди.</p>

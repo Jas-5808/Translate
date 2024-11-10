@@ -1,110 +1,94 @@
- /* mainCss.module.css */
-
-/* Контейнер для левого меню */
 .leftside {
-    width: 250px; /* Ширина бокового меню */
-    height: 100vh; /* Высота на весь экран */
-    position: fixed; /* Фиксация меню слева */
+    width: 250px;
+    height: 100vh;
+    position: fixed;
     top: 0;
     left: 0;
-    background-color: #f8f9fa; /* Светлый фон для бокового меню */
-    padding-top: 30px; /* Отступ сверху */
-    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1); /* Легкая тень для разделения */
+    background-color: #f8f9fa;
+    padding-top: 30px;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
 }
-  
-/* Контент внутри бокового меню */
+
 .leftside_content {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 10px;
 }
-  
-/* Логотип и текст */
+
 .logo {
     width: 40px;
     height: 40px;
     margin-right: 10px;
 }
-  
-/* Стили для текста логотипа */
+
 .logo_text {
     display: flex;
     align-items: center;
-    color: #333; /* Темный цвет для текста */
+    color: #333;
     font-size: 1.2rem;
     text-decoration: none;
     margin-bottom: 30px;
-    font-weight: bold; /* Толщина шрифта для акцента */
+    font-weight: bold;
 }
 
-/* Мягкий зелёный для логотипа при наведении */
 .logo_text:hover {
-    color: #4CAF50; /* Зеленый цвет при наведении */
+    color: #4CAF50;
 }
-  
-/* Меню */
+
 .menu {
     list-style-type: none;
     padding: 0;
     margin: 0;
     width: 100%;
 }
-  
-/* Элементы меню */
+
 .menuItem {
-    position: relative; /* для псевдоэлемента */
-    width: 100%; /* Чтобы блок меню заполнил всю ширину */
+    position: relative;
+    width: 100%;
 }
-  
-/* Стили для ссылок в меню */
+
 .menuLink {
-    color: #495057; /* Темно-серый текст для хорошей читаемости */
+    color: #495057;
     font-size: 1rem;
     text-decoration: none;
     padding: 15px;
     display: block;
-    width: 100%; /* Чтобы ссылка растягивалась на весь блок */
-    border-radius: 4px; /* Скругление углов */
+    width: 100%;
+    border-radius: 4px;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Эффект наведения для элементов меню */
 .menuItem:hover {
-    background-color: #e2e6ea; /* Легкий серый фон при наведении на элемент */
+    background-color: #e2e6ea;
 }
 
-/* Цвет фона для ссылки при наведении */
 .menuLink:hover {
-    background-color: #4CAF50; /* Мягкий зелёный фон при наведении */
-    color: white; /* Белый цвет текста */
-    border-radius: 4px; /* Скругление углов */
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
 }
 
-/* Иконки в меню */
 .menuLink i {
     margin-right: 10px;
-    font-size: 18px; /* Размер иконки */
+    font-size: 18px;
 }
 
-/* Стиль для Material Icons */
 .material-symbols-outlined {
-    font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 24;
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
-/* Добавляем адаптивности */
+/* Active menu item */
+.active .menuLink {
+    background-color: #4CAF50;
+    color: white;
+}
+
 @media (max-width: 768px) {
     .leftside {
         width: 200px;
     }
-
     .logo_text {
-        font-size: 1rem; /* Меньший размер для логотипа */
+        font-size: 1rem;
     }
 }
-
-  
