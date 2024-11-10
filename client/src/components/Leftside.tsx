@@ -1,23 +1,11 @@
 import cn from "./mainCss.module.css"
 import logo from '../assets/logo.webp'
+import 'font-awesome/css/font-awesome.min.css'
 
 export function Leftside(){
 
     return (
         <>
-            {/* <div className={cn.leftside}>
-                <div className={cn.leftside_content}>
-                    
-                    <a href="/" className={cn.logo_text}><img src={logo} className={cn.logo} alt="logo" />Free Translate Hub</a>
-                    
-
-                    <ul className={cn.menu}>
-                        <li><a href="/">Переводчик</a></li>
-                        <li><a href="/colorPicker">Color Picker</a></li>
-                        <li><a href="/about">О нас</a></li>
-                    </ul>
-                </div>
-            </div> */}
             <div className={cn.leftside}>
                 <div className={cn.leftside_content}>
                     {/* Логотип и название */}
@@ -29,13 +17,20 @@ export function Leftside(){
                     {/* Боковое меню */}
                     <ul className={cn.menu}>
                         <li className={cn.menuItem}>
-                            <a href="/" className={cn.menuLink}>Переводчик</a>
+                            <a href="/" className={cn.menuLink}>
+                                <i className="fa fa-language"></i> Переводчик
+                            </a>
                         </li>
                         <li className={cn.menuItem}>
-                            <a href="/colorPicker" className={cn.menuLink}>Color Picker</a>
+                            <a href="/colorPicker" className={cn.menuLink}>
+                            <i className="material-symbols-outlined">palette</i>
+                                Color Picker
+                            </a>
                         </li>
                         <li className={cn.menuItem}>
-                            <a href="/about" className={cn.menuLink}>О нас</a>
+                            <a href="/about" className={cn.menuLink}>
+                                <i className="fa fa-info-circle"></i> О нас
+                            </a>
                         </li>
                     </ul>
                 </div>

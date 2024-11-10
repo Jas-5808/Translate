@@ -14,6 +14,7 @@
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
+    "font-awesome": "^4.7.0",
     "mammoth": "^1.8.0",
     "openai": "^4.71.0",
     "pdfjs-dist": "^4.8.69",
