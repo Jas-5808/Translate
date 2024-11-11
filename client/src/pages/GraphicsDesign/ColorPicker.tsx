@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { FaCopy } from 'react-icons/fa';
+import cn from "../style.module.css";
 
 export function ColorPicker() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -95,9 +96,13 @@ export function ColorPicker() {
   };
 
   return (
-    <div className="container py-5">
-      <div className="text-center mb-4">
-        <h3>Определить цвет пикселя на картинке</h3>
+    <div className="container py-1">
+      <div className={cn.title}>
+          <ul>
+              <li><a href="/currencyConverter">Конвертер изображений</a></li>
+              <li><a href="/imageCompression">Сжатие изображений</a></li>
+          </ul>
+          <h3>Определить цвет пикселя на картинке</h3>
       </div>
 
       <div className="row justify-content-center">

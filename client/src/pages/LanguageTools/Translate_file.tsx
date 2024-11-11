@@ -1,17 +1,18 @@
-import cn from "./style.module.css";
+import cn from "../style.module.css";
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { FaMicrophone, FaCopy } from 'react-icons/fa';
 import Tesseract from 'tesseract.js';
 import Select from 'react-select';
-import volume from '../assets/volume.png';
+import volume from '../../assets/volume.png';
 import mammoth from "mammoth";
+import { franc } from 'franc-min'; 
 
 export function Translate_file() {
     const apiKey = 'AIzaSyCiConrcZiaumOPZRNOxbryaUH-3udEODc';
     const [text, setText] = useState("");
     const [sourceLanguage, setSourceLanguage] = useState({ value: "auto", label: "Определить автоматически" });
-    const [targetLanguage, setTargetLanguage] = useState({ value: "ru", label: "Russian" });
+    const [targetLanguage, setTargetLanguage] = useState({ value: "en", label: "English" });
     const [translatedText, setTranslatedText] = useState("");
     const [recognition, setRecognition] = useState(null);
     const [file, setFile] = useState(null);
@@ -246,7 +247,10 @@ export function Translate_file() {
         setFile(uploadedFile);
         setIsProcessing(true);
     
-        if (uploadedFile.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+        const fileExtension = uploadedFile.name.split('.').pop().toLowerCase();
+    
+        // Проверка на формат docx
+        if (fileExtension === 'docx') {
             const reader = new FileReader();
             reader.onload = function (e) {
                 const arrayBuffer = e.target.result;
@@ -263,8 +267,46 @@ export function Translate_file() {
             };
     
             reader.readAsArrayBuffer(uploadedFile);
+        }
+        // Проверка на изображение
+        else if (['jpg', 'jpeg', 'png', 'gif'].includes(fileExtension)) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const imageUrl = e.target.result;
+    
+                // Используем Tesseract для распознавания текста с изображения
+                Tesseract.recognize(
+                    imageUrl,
+                    'eng+rus', // Используем несколько языков для распознавания
+                    {
+                        logger: (m) => console.log(m), // Логирование процесса
+                    }
+                ).then(({ data: { text } }) => {
+                    // Определяем язык текста после распознавания
+                    const detectedLanguage = franc(text);
+    
+                    let language = 'rus'; // Значение по умолчанию (русский)
+    
+                    if (detectedLanguage === 'eng') {
+                        language = 'eng'; // Если текст на английском
+                    } else if (detectedLanguage === 'rus') {
+                        language = 'rus'; // Если текст на русском
+                    } else {
+                        console.log('Не удалось определить язык.');
+                    }
+    
+                    // Теперь можно попробовать использовать этот язык для дальнейшей обработки
+                    setText(text); // Выводим распознанный текст
+                    setIsProcessing(false);
+                }).catch((error) => {
+                    console.error("Ошибка при распознавании текста с изображения:", error);
+                    setIsProcessing(false);
+                });
+            };
+    
+            reader.readAsDataURL(uploadedFile);
         } else {
-            console.error("Неверный формат файла. Пожалуйста, загрузите файл DOCX.");
+            console.error("Неверный формат файла. Пожалуйста, загрузите файл DOCX или изображение.");
             setIsProcessing(false);
         }
     }
@@ -278,8 +320,11 @@ export function Translate_file() {
     return (
         <div className={cn.lol}>
             <div className={cn.title}>
+                <ul>
+                    <li><a href="/">Перевести текст</a></li>
+                </ul>
+
                 <h3>Распознать текст с файла</h3>
-                <a href="/">Перевести текст</a>
             </div>
 
             <div className={cn.fileUploadArea}>

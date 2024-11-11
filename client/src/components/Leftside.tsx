@@ -11,7 +11,7 @@ export function Leftside() {
             <div className={cn.leftside_content}>
                 <a href="/" className={cn.logo_text}>
                     <img src={logo} className={cn.logo} alt="logo" />
-                    Free Translate Hub
+                    SnepTool
                 </a>
                 <ul className={cn.menu}>
                     <li className={`${cn.menuItem} ${location.pathname === '/' ? cn.active : ''}`}>
@@ -21,14 +21,9 @@ export function Leftside() {
                     </li>
                     <li className={`${cn.menuItem} ${location.pathname === '/colorPicker' ? cn.active : ''}`}>
                         <a href="/colorPicker" className={cn.menuLink}>
-                            <i className="material-symbols-outlined">palette</i> Color Picker
+                            <i className="material-symbols-outlined">palette</i> Графика и дизайн
                         </a>
-                    </li>
-                    <li className={`${cn.menuItem} ${location.pathname === '/currencyConverter' ? cn.active : ''}`}>
-                        <a href="/currencyConverter" className={cn.menuLink}>
-                            <i className="material-symbols-outlined">palette</i> Currency Converter
-                        </a>
-                    </li>   
+                    </li> 
                     <li className={`${cn.menuItem} ${location.pathname === '/about' ? cn.active : ''}`}>
                         <a href="/about" className={cn.menuLink}>
                             <i className="fa fa-info-circle"></i> О нас

@@ -3,6 +3,7 @@ import * as pdfjsLib from "pdfjs-dist";
 import mammoth from "mammoth";
 import { jsPDF } from "jspdf";
 import JSZip from "jszip";
+import cn from "../style.module.css";
 
 export function FileConverter() {
     const [file, setFile] = useState(null);
@@ -279,6 +280,13 @@ const convertTxtToPdf = async () => {
 
     return (
         <div className="container mt-4">
+            <div className={cn.title}>
+            <ul>
+                <li><a href="/colorPicker">Выбор цвета</a></li>
+                <li><a href="/imageCompression">Сжатие изображений</a></li>
+            </ul>
+            <h3>Конвертер изображений</h3>
+            </div>
             <div
                 className={`file-drop-zone ${dragOver ? "drag-over" : ""}`}
                 onDrop={handleDrop}

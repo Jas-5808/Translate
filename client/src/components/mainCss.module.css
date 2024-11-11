@@ -1,3 +1,16 @@
+/* Header */
+.header{
+    display: none;
+}
+
+/* Footer */
+.footer_content ul{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* LeftSide  */
 .leftside {
     width: 250px;
     height: 100vh;
@@ -12,7 +25,7 @@
 .leftside_content {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     padding: 10px;
 }
 

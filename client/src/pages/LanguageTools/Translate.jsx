@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from 'axios';
 import Select from 'react-select';
 import { FaMicrophone, FaCopy } from 'react-icons/fa';
-import volume from '../assets/volume.png';
-import cn from "./style.module.css";
+import volume from '../../assets/volume.png';
+import cn from "../style.module.css";
 
 export function Translate() {
     const apiKey = 'AIzaSyCiConrcZiaumOPZRNOxbryaUH-3udEODc';
@@ -112,6 +112,7 @@ export function Translate() {
         txt.innerHTML = html;
         return txt.value;
     }
+    // const decodedText = decodeHTML(container.translatedText);
     const handlePlusClick = () => {
         if (containers.length < maxContainers) {
             setContainers((prev) => [...prev, { id: prev.length, text: "", translatedText: "", targetLanguage: "en" }]);
@@ -288,11 +289,15 @@ export function Translate() {
 
     
     
+    
     return (
         <div>
             <div className={cn.title}>
+                <ul>
+                    <li><a href="/file">Перевести файл</a></li>
+                </ul>
+
                 <h3>Бесплатный онлайн-переводчик</h3>
-                <a href="/file">Перевести файл</a>
             </div>
 
             <div className={cn.language_box}>
@@ -356,7 +361,7 @@ export function Translate() {
                                 ref={translatedTextAreaRef}
                                 id="result"
                                 className={cn.translatedText}
-                                value={container.translatedText}
+                                value={decodeHTML(container.translatedText)}
                                 onChange={(e) => handleTextChange(container.id, e.target.value)}
                                 onInput={(e) => adjustHeight(e.target)}
                             />
