@@ -98,10 +98,7 @@ export function ColorPicker() {
   return (
     <div className="container py-1">
       <div className={cn.title}>
-          <ul>
-              <li><a href="/currencyConverter">Конвертер изображений</a></li>
-              <li><a href="/imageCompression">Сжатие изображений</a></li>
-          </ul>
+
           <h3>Определить цвет пикселя на картинке</h3>
       </div>
 

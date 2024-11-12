@@ -293,11 +293,13 @@ export function Translate() {
     return (
         <div>
             <div className={cn.title}>
-                <ul>
-                    <li><a href="/file">Перевести файл</a></li>
-                </ul>
-
                 <h3>Бесплатный онлайн-переводчик</h3>
+                <ul>
+                    <li><a href="/file">
+                        <i className="fa fa-file-text"></i>
+                        <p>Перевести файл <span>.pdf, .docx, .txt</span> </p>
+                    </a></li>
+                </ul>
             </div>
 
             <div className={cn.language_box}>

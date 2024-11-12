@@ -282,7 +282,6 @@ const convertTxtToPdf = async () => {
         <div className="container mt-4">
             <div className={cn.title}>
             <ul>
-                <li><a href="/colorPicker">Выбор цвета</a></li>
                 <li><a href="/imageCompression">Сжатие изображений</a></li>
             </ul>
             <h3>Конвертер изображений</h3>

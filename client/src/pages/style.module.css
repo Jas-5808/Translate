@@ -1,3 +1,9 @@
+:root {
+    --primary-color: #2196F3; 
+    --secondary-color: #4CAF50; 
+    --text-color: black;
+    --background-color: white;
+}
 
 /* errorPage */
 .errorPage {
@@ -22,19 +28,46 @@
 .title{
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     gap: 20px;
 }
 .title ul{
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 30px;
+    gap: 15px;
+}
+.title ul li a{
+    padding: 8px 16px;
+    border-radius: 5px;
+    box-shadow: 0px 1px 3px 1px #00000026;
+    background: #6750a40d,#fffbfe;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    color: black;
+}
+.title ul li a:hover{
+    border: 1px solid #2196F3;
+    color: #2196F3;
+}
+.title ul li a p{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    font-weight: 600;
+}
+.title ul li a span{
+    color: #00000090;
+    font-size: 14px;
 }
 .title h3{
+    font-size: 40px;
     font-weight: 600;
     color: black;
-    text-align: center;
+
 }
 .language_box{
     display: flex;
@@ -119,38 +152,69 @@ textarea {
 }
 
 .fileUploadArea {
-    width: 100%;
-    padding: 20px;
-    border: 2px dashed #007BFF;
-    border-radius: 10px;
-    background-color: #f1f1f1;
-    position: relative;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.uploadButton {
+    background-color: #2196F3; 
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
     margin-bottom: 10px;
 }
 
+.uploadButton:hover {
+    background-color: #008cff; 
+}
+
 .fileInput {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0;
-    cursor: pointer;
+    display: none; 
 }
 
 .dragDrop {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-    font-size: 18px;
-    color: #007BFF;
-    font-weight: bold;
-    padding: 10px;
-    border: 1px solid #007BFF;
-    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    color: #555;
 }
+
+.dragDrop small {
+    display: block;
+    margin-top: 5px;
+}
+.progress {
+    width: 50%;
+    height: 25px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.progress_bar {
+    height: 100%;
+    background-color: #2196F3;
+    color: white;
+    text-align: center;
+    line-height: 25px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: width 0.2s ease-in-out;
+}
+
+.progress_bar span {
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
 
 .processingText {
     color: #FF4500;
@@ -176,7 +240,9 @@ textarea {
 .resultText::placeholder {
     color: #aaa;
 }
-
+.description{
+    margin-top: 100px;
+}
 .description h2{
     font-size: 42px;
 }
@@ -279,4 +345,6 @@ textarea {
   .dragOver {
     border-color: #007bff;
   }
+  
+
   

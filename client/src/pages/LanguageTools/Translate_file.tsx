@@ -17,6 +17,7 @@ export function Translate_file() {
     const [recognition, setRecognition] = useState(null);
     const [file, setFile] = useState(null);
     const [isProcessing, setIsProcessing] = useState(false);
+    const [uploadProgress, setUploadProgress] = useState(0);
 
     const languageOptions = [
         { value: "auto", label: "Detect Automatically" },
@@ -246,15 +247,24 @@ export function Translate_file() {
         const uploadedFile = event.target.files[0];
         setFile(uploadedFile);
         setIsProcessing(true);
-    
+        setUploadProgress(0); // Сброс прогресса на 0
+
         const fileExtension = uploadedFile.name.split('.').pop().toLowerCase();
-    
+
         // Проверка на формат docx
         if (fileExtension === 'docx') {
             const reader = new FileReader();
+
+            reader.onprogress = function (e) {
+                if (e.lengthComputable) {
+                    const progress = Math.round((e.loaded / e.total) * 100); 
+                    setUploadProgress(progress); 
+                }
+            };
+
             reader.onload = function (e) {
                 const arrayBuffer = e.target.result;
-    
+
                 mammoth.extractRawText({ arrayBuffer: arrayBuffer })
                     .then((result) => {
                         setText(result.value);
@@ -265,15 +275,23 @@ export function Translate_file() {
                         setIsProcessing(false);
                     });
             };
-    
+
             reader.readAsArrayBuffer(uploadedFile);
         }
         // Проверка на изображение
         else if (['jpg', 'jpeg', 'png', 'gif'].includes(fileExtension)) {
             const reader = new FileReader();
+
+            reader.onprogress = function (e) {
+                if (e.lengthComputable) {
+                    const progress = Math.round((e.loaded / e.total) * 100); // Вычисляем процент прогресса
+                    setUploadProgress(progress); // Обновляем состояние прогресса
+                }
+            };
+
             reader.onload = function (e) {
                 const imageUrl = e.target.result;
-    
+
                 // Используем Tesseract для распознавания текста с изображения
                 Tesseract.recognize(
                     imageUrl,
@@ -282,11 +300,9 @@ export function Translate_file() {
                         logger: (m) => console.log(m), // Логирование процесса
                     }
                 ).then(({ data: { text } }) => {
-                    // Определяем язык текста после распознавания
                     const detectedLanguage = franc(text);
-    
                     let language = 'rus'; // Значение по умолчанию (русский)
-    
+
                     if (detectedLanguage === 'eng') {
                         language = 'eng'; // Если текст на английском
                     } else if (detectedLanguage === 'rus') {
@@ -294,8 +310,7 @@ export function Translate_file() {
                     } else {
                         console.log('Не удалось определить язык.');
                     }
-    
-                    // Теперь можно попробовать использовать этот язык для дальнейшей обработки
+
                     setText(text); // Выводим распознанный текст
                     setIsProcessing(false);
                 }).catch((error) => {
@@ -303,13 +318,14 @@ export function Translate_file() {
                     setIsProcessing(false);
                 });
             };
-    
+
             reader.readAsDataURL(uploadedFile);
         } else {
             console.error("Неверный формат файла. Пожалуйста, загрузите файл DOCX или изображение.");
             setIsProcessing(false);
         }
     }
+
 
     function copyToClipboard(textToCopy) {
         navigator.clipboard.writeText(textToCopy);
@@ -320,24 +336,15 @@ export function Translate_file() {
     return (
         <div className={cn.lol}>
             <div className={cn.title}>
-                <ul>
-                    <li><a href="/">Перевести текст</a></li>
-                </ul>
-
                 <h3>Распознать текст с файла</h3>
+                <ul>
+                    <li><a href="/">
+                        <i className="fa fa-globe"></i>
+                        <p>Перевести текст <span>122 языка</span> </p>
+                    </a></li>
+                </ul>
             </div>
 
-            <div className={cn.fileUploadArea}>
-                <input 
-                    type="file" 
-                    onChange={handleFileUpload} 
-                    className={cn.fileInput}
-                    accept="image/*, .pdf, .txt, .docx"
-                />
-                <div className={cn.dragDrop}>
-                    <small>Поддерживаемые форматы: изображения, PDF, TXT, DOCX</small>
-                </div>
-            </div>
 
             <div className={cn.language_box}>
                 <div className={cn.microphone}>
@@ -397,6 +404,38 @@ export function Translate_file() {
                     </div>
                 </div>
             </div>
+
+            <div className={cn.fileUploadArea}>
+                <label htmlFor="fileInput" className={cn.uploadButton}>
+                    Загрузить изображение
+                </label>
+                <input 
+                    type="file" 
+                    id="fileInput"
+                    onChange={handleFileUpload} 
+                    className={cn.fileInput} 
+                    accept="image/*, .pdf, .txt, .docx" 
+                    hidden 
+                />
+                <div className={cn.dragDrop}>
+                    <small>Поддерживаемые форматы: изображения, PDF, TXT, DOCX</small>
+                </div>
+                {isProcessing && (
+                    <div className={cn.progress}>
+                        <div
+                            className={cn.progress_bar}
+                            role="progressbar"
+                            style={{ width: `${uploadProgress}%` }}
+                            aria-valuenow={uploadProgress}
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                        >
+                            {uploadProgress}%
+                        </div>
+                    </div>
+                )}
+            </div>
+
 
             <div className={cn.description}>
                 <h2>Переводчик по фото</h2>

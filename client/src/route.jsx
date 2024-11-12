@@ -7,6 +7,7 @@ import { About } from "./pages/About";
 import { ColorPicker } from "./pages/GraphicsDesign/ColorPicker";
 import { FileConverter } from "./pages/GraphicsDesign/CurrencyConverter";
 import { ImageCompression } from "./pages/GraphicsDesign/ImageСompression";
+import { Shortener } from "./pages/Shortener";
 
 export const router = createBrowserRouter([
     {
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
             {
                 path: "/imageCompression",
                 element: <ImageCompression />,
+            },
+            {
+                path: "/shortener",
+                element: <Shortener />,
             },
 
         ],

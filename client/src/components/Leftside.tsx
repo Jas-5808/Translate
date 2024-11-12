@@ -21,7 +21,17 @@ export function Leftside() {
                     </li>
                     <li className={`${cn.menuItem} ${location.pathname === '/colorPicker' ? cn.active : ''}`}>
                         <a href="/colorPicker" className={cn.menuLink}>
-                            <i className="material-symbols-outlined">palette</i> Графика и дизайн
+                            <i className="material-symbols-outlined">palette</i> Выбор цвета
+                        </a>
+                    </li> 
+                    <li className={`${cn.menuItem} ${location.pathname === '/currencyConverter' ? cn.active : ''}`}>
+                        <a href="/currencyConverter" className={cn.menuLink}>
+                            <i className="material-symbols-outlined">palette</i> Конвертер
+                        </a>
+                    </li> 
+                    <li className={`${cn.menuItem} ${location.pathname === '/shortener' ? cn.active : ''}`}>
+                        <a href="/shortener" className={cn.menuLink}>
+                            <i className="material-symbols-outlined">palette</i> Сократить ссылку
                         </a>
                     </li> 
                     <li className={`${cn.menuItem} ${location.pathname === '/about' ? cn.active : ''}`}>
