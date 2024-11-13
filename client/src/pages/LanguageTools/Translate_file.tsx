@@ -339,7 +339,7 @@ export function Translate_file() {
                 <h3>Распознать текст с файла</h3>
                 <ul>
                     <li><a href="/">
-                        <i className="fa fa-globe"></i>
+                        <i className="material-symbols-outlined">translate</i> 
                         <p>Перевести текст <span>122 языка</span> </p>
                     </a></li>
                 </ul>

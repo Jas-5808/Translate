@@ -296,7 +296,7 @@ export function Translate() {
                 <h3>Бесплатный онлайн-переводчик</h3>
                 <ul>
                     <li><a href="/file">
-                        <i className="fa fa-file-text"></i>
+                        <i className="fa fa-file-text-o"></i>
                         <p>Перевести файл <span>.pdf, .docx, .txt</span> </p>
                     </a></li>
                 </ul>
@@ -324,6 +324,7 @@ export function Translate() {
                                 setOriginalCharCount(countCharsWithoutSpaces(newText));
                             }}
                             placeholder="Введите текст для перевода..."
+                            
                         />
                         <div className={cn.equipments}>
                             <div className={cn.charCount}>
@@ -393,6 +394,7 @@ export function Translate() {
             <button className={cn.plusButton} onClick={handlePlusClick}>+</button>
 
             </div>
+            
             <div className={cn.description}>
                 <h2>Многоязычный переводчик</h2>
                 <p>На этой странице пользователи могут ввести текст и сразу перевести его на 10 различных языков. Переводчик позволяет легко и быстро получить перевод на несколько языков одновременно, что идеально подходит для людей, которые хотят понимать текст на разных языках без необходимости делать это по очереди.</p>

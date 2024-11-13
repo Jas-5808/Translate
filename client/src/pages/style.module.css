@@ -41,7 +41,7 @@
     padding: 8px 16px;
     border-radius: 5px;
     box-shadow: 0px 1px 3px 1px #00000026;
-    background: #6750a40d,#fffbfe;
+    background: white;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -52,6 +52,7 @@
 .title ul li a:hover{
     border: 1px solid #2196F3;
     color: #2196F3;
+    transition: 0.1s;
 }
 .title ul li a p{
     display: flex;
@@ -83,7 +84,7 @@
     flex-direction: column;
     border-radius: 16px;
     box-shadow: 0px 1px 3px 1px #00000026;
-    background: #6750a40d,#fffbfe;
+    background: white;
     padding: 12px 17px;
 }
 .microphone h3{
@@ -160,7 +161,7 @@ textarea {
 }
 
 .uploadButton {
-    background-color: #2196F3; 
+    background-color: #0077ff; 
     color: white;
     padding: 10px 20px;
     font-size: 16px;
@@ -168,12 +169,13 @@ textarea {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color 0.3s;
     margin-bottom: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .uploadButton:hover {
-    background-color: #008cff; 
+    background-color: #2196F3; 
 }
 
 .fileInput {
@@ -244,7 +246,7 @@ textarea {
     margin-top: 100px;
 }
 .description h2{
-    font-size: 42px;
+    font-size: 40px;
 }
 .description p{
     font-size: 20px;

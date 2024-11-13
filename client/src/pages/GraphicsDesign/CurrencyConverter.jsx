@@ -279,40 +279,33 @@ const convertTxtToPdf = async () => {
     };
 
     return (
-        <div className="container mt-4">
+        <div className="container p-0">
             <div className={cn.title}>
-            <ul>
-                <li><a href="/imageCompression">Сжатие изображений</a></li>
-            </ul>
-            <h3>Конвертер изображений</h3>
+                <h3>Конвертер изображений</h3>
+                <ul>
+                    <li><a href="/imageCompression">
+                        <i className="fa fa-file-image-o"></i>
+                        <p>Сжатие изображений <span>.jpg, .png, .svg, .gif</span> </p>
+                    </a></li>
+                </ul>
             </div>
-            <div
-                className={`file-drop-zone ${dragOver ? "drag-over" : ""}`}
-                onDrop={handleDrop}
-                onDragOver={handleDragOver}
-                onDragLeave={handleDragLeave}
-            >
-                <p>Перетащите файл сюда или выберите его</p>
-                <input
-                    id="fileInput"
-                    type="file"
-                    className="form-control d-none"
-                    onChange={handleFileChange}
-                />
-                <button
-                    className="btn btn-outline-primary mt-3"
-                    onClick={() => document.getElementById("fileInput").click()}
+            <div className="mb-3">
+                <label className="form-label">Выберите изображение для конвертации:</label>
+                <div
+                    className={`file-drop-zone ${dragOver ? "drag-over" : ""}`}
+                    onDrop={handleDrop}
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
                 >
-                    Выбрать файл
-                </button>
-
-                {fileName && (
-                    <div className="mt-2">
-                        <strong>Выбран файл: </strong>
-                        {fileName}
-                    </div>
-                )}
+                    <input
+                        id="fileInput"
+                        type="file"
+                        className="form-control"
+                        onChange={handleFileChange}
+                    />
+                </div>
             </div>
+
 
             <div className="form-group mt-4">
                 <label htmlFor="outputType">Выберите формат вывода</label>

@@ -96,11 +96,11 @@ export function ColorPicker() {
   };
 
   return (
-    <div className="container py-1">
+    <div className="container p-0">
       <div className={cn.title}>
-
           <h3>Определить цвет пикселя на картинке</h3>
       </div>
+      
 
       <div className="row justify-content-center">
         <div className="col-md-6">
@@ -109,14 +109,14 @@ export function ColorPicker() {
               ref={canvasRef}
               onMouseMove={handleMouseMove}
               onClick={handleCanvasClick}
-              className="w-100 border rounded shadow"
+              className="w-100 border rounded shadow bg-white"
               style={{ maxHeight: '500px', cursor: 'crosshair' }}
             />
           </div>
         </div>
 
         <div className="col-md-4">
-          <div className="p-3 border rounded shadow">
+          <div className="p-3 border rounded shadow bg-white">
             <p>Результат:</p>
             <div className="mb-3" style={{ height: '50px', backgroundColor: color, border: '1px solid #ddd' }} />
             <div className="d-flex justify-content-between align-items-center">
@@ -170,7 +170,7 @@ export function ColorPicker() {
         </div>
       </div>
 
-      <div className="text-center mt-4 mb-4">
+      <div className="text-center mt-5 ">
         <input
           type="file"
           accept="image/*"
@@ -178,12 +178,12 @@ export function ColorPicker() {
           onChange={handleImageUpload}
           className="d-none"
         />
-        <label htmlFor="upload" className="btn btn-primary btn-lg">
+        <label htmlFor="upload" className={cn.uploadButton}>
           Загрузить изображение
         </label>
       </div>
 
-      <div className="text-center mt-4">
+      <div className={cn.description}>
         <h2>Выбор цвета с изображения</h2>
         <p>На этой странице пользователи могут загрузить изображение и выбрать на нем любой цвет с помощью функции "Color Picker". Простой и удобный инструмент позволяет определить точный цвет в любом месте изображения, а также получить его представление в форматах HEX и RGB. Это идеальное решение для дизайнеров, разработчиков и всех, кто работает с цветами и нуждается в точных цветовых значениях с изображений.</p>
       </div>

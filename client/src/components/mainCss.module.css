@@ -4,9 +4,52 @@
 }
 
 /* Footer */
-.footer_content ul{
+.footer{
+    padding-top: 23px;
+    padding-bottom: 50px;
+    border-top: 1px solid rgba(0, 0, 0, 0.202);
+}
+.footer_content{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+.footer_content .logo_text{
+    margin-bottom: 0;
+}
+.footer_list{
+    display: flex;
+    gap: 60px;
+}
+.footer_menu{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+.social_links{
+}
+.footer_menu span,
+.social_links span{
+    color: #191919;
+    font-size: 18px;
+    font-weight: 500;
+}
+.footer_menu a{
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.758);
+    font-weight: 600;
+    font-size: 16px;
+}
+.footer_menu a:hover{
+    color: #2196F3;
+    transition: 0.1s;
+}
+.social_links ul{
+    display: flex;
+    gap: 40px;
 }
 
 
@@ -17,7 +60,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #f8f9fa;
+    background-color: #f7f8fc;
     padding-top: 30px;
     box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
 }
@@ -66,10 +109,12 @@
     font-size: 1rem;
     text-decoration: none;
     padding: 15px;
-    display: block;
+    display: flex;
+    align-items: center;
     width: 100%;
     border-radius: 4px;
     transition: background-color 0.3s ease, color 0.3s ease;
+    gap: 10px;
 }
 
 .menuItem:hover {
@@ -83,7 +128,7 @@
 }
 
 .menuLink i {
-    margin-right: 10px;
+    width: 20px;
     font-size: 18px;
 }
 

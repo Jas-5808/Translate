@@ -71,18 +71,18 @@ export function ImageCompression() {
 
     return (
         <>
-            <div className="container mt-4">
+            <div className="container p-0">
                 <div className={cn.title}>
-                    <ul >
-                        <li><a href="/currencyConverter">Конвертер изображений</a></li>
+                    <h3>Сжатие изображений</h3>
+                    <ul>
+                        <li><a href="/currencyConverter">
+                            <i className="fa fa-file-text-o"></i>
+                            <p>Конвертер изображений <span>.jpg, .png, .svg, .gif</span> </p>
+                        </a></li>
                     </ul>
-                    <div className="text-center mb-4">
-                        <h3>Сжатие изображений</h3>
-                        <p className="lead text-muted">Сжать JPG, PNG, SVG или GIF с самым лучшим качеством и сжатием. Уменьшить размер файла с вашими изображениями одновременно.</p>
-                    </div>
                 </div>
                 
-                <div className="d-flex justify-content-center align-items-center flex-column">
+                <div className="d-flex justify-content-center flex-column">
                     <div className="mb-3">
                         <label className="form-label">Выберите изображение для сжатия:</label>
                         <input 
@@ -102,7 +102,7 @@ export function ImageCompression() {
                                 <img 
                                     src={image} 
                                     alt="Uploaded" 
-                                    className="img-fluid" 
+                                    className="img-fluid border rounded shadow" 
                                     style={{ maxWidth: '100%', height: 'auto', cursor: 'pointer' }} 
                                     onClick={() => openModal(image)} 
                                 />
@@ -114,13 +114,13 @@ export function ImageCompression() {
                                 <img 
                                     src={compressedImage} 
                                     alt="Compressed" 
-                                    className="img-fluid" 
+                                    className="img-fluid border rounded shadow" 
                                     style={{ maxWidth: '100%', height: 'auto', cursor: 'pointer' }} 
                                     onClick={() => openModal(compressedImage)} 
                                 />
                                 <p>Размер после сжатия: {compressedImageSize} KB</p>
-                                <button className="btn btn-primary mt-3" onClick={downloadCompressedImage}>Скачать сжатое изображение</button>
-                                <button className="btn btn-secondary mt-3" onClick={reCompressImage}>Сжать еще раз</button>
+                                <button className="btn btn-success mt-3" onClick={downloadCompressedImage}>Скачать сжатое изображение</button>
+                                <button className="btn btn-primary mt-3 ml-3" onClick={reCompressImage}>Сжать еще раз</button>
                             </div>
                         </div>
                     )}
