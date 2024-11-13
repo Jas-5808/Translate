@@ -30,6 +30,12 @@
 
 }
 .social_links{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.social_links img{
+    width: 30px;
 }
 .footer_menu span,
 .social_links span{
@@ -48,8 +54,10 @@
     transition: 0.1s;
 }
 .social_links ul{
+    margin: 0;
+    padding: 0;
     display: flex;
-    gap: 40px;
+    gap: 20px;
 }
 
 
