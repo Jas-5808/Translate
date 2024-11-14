@@ -8,6 +8,7 @@ import { ColorPicker } from "./pages/GraphicsDesign/ColorPicker";
 import { FileConverter } from "./pages/GraphicsDesign/CurrencyConverter";
 import { ImageCompression } from "./pages/GraphicsDesign/ImageСompression";
 import { Shortener } from "./pages/Shortener";
+import { ColorMixer } from "./pages/GraphicsDesign/ColorMixer";
 
 export const router = createBrowserRouter([
     {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
             {
                 path: "/shortener",
                 element: <Shortener />,
+            },
+            {
+                path: "/colorMixer",
+                element: <ColorMixer />,
             },
 
         ],

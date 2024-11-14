@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { FaCopy } from 'react-icons/fa';
 import cn from "../style.module.css";
 
@@ -12,6 +12,7 @@ export function ColorPicker() {
   const [hoveredArea, setHoveredArea] = useState<{ x: number, y: number }>({ x: 0, y: 0 });
   const [isZoomVisible, setIsZoomVisible] = useState<boolean>(false);
 
+  // Handle image upload via file input
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -31,6 +32,46 @@ export function ColorPicker() {
     }
   };
 
+  // Handle paste event to insert image from clipboard
+  const handlePaste = (e: ClipboardEvent) => {
+    const items = e.clipboardData?.items;
+    if (!items) return;
+
+    // Look for image in clipboard
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      if (item.type.indexOf('image') === 0) {
+        const file = item.getAsFile();
+        if (file) {
+          const newImg = new Image();
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            newImg.src = reader.result as string;
+            newImg.onload = () => {
+              const canvas = canvasRef.current;
+              const ctx = canvas?.getContext('2d');
+              if (canvas && ctx) {
+                setImg(newImg);
+                canvas.width = newImg.width;
+                canvas.height = newImg.height;
+                ctx.drawImage(newImg, 0, 0);
+              }
+            };
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+    }
+  };
+
+  // Add paste event listener
+  useEffect(() => {
+    document.addEventListener('paste', handlePaste);
+    return () => {
+      document.removeEventListener('paste', handlePaste);
+    };
+  }, []);
+
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!img || isColorSelected) return;
 
@@ -41,7 +82,7 @@ export function ColorPicker() {
       const x = (e.clientX - rect.left) * (img.width / rect.width);
       const y = (e.clientY - rect.top) * (img.height / rect.height);
       const pixelData = ctx.getImageData(x, y, 1, 1).data;
-      const hexColor = `#${((1 << 24) + (pixelData[0] << 16) + (pixelData[1] << 8) + pixelData[2]).toString(16).slice(1)}`;
+      const hexColor = `#${((1 << 24) + (pixelData[0] << 16) + (pixelData[1] << 8) + (pixelData[2])).toString(16).slice(1)}`;
       const rgbColor = `rgb(${pixelData[0]}, ${pixelData[1]}, ${pixelData[2]})`;
 
       setColor(hexColor);
@@ -69,7 +110,7 @@ export function ColorPicker() {
         const x = (e.clientX - rect.left) * (img.width / rect.width);
         const y = (e.clientY - rect.top) * (img.height / rect.height);
         const pixelData = ctx.getImageData(x, y, 1, 1).data;
-        const hexColor = `#${((1 << 24) + (pixelData[0] << 16) + (pixelData[1] << 8) + pixelData[2]).toString(16).slice(1)}`;
+        const hexColor = `#${((1 << 24) + (pixelData[0] << 16) + (pixelData[1] << 8) + (pixelData[2])).toString(16).slice(1)}`;
         const rgbColor = `rgb(${pixelData[0]}, ${pixelData[1]}, ${pixelData[2]})`;
 
         setColor(hexColor);
@@ -97,12 +138,18 @@ export function ColorPicker() {
 
   return (
     <div className="container p-0">
+
       <div className={cn.title}>
           <h3>Определить цвет пикселя на картинке</h3>
+          <ul>
+              <li><a href="/colorMixer">
+                  <i className="material-symbols-outlined">colors</i>
+                  <p>Cмешивания цветов <span>до 10 цветов</span> </p>
+              </a></li>
+          </ul>
       </div>
-      
 
-      <div className="row justify-content-center">
+      <div className="row">
         <div className="col-md-6">
           <div className="position-relative" onWheel={handleWheel}>
             <canvas
@@ -165,12 +212,11 @@ export function ColorPicker() {
                 </div>
               )}
             </div>
-
           </div>
         </div>
       </div>
 
-      <div className="text-center mt-5 ">
+      <div className="mt-5">
         <input
           type="file"
           accept="image/*"

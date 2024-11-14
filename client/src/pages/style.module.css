@@ -348,5 +348,57 @@ textarea {
     border-color: #007bff;
   }
   
+/* ColorMix */
+.resoltColor{
+    position: relative;
+    margin-bottom: 30px;
+}
+.resoltColor h2{
+    color: white;
+    font-size: 20px;
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.resoltColor h2 span{
+    font-size: 22px;
+}
+.resoltColor_card{
+    width: 100%;
+    height: 130px;
+    border-radius: 16px;
+    box-shadow: 0px 1px 3px 1px #00000026;
+}
+.colorMix{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.colorMix_input{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0px 1px 3px 1px #00000026;
+}
+.colorMix_input p{
+    padding: 5px 10px 8px;
+    box-sizing: border-box;
+    margin: 0;
+}
+.colorMix_input input{
+    width: 198px;
+    height: 100px;
+}
+.colorMix_input input[type="color"]::-webkit-color-swatch {
+    border: none;
+}
 
-  
+.colorMix_text{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+}
