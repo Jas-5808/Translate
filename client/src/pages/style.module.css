@@ -377,6 +377,7 @@ textarea {
     margin-bottom: 20px;
 }
 .colorMix_input{
+    width: 198px;
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -401,4 +402,60 @@ textarea {
     display: flex;
     justify-content: space-between;
     padding-right: 10px;
+}
+.colorMix_text input{
+    width: 100%;
+    height: 20px;
+    padding: 0 15px;
+}
+.mixing_examples{
+    margin-top: 40px;
+}
+.mixing_examples h3{
+    margin-bottom: 30px;
+}
+.mixing_examples ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.mixing_examples ul span{
+    padding: 5px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+.red{
+    border: 2px solid #ff0000;
+}
+.blue{  
+    border: 2px solid #0000ff;
+}
+.green{
+    border: 2px solid #00ff00;
+}
+.green2{
+    border: 2px solid #008000;
+}
+.gray{
+    border: 2px solid #555555;
+}
+.purple{
+    border: 2px solid #800080;
+}
+.violet{
+    border: 2px solid #5500AA;
+}
+.turquoise{
+    border: 2px solid #008080;
+}
+.yellow{
+    border: 2px solid #FFFF00;
+}
+.orange{
+    border: 2px solid #FF8000;
+}
+.brown{
+    border: 2px solid #804000;
 }

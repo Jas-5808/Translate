@@ -52,7 +52,7 @@ export function ColorMixer() {
   return (
     <div>
         <div className={cn.title}>
-          <h3>Определить цвет пикселя на картинке</h3>
+          <h3>Инструмент для смешивания цветов</h3>
           <ul>
               <li><a href="/colorPicker">
                   <i className="material-symbols-outlined">palette</i>
@@ -79,13 +79,20 @@ export function ColorMixer() {
               onChange={(e) => handleColorChange(index, e.target.value)}
             />
             <div className={cn.colorMix_text}>
-              <p>{color}</p>
+              <input
+                type="text"
+                value={color}
+                onChange={(e) => handleColorChange(index, e.target.value)}
+                maxLength="7"
+                placeholder="Enter HEX code"
+                className={cn.colorHexInput}
+              />
               <button
                 className={cn.removeButton}
                 onClick={() => removeColor(index)}
-                >
-                    <i className="material-symbols-outlined fs-5">delete</i>
-                </button>
+              >
+                  <i className="material-symbols-outlined fs-5">delete</i>
+              </button>
             </div>
           </div>
         ))}
@@ -96,6 +103,24 @@ export function ColorMixer() {
           Add Color
         </button>
       )}
+
+      <div className={cn.mixing_examples}>
+        <h3>Примеры смешивания цветов</h3>
+        <ul>
+            <li><span className={cn.red}>Красный</span> + <span className={cn.green}>Лаймовый</span> + <span className={cn.blue}>Синий</span> = <span className={cn.gray}>Серый</span></li>
+            <li><span className={cn.red}>Красный</span> + <span className={cn.blue}>Синий</span> = <span className={cn.purple}>Пурпурный</span></li>
+            <li><span className={cn.red}>Красный</span> + <span className={cn.blue}>Синий</span> + <span className={cn.blue}>Синий</span> = <span className={cn.violet}>Фиолетовый</span></li>
+            <li><span className={cn.red}>Красный</span> + <span className={cn.yellow}>Жолтый</span> = <span className={cn.orange}>Оранжевый</span></li>
+            <li><span className={cn.red}>Красный</span> + <span className={cn.green2}>Зелёный</span> = <span className={cn.brown}>Коричневый</span></li>
+            <li><span className={cn.blue}>Синий</span> + <span className={cn.green}>Лаймовый</span> = <span className={cn.turquoise}>Бирюзовый</span></li>
+        </ul>
+      </div>
+
+      <div className={cn.description}>
+        <h2>Инструмент смешивания цветов</h2>
+        <p>На этой странице пользователи могут экспериментировать с различными цветами, смешивая их для получения новых оттенков. Используя инструмент "Color Mixer", вы можете добавить несколько цветов, изменять их с помощью цветового выбора и увидеть результат смешивания в реальном времени. Удобный интерфейс позволяет вам работать с цветами в формате HEX, и дает возможность наблюдать, как различные сочетания цветов создают новые оттенки, включая популярные комбинации. Это идеальный инструмент для дизайнеров, художников и всех, кто работает с цветами, чтобы увидеть, как смешиваются и сочетаются разные оттенки.</p>
+        </div>
+
     </div>
   );
 }
