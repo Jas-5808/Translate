@@ -11,6 +11,7 @@ import { Shortener } from "./pages/Shortener";
 import { ColorMixer } from "./pages/GraphicsDesign/ColorMixer";
 import { Abduvoxit } from "./pages/Сreators/Abduvoxit";
 import { Jasur } from "./pages/Сreators/Jasur";
+import { Partners } from "./pages/Сreators/Partners";
 
 export const router = createBrowserRouter([
     {
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
             {
                 path: "/jasur",
                 element: <Jasur />,
+            },
+            {
+                path: "/partners",
+                element: <Partners />,
             },
 
         ],

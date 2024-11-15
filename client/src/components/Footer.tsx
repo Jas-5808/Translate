@@ -24,9 +24,9 @@ export function Footer(){
                         </ul>
                         <ul className={cn.footer_menu}>
                             <li><span>Другое</span></li>
-                            <li><a href="#">Партнеры</a></li>
+                            <li><a href="/partners">Партнеры</a></li>
                             <li><a href="#">Отзывы</a></li>
-                            <li><a href="#">Реклама</a></li>
+                            <li><a href="https://t.me/advertising_hp/4">Реклама</a></li>
                         </ul>
                         <div className={cn.social_links}>
                             <span>Социальные сети</span>

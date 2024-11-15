@@ -74,6 +74,7 @@
 }
 
 .leftside_content {
+    height: 100%;
     display: flex;
     flex-direction: column;
     /* align-items: center; */
@@ -99,7 +100,13 @@
 .logo_text:hover {
     color: #4CAF50;
 }
-
+.menuWrapper{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 40px;
+}
 .menu {
     list-style-type: none;
     padding: 0;
@@ -112,7 +119,8 @@
     width: 100%;
 }
 
-.menuLink {
+.menuLink,
+.settings{
     color: #495057;
     font-size: 1rem;
     text-decoration: none;
