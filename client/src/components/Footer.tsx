@@ -19,14 +19,14 @@ export function Footer(){
                         <ul className={cn.footer_menu}>
                             <li><span>Сервис и Поддержка</span></li>
                             <li><a href="https://t.me/+K3lWCAL21cE2MzFi">Центр помощи</a></li>
-                            <li><a href="#">Заказать сайт</a></li>
+                            <li><a href="/about#order-site">Заказать сайт</a></li>
                             <li><a href="#">Поддержка проекта</a></li>
                         </ul>
                         <ul className={cn.footer_menu}>
                             <li><span>Другое</span></li>
                             <li><a href="#">Партнеры</a></li>
                             <li><a href="#">Отзывы</a></li>
-                            <li><a href="#">Оставить идею для сайта</a></li>
+                            <li><a href="#">Реклама</a></li>
                         </ul>
                         <div className={cn.social_links}>
                             <span>Социальные сети</span>

@@ -9,6 +9,8 @@ import { FileConverter } from "./pages/GraphicsDesign/CurrencyConverter";
 import { ImageCompression } from "./pages/GraphicsDesign/ImageСompression";
 import { Shortener } from "./pages/Shortener";
 import { ColorMixer } from "./pages/GraphicsDesign/ColorMixer";
+import { Abduvoxit } from "./pages/Сreators/Abduvoxit";
+import { Jasur } from "./pages/Сreators/Jasur";
 
 export const router = createBrowserRouter([
     {
@@ -47,6 +49,14 @@ export const router = createBrowserRouter([
             {
                 path: "/colorMixer",
                 element: <ColorMixer />,
+            },
+            {
+                path: "/abduvoxit",
+                element: <Abduvoxit />,
+            },
+            {
+                path: "/jasur",
+                element: <Jasur />,
             },
 
         ],
