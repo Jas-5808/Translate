@@ -38,9 +38,9 @@ export function Leftside() {
                                 <i className="material-symbols-outlined fs-5">change_circle</i> Конвертер
                             </a>
                         </li> 
-                        <li className={`${cn.menuItem} ${location.pathname === '/shortener' ? cn.active : ''}`}>
-                            <a href="/shortener" className={cn.menuLink}>
-                                <i className="material-symbols-outlined fs-5">translate</i> Сократить ссылку
+                        <li className={`${cn.menuItem} ${location.pathname === '/qrCodeGenerator' ? cn.active : ''}`}>
+                            <a href="/qrCodeGenerator" className={cn.menuLink}>
+                                <i className="material-symbols-outlined fs-5">qr_code_scanner</i> QR-код
                             </a>
                         </li> 
                         <li className={`${cn.menuItem} ${location.pathname === '/about' ? cn.active : ''}`}>

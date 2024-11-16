@@ -8,6 +8,7 @@ import { ColorPicker } from "./pages/GraphicsDesign/ColorPicker";
 import { FileConverter } from "./pages/GraphicsDesign/CurrencyConverter";
 import { ImageCompression } from "./pages/GraphicsDesign/ImageСompression";
 import { Shortener } from "./pages/Shortener";
+import { QRCodeGenerator } from "./pages/QRCodeGenerator";
 import { ColorMixer } from "./pages/GraphicsDesign/ColorMixer";
 import { Abduvoxit } from "./pages/Сreators/Abduvoxit";
 import { Jasur } from "./pages/Сreators/Jasur";
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
             {
                 path: "/shortener",
                 element: <Shortener />,
+            },
+            {
+                path: "/qrCodeGenerator",
+                element: <QRCodeGenerator />,
             },
             {
                 path: "/colorMixer",

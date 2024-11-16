@@ -5,7 +5,7 @@ export function Shortener(){
         <>
             <div className="errorPage">
                 <div className="container">
-                    <h2>404</h2>
+                    <h2>Shortener</h2>
 
                     <p>Страница в разработке</p>
                 </div>
