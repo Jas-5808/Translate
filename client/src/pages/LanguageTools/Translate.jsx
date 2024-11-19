@@ -4,6 +4,9 @@ import Select from 'react-select';
 import { FaMicrophone, FaCopy } from 'react-icons/fa';
 import volume from '../../assets/volume.png';
 import cn from "../style.module.css";
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from "../../components/LanguageSwitcher";
+import { Helmet } from 'react-helmet';
 
 export function Translate() {
     const apiKey = 'AIzaSyCiConrcZiaumOPZRNOxbryaUH-3udEODc';
@@ -20,6 +23,8 @@ export function Translate() {
     const [originalCharCount, setOriginalCharCount] = useState(0);
     const [translatedCharCount, setTranslatedCharCount] = useState(0);
     const [containers, setContainers] = useState([{ id: 0, text: "", translatedText: "", targetLanguage: "en" }]);
+    const { t } = useTranslation();
+
     const maxContainers = 8;
     const languageNames = {
         af: "Afrikaans", sq: "Albanian", am: "Amharic", ar: "Arabic", hy: "Armenian", az: "Azerbaijani",
@@ -41,6 +46,8 @@ export function Translate() {
         tr: "Turkish", uk: "Ukrainian", ur: "Urdu", uz: "Uzbek", vi: "Vietnamese", cy: "Welsh",
         xh: "Xhosa", yi: "Yiddish", yo: "Yoruba", zu: "Zulu"
     };
+
+
 
     const languageOptions = Object.keys(languageNames).map((key) => ({
         value: key,
@@ -293,11 +300,15 @@ export function Translate() {
     return (
         <div>
             <div className={cn.title}>
-                <h3>Бесплатный онлайн-переводчик</h3>
+                <div className={cn.title_content}>
+                    <h3>{t('free_online_translator')}</h3>
+                    <LanguageSwitcher/>
+                </div>
+
                 <ul>
                     <li><a href="/file">
                         <i className="fa fa-file-text-o"></i>
-                        <p>Перевести файл <span>.pdf, .docx, .txt</span> </p>
+                        <p>{t('translate_file')} <span>.pdf, .docx, .txt</span> </p>
                     </a></li>
                 </ul>
             </div>
@@ -307,10 +318,10 @@ export function Translate() {
                     <Select
                         value={languageOptions.find(option => option.value === sourceLanguage)}
                         onChange={(selectedOption) => setSourceLanguage(selectedOption.value)}  
-                        options={[{ value: null, label: 'Определить язык' }, ...languageOptions]}
+                        options={[{ value: null, label: t('placeholder_detect_language') }, ...languageOptions]}
                         className={cn.languageSelector}
                         classNamePrefix="react-select"
-                        placeholder="Определить язык"
+                        placeholder={t('placeholder_detect_language')}
                     />
 
                     <div className={cn.text_box}>
@@ -323,7 +334,7 @@ export function Translate() {
                                 adjustHeight(e.target); 
                                 setOriginalCharCount(countCharsWithoutSpaces(newText));
                             }}
-                            placeholder="Введите текст для перевода..."
+                            placeholder={t('placeholder_enter_text')}
                             
                         />
                         <div className={cn.equipments}>
@@ -331,7 +342,7 @@ export function Translate() {
                                 <button onClick={startRecognition}>
                                     <FaMicrophone />
                                 </button>
-                                <p>К-во симв: {originalCharCount}</p>
+                                <p>{t('char_count')} {originalCharCount}</p>
                             </div>
                             
 
@@ -357,7 +368,6 @@ export function Translate() {
                             options={languageOptions}
                             className={cn.languageSelector}
                             classNamePrefix="react-select"
-                            placeholder="Выберите язык"
                         />
                         <div className={cn.text_box}>
                             <textarea
@@ -371,7 +381,7 @@ export function Translate() {
 
                             <div className={cn.equipments}>
                                 <div className={cn.charCount}>
-                                    <p>К-во симв: {translatedCharCount}</p>
+                                    <p>{t('char_count')} {translatedCharCount}</p>
                                 </div>
                                 <div className={cn.eq_leftside}>
                                     <button onClick={copyToClipboardTranslated}>
@@ -396,9 +406,14 @@ export function Translate() {
             </div>
             
             <div className={cn.description}>
-                <h2>Многоязычный переводчик</h2>
-                <p>На этой странице вы можете ввести текст и мгновенно перевести его на 10 различных языков. Этот переводчик позволяет получить перевод на несколько языков одновременно, что идеально подходит для тех, кто хочет быстро понять текст на разных языках без необходимости делать это по очереди.</p>
+                <h2>{t('multilingual_translator')}</h2>
+                <p>{t('multilingual_description')}</p>
             </div>
+            <Helmet>
+                <title>{t('multilingual_translator')}</title>
+                <meta name="description" content={t('multilingual_description')} />
+                <meta name="keywords" content={t('multilingual_page_keywords')} />
+            </Helmet>
         </div>
     );
 }

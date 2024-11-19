@@ -8,7 +8,7 @@ export function Shortener(){
                     <h2>Shortener</h2>
 
                     <p>Страница в разработке</p>
-                </div>
+                </div>                
             </div>
         </>
     )

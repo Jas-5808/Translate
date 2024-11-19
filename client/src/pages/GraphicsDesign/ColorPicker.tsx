@@ -1,6 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { FaCopy } from 'react-icons/fa';
 import cn from "../style.module.css";
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from "../../components/LanguageSwitcher";
+import { Helmet } from 'react-helmet';
+
 
 export function ColorPicker() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -11,8 +15,9 @@ export function ColorPicker() {
   const [zoomLevel, setZoomLevel] = useState<number>(1);
   const [hoveredArea, setHoveredArea] = useState<{ x: number, y: number }>({ x: 0, y: 0 });
   const [isZoomVisible, setIsZoomVisible] = useState<boolean>(false);
+  const { t } = useTranslation();
 
-  // Handle image upload via file input
+
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -140,11 +145,14 @@ export function ColorPicker() {
     <div className="container p-0">
 
       <div className={cn.title}>
-          <h3>Определить цвет пикселя на картинке</h3>
+          <div className={cn.title_content}>
+                    <h3>{t('define_pixel_color')}</h3>
+                    <LanguageSwitcher/>
+                </div>
           <ul>
               <li><a href="/colorMixer">
-                  <i className="material-symbols-outlined">colors</i>
-                  <p>Cмешивания цветов <span>до 10 цветов</span> </p>
+                  <i className="material-symbols-outlined" translate="no">colors</i>
+                  <p>{t('color_blending')} <span>{t('up_to_10_colors')}</span> </p>
               </a></li>
           </ul>
       </div>
@@ -164,7 +172,7 @@ export function ColorPicker() {
 
         <div className="col-md-4">
           <div className="p-3 border rounded shadow bg-white">
-            <p>Результат:</p>
+            <p>{t('color_picker_result')}</p>
             <div className="mb-3" style={{ height: '50px', backgroundColor: color, border: '1px solid #ddd' }} />
             <div className="d-flex justify-content-between align-items-center">
               <p><strong>HEX:</strong> <span>{color}</span></p>
@@ -225,14 +233,19 @@ export function ColorPicker() {
           className="d-none"
         />
         <label htmlFor="upload" className={cn.uploadButton}>
-          Загрузить изображение
+          {t('upload_image')}
         </label>
       </div>
 
       <div className={cn.description}>
-        <h2>Выбор цвета с изображения</h2>
-        <p>На этой странице можно загрузить изображение и выбрать на нем любой цвет с помощью функции "Color Picker". Этот удобный инструмент позволяет точно определить цвет в любом месте изображения и получить его значение в форматах HEX и RGB. Идеальное решение для дизайнеров, разработчиков и всех, кто работает с цветами и нуждается в точных цветовых значениях с изображений.</p>
+        <h2>{t('select_color_from_image')}</h2>
+        <p>{t('color_picker_description')}</p>
       </div>
+      <Helmet>
+          <title>{t('select_color_from_image')}</title>
+          <meta name="description" content={t('color_picker_description')} />
+          <meta name="keywords" content={t('colorPicker_page_keywords')} />
+      </Helmet>
     </div>
   );
 }

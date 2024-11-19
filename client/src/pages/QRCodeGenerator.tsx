@@ -1,10 +1,16 @@
 import cn from "./style.module.css";
 import React, { useState, useRef } from "react";
 import { QRCodeCanvas } from "qrcode.react";
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from "../components/LanguageSwitcher";
+import { Helmet } from 'react-helmet';
+
 
 export function QRCodeGenerator() {
   const [url, setUrl] = useState("");
   const qrRef = useRef();
+  const { t } = useTranslation();
+
 
   const handleInputChange = (event) => {
     setUrl(event.target.value);
@@ -23,18 +29,21 @@ export function QRCodeGenerator() {
   return (
     <div className="container p-0">
       <div className={cn.title}>
-          <h3>Генератор QR-кода</h3>
+          <div className={cn.title_content}>
+                    <h3>{t('qr_code_generator')}</h3>
+                    <LanguageSwitcher/>
+                </div>
           <ul>
               <li><a href="/shortener">
-                  <i className="material-symbols-outlined">link</i>
-                  <p>Сократить ссылку <span>.pdf, .docx, .txt</span> </p>
+                  <i className="material-symbols-outlined" translate="no">link</i>
+                  <p>{t('shorten_link')} <span>.pdf, .docx, .txt</span> </p>
               </a></li>
           </ul>
       </div>
       <div className="card shadow p-4">
         <div className="mb-3">
           <label htmlFor="urlInput" className="form-label">
-            Enter your URL:
+          {t('enter_url')}
           </label>
           <input
             id="urlInput"
@@ -48,7 +57,7 @@ export function QRCodeGenerator() {
         {url && (
           <div className="text-center my-4" ref={qrRef}>
             <QRCodeCanvas value={url} size={200} />
-            <p className="mt-2">Scan to visit: {url}</p>
+            <p className="mt-2">{t('scan_to_visit')} {url}</p>
           </div>
         )}
         <div className="d-flex justify-content-center">
@@ -57,16 +66,21 @@ export function QRCodeGenerator() {
             onClick={handleDownload}
             disabled={!url}
           >
-            Download QR Code
+            {t('download_qr_code')}
           </button>
         </div>
       </div>
 
                   
       <div className={cn.description}>
-          <h2>Создание QR-кодов</h2>
-          <p>На этой странице вы можете быстро и легко создать QR-код, введя любой текст или ссылку. Генератор поддерживает моментальное обновление кода и позволяет скачать его в формате изображения. Это идеально подходит для создания QR-кодов для ваших визиток, сайтов, акций или личных нужд.</p>
+          <h2>{t('qr_code_creation')}</h2>
+          <p>{t('qr_code_creation_description')}</p>
       </div>
+      <Helmet>
+          <title>{t('qr_code_creation')}</title>
+          <meta name="description" content={t('qr_code_creation_description')} />
+          <meta name="keywords" content={t('qrCode_page_keywords')} />
+      </Helmet>
     </div>
   );
 }

@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import cn from "../style.module.css";
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from "../../components/LanguageSwitcher";
+import { Helmet } from 'react-helmet';
+
 
 export function ColorMixer() {
   const [colors, setColors] = useState(["#ff0000", "#0000ff"]);
+  const { t } = useTranslation();
+
 
   const handleColorChange = (index, newColor) => {
     const newColors = [...colors];
@@ -52,17 +58,20 @@ export function ColorMixer() {
   return (
     <div>
         <div className={cn.title}>
-          <h3>Инструмент для смешивания цветов</h3>
+          <div className={cn.title_content}>
+                    <h3>{t('color_mixer_tool')}</h3>
+                    <LanguageSwitcher/>
+                </div>
           <ul>
               <li><a href="/colorPicker">
-                  <i className="material-symbols-outlined">palette</i>
-                  <p>Определить цвет по фото<span>.jpg, .png, .svg, .gif</span> </p>
+                  <i className="material-symbols-outlined" translate="no">palette</i>
+                  <p>{t('define_color_by_photo')}<span>.jpg, .png, .svg, .gif</span> </p>
               </a></li>
           </ul>
        </div>
 
       <div className={cn.resoltColor}>
-        <h2>Результат смешивания: <span>{mixedColor}</span></h2>
+        <h2>{t('mixing_result')} <span>{mixedColor}</span></h2>
         <div className={cn.resoltColor_card}
           style={{
               backgroundColor: mixedColor,
@@ -100,27 +109,31 @@ export function ColorMixer() {
 
       {colors.length < 10 && (
         <button onClick={addColor} className={cn.uploadButton}>
-          Add Color
+          {t('add_color')}
         </button>
       )}
 
       <div className={cn.mixing_examples}>
-        <h3>Примеры смешивания цветов</h3>
+        <h3>{t('color_mixing_examples')}</h3>
         <ul>
-            <li><span className={cn.red}>Красный</span> + <span className={cn.green}>Лаймовый</span> + <span className={cn.blue}>Синий</span> = <span className={cn.gray}>Серый</span></li>
-            <li><span className={cn.red}>Красный</span> + <span className={cn.blue}>Синий</span> = <span className={cn.purple}>Пурпурный</span></li>
-            <li><span className={cn.red}>Красный</span> + <span className={cn.blue}>Синий</span> + <span className={cn.blue}>Синий</span> = <span className={cn.violet}>Фиолетовый</span></li>
-            <li><span className={cn.red}>Красный</span> + <span className={cn.yellow}>Жолтый</span> = <span className={cn.orange}>Оранжевый</span></li>
-            <li><span className={cn.red}>Красный</span> + <span className={cn.green2}>Зелёный</span> = <span className={cn.brown}>Коричневый</span></li>
-            <li><span className={cn.blue}>Синий</span> + <span className={cn.green}>Лаймовый</span> = <span className={cn.turquoise}>Бирюзовый</span></li>
+            <li><span className={cn.red}>{t('red')}</span> + <span className={cn.green}>{t('lime')}</span> + <span className={cn.blue}>{t('blue')}</span> = <span className={cn.gray}>{t('gray')}</span></li>
+            <li><span className={cn.red}>{t('red')}</span> + <span className={cn.blue}>{t('blue')}</span> = <span className={cn.purple}>{t('purple')}</span></li>
+            <li><span className={cn.red}>{t('red')}</span> + <span className={cn.blue}>{t('blue')}</span> + <span className={cn.blue}>{t('blue')}</span> = <span className={cn.violet}>{t('violet')}</span></li>
+            <li><span className={cn.red}>{t('red')}</span> + <span className={cn.yellow}>{t('yellow')}</span> = <span className={cn.orange}>{t('orange')}</span></li>
+            <li><span className={cn.red}>{t('red')}</span> + <span className={cn.green2}>{t('green')}</span> = <span className={cn.brown}>{t('brown')}</span></li>
+            <li><span className={cn.blue}>{t('blue')}</span> + <span className={cn.green}>{t('lime')}</span> = <span className={cn.turquoise}>{t('turquoise')}</span></li>
         </ul>
       </div>
 
       <div className={cn.description}>
-        <h2>Инструмент смешивания цветов</h2>
-        <p>На этой странице можно экспериментировать с различными цветами, смешивая их для создания новых оттенков. С помощью инструмента "Color Mixer" можно добавить несколько цветов, изменять их через выбор цвета и наблюдать результат смешивания в реальном времени. Удобный интерфейс позволяет работать с цветами в формате HEX и видеть, как разные сочетания создают новые оттенки, включая популярные комбинации. Это идеальный инструмент для дизайнеров, художников и всех, кто работает с цветами, чтобы увидеть, как смешиваются и сочетаются различные оттенки.</p>
-        </div>
-
+        <h2>{t('color_mixer')}</h2>
+        <p>{t('color_mixing_description')}</p>
+      </div>
+      <Helmet>
+          <title>{t('color_mixer')}</title>
+          <meta name="description" content={t('color_mixing_description')} />
+          <meta name="keywords" content={t('colorMixing_page_keywords')} />
+      </Helmet>
     </div>
   );
 }

@@ -3,9 +3,10 @@ import logo from '../assets/logo.webp';
 import instagram from '../assets/instagram.png';
 import facebook from '../assets/facebook.png';
 import telegram from '../assets/telegram.png';
-
+import { useTranslation } from 'react-i18next';
 
 export function Footer(){
+    const { t } = useTranslation();
 
     return (
         <>
@@ -17,19 +18,19 @@ export function Footer(){
                     </a>
                     <div className={cn.footer_list}>
                         <ul className={cn.footer_menu}>
-                            <li><span>Сервис и Поддержка</span></li>
-                            <li><a href="https://t.me/+K3lWCAL21cE2MzFi">Центр помощи</a></li>
-                            <li><a href="/about#order-site">Заказать сайт</a></li>
-                            <li><a href="#">Поддержка проекта</a></li>
+                            <li><span>{t('service_and_support')}</span></li>
+                            <li><a href="https://t.me/+K3lWCAL21cE2MzFi">{t('help_center')}</a></li>
+                            <li><a href="/about#order-site">{t('order_website')}</a></li>
+                            <li><a href="#">{t('project_support')}</a></li>
                         </ul>
                         <ul className={cn.footer_menu}>
-                            <li><span>Другое</span></li>
-                            <li><a href="/partners">Партнеры</a></li>
-                            <li><a href="#">Отзывы</a></li>
-                            <li><a href="https://t.me/advertising_hp/4">Реклама</a></li>
+                            <li><span>{t('others')}</span></li>
+                            <li><a href="/partners">{t('partners')}</a></li>
+                            <li><a href="#">{t('reviews')}</a></li>
+                            <li><a href="https://t.me/advertising_hp/4">{t('advertising')}</a></li>
                         </ul>
                         <div className={cn.social_links}>
-                            <span>Социальные сети</span>
+                            <span>{t('social_media')}</span>
                             <ul>
                                 <li><a href=""><img src={telegram} alt="" /></a></li>
                                 <li><a href=""><img src={instagram} alt="" /></a></li>

@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import imageCompression from 'browser-image-compression';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import cn from "../style.module.css";
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from "../../components/LanguageSwitcher";
+import { Helmet } from 'react-helmet';
 
 export function ImageCompression() {
     const [image, setImage] = useState(null);
@@ -11,6 +14,8 @@ export function ImageCompression() {
     const [compressionError, setCompressionError] = useState("");
     const [showModal, setShowModal] = useState(false);
     const [modalImage, setModalImage] = useState("");
+    const { t } = useTranslation();
+
 
     const handleImageUpload = async (event) => {
         const file = event.target.files[0];
@@ -73,18 +78,21 @@ export function ImageCompression() {
         <>
             <div className="container p-0">
                 <div className={cn.title}>
-                    <h3>Сжатие изображений</h3>
+                    <div className={cn.title_content}>
+                        <h3>{t('image_compression')}</h3>
+                        <LanguageSwitcher/>
+                    </div>
                     <ul>
                         <li><a href="/currencyConverter">
                             <i className="fa fa-file-text-o"></i>
-                            <p>Конвертер изображений <span>.jpg, .png, .svg, .gif</span> </p>
+                            <p>{t('image_converter')} <span>.jpg, .png, .svg, .gif</span> </p>
                         </a></li>
                     </ul>
                 </div>
                 
                 <div className="d-flex justify-content-center flex-column">
                     <div className="mb-3">
-                        <label className="form-label">Выберите изображение для сжатия:</label>
+                        <label className="form-label">{t('select_image_for_compression')}</label>
                         <input 
                             type="file" 
                             accept="image/*" 
@@ -98,29 +106,29 @@ export function ImageCompression() {
                     {image && compressedImage && (
                         <div className="row mt-4">
                             <div className="col-md-6 text-center">
-                                <h5>Исходное изображение:</h5>
+                                <h5>{t('original_image')}</h5>
                                 <img 
                                     src={image} 
                                     alt="Uploaded" 
-                                    className="img-fluid border rounded shadow" 
+                                    className="img-fluid border rounded shadow mb-2" 
                                     style={{ maxWidth: '100%', height: 'auto', cursor: 'pointer' }} 
                                     onClick={() => openModal(image)} 
                                 />
-                                <p>Размер: {imageSize} KB</p>
+                                <p>{t('size')} {imageSize} KB</p>
                             </div>
 
                             <div className="col-md-6 text-center">
-                                <h5>Сжато изображение:</h5>
+                                <h5>{t('compressed_image')}</h5>
                                 <img 
                                     src={compressedImage} 
                                     alt="Compressed" 
-                                    className="img-fluid border rounded shadow" 
+                                    className="img-fluid border rounded shadow mb-2" 
                                     style={{ maxWidth: '100%', height: 'auto', cursor: 'pointer' }} 
                                     onClick={() => openModal(compressedImage)} 
                                 />
-                                <p>Размер после сжатия: {compressedImageSize} KB</p>
-                                <button className="btn btn-success mt-3" onClick={downloadCompressedImage}>Скачать сжатое изображение</button>
-                                <button className="btn btn-primary mt-3 ml-3" onClick={reCompressImage}>Сжать еще раз</button>
+                                <p>{t('size_after_compression')} {compressedImageSize} KB</p>
+                                <button className="btn btn-success mt-3" onClick={downloadCompressedImage}>{t('download_compressed_image')}</button>
+                                <button className="btn btn-primary mt-3 ml-3" onClick={reCompressImage}>{t('compress_again')}</button>
                             </div>
                         </div>
                     )}
@@ -145,9 +153,14 @@ export function ImageCompression() {
             )}
 
         <div className={cn.description}>
-            <h2>Уменьшение размера изображений</h2>
-            <p>Этот инструмент позволяет сжимать изображения без потери качества, что помогает уменьшить их размер и ускорить загрузку веб-страниц. Пользователи могут быстро оптимизировать изображения для сайтов, приложений и социальных сетей, сохраняя высокое качество при уменьшении объема файлов. Сжатие изображений идеально подходит для веб-мастеров, дизайнеров и всех, кто работает с большим количеством графики в интернете.</p>
+            <h2>{t('image_size_reduction')}</h2>
+            <p>{t('image_size_reduction_description')}</p>
         </div>
+        <Helmet>
+            <title>{t('image_size_reduction')}</title>
+            <meta name="description" content={t('image_size_reduction_description')} />
+            <meta name="keywords" content={t('imageSize_page_keywords')} />
+        </Helmet>
 
         </>
     );

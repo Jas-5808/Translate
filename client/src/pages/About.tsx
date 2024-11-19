@@ -4,9 +4,14 @@ import jasur from '../assets/photo_2023-04-22_10-55-11.jpg';
 import youtubeTemplate from '../assets/youtube_img.jpg';
 import Movie_App from '../assets/Movie_App.jpg';
 import portfolio from '../assets/portfolio.png';
+import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet';
+
 
 export function About() {
     const [selectedTemplate, setSelectedTemplate] = useState(null); 
+    const { t } = useTranslation();
+
 
     const templates = [
         {
@@ -64,11 +69,9 @@ export function About() {
     return (
         <>
             <div className="container">
-                <h1 className="text-center">О нас</h1>
+                <h1 className="text-center">{t('about_us')}</h1>
                 <p className="text-center mb-5">
-                    Этот сайт был разработан двумя разработчиками за одну неделю. Мы посвятили
-                    много времени и усилий, чтобы создать удобный и функциональный ресурс,
-                    который поможет вам решить ваши задачи.
+                    {t('website_description')}
                 </p>
 
                 <div className="row">
@@ -82,9 +85,7 @@ export function About() {
                             <div className="card-body text-center">
                                 <h3 className="card-title">Abduvoxit</h3>
                                 <p className="card-text">
-                                    Специалист по разработке сайтов с опытом в создании креативных и
-                                    функциональных веб-решений. Работает с современными
-                                    технологиями, чтобы удовлетворить любые нужды клиента.
+                                    {t('specialist_description')}
                                 </p>
                             </div>
                         </div>
@@ -100,7 +101,7 @@ export function About() {
                             <div className="card-body text-center">
                                 <h3 className="card-title">Jasur</h3>
                                 <p className="card-text">
-                                    Имеет богатый опыт в создании динамичных и интерактивных веб-приложений. Специализируется на интеграции с базами данных и разработке серверной логики, обеспечивая надежность и масштабируемость проектов.
+                                    {t('developer_description')}
                                 </p>
                             </div>
                         </div>
@@ -108,15 +109,17 @@ export function About() {
                 </div>
 
                 <div className="text-center mt-5">
-                    <h2>Цены на разработку сайтов</h2>
-                    <p>
-                        Для того чтобы заказать разработку сайта, <a href="https://t.me/abduvoxit260803">свяжитесь с нами</a> и расскажите о вашем проекте. Мы обсудим все детали и предложим индивидуальную оценку стоимости в зависимости от ваших требований.
-                    </p>
+                    <h2>{t('pricing_for_website_development')}</h2>
+                    <p
+                        dangerouslySetInnerHTML={{
+                        __html: t('contact_for_website_development')
+                        }}
+                    />
 
                 </div>
 
                 <div className="mt-5" id="order-site">
-                    <h2 className="mb-3">Цены на шаблоны сайтов</h2>
+                    <h2 className="mb-3">{t('pricing_for_templates')}</h2>
                     <div className="row">
                         {templates.map((template) => (
                             <div
@@ -169,6 +172,12 @@ export function About() {
                     </div>
                 </div>
             )}
+
+        <Helmet>
+            <title>{t('order_website')}</title>
+            <meta name="description" content={t('order_website_description')} />
+            <meta name="keywords" content={t('order_website_keywords')} />
+        </Helmet>
         </>
     );
 }

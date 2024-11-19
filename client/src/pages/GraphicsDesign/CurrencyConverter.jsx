@@ -4,6 +4,9 @@ import mammoth from "mammoth";
 import { jsPDF } from "jspdf";
 import JSZip from "jszip";
 import cn from "../style.module.css";
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from "../../components/LanguageSwitcher";
+import { Helmet } from 'react-helmet';
 
 export function FileConverter() {
     const [file, setFile] = useState(null);
@@ -16,6 +19,8 @@ export function FileConverter() {
     const [progress, setProgress] = useState(0);
     const [dragOver, setDragOver] = useState(false); 
     const [fileName, setFileName] = useState(""); 
+    const { t } = useTranslation();
+
 
     pdfjsLib.GlobalWorkerOptions.workerSrc =
         "//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js";
@@ -24,7 +29,7 @@ export function FileConverter() {
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
         if (selectedFile.size > 10 * 1024 * 1024) { 
-            setError("Файл слишком большой. Пожалуйста, загрузите файл размером не более 10 МБ.");
+            setError(t('file_too_large'));
             return;
         }
         setFile(selectedFile);
@@ -66,7 +71,7 @@ export function FileConverter() {
 
     const convertFile = async () => {
         if (!file) {
-            setError("Пожалуйста, выберите файл.");
+            setError(t('please_select_file'));
             return;
         }
 
@@ -94,11 +99,11 @@ export function FileConverter() {
                 await convertTxtToPdf();
             }
             else {
-                setError("Невозможная конвертация.");
+                setError(t('conversion_not_possible'));
                 setLoading(false);
             }
         } catch (err) {
-            setError("Произошла ошибка при конверсии.");
+            setError(t('conversion_error'));
             console.error(err);
             setLoading(false);
         }
@@ -281,16 +286,19 @@ const convertTxtToPdf = async () => {
     return (
         <div className="container p-0">
             <div className={cn.title}>
-                <h3>Конвертер изображений</h3>
+                <div className={cn.title_content}>
+                    <h3>{t('image_converter')}</h3>
+                    <LanguageSwitcher/>
+                </div>
                 <ul>
                     <li><a href="/imageCompression">
                         <i className="fa fa-file-image-o"></i>
-                        <p>Сжатие изображений <span>.jpg, .png, .svg, .gif</span> </p>
+                        <p>{t('image_compression')} <span>.jpg, .png, .svg, .gif</span> </p>
                     </a></li>
                 </ul>
             </div>
             <div className="mb-3">
-                <label className="form-label">Выберите изображение для конвертации:</label>
+                <label className="form-label">{t('select_image_for_conversion')}</label>
                 <div
                     className={`file-drop-zone ${dragOver ? "drag-over" : ""}`}
                     onDrop={handleDrop}
@@ -308,7 +316,7 @@ const convertTxtToPdf = async () => {
 
 
             <div className="form-group mt-4">
-                <label htmlFor="outputType">Выберите формат вывода</label>
+                <label htmlFor="outputType">{t('select_output_format')}</label>
                 <select
                     id="outputType"
                     className="form-control"
@@ -316,7 +324,6 @@ const convertTxtToPdf = async () => {
                     onChange={handleOutputTypeChange}
                     disabled={!file}
                 >
-                    <option value="">Выберите формат вывода</option>
                     {getAvailableOutputTypes().map((type) => (
                         <option key={type} value={type}>
                             {type.split("/")[1].toUpperCase()}
@@ -331,7 +338,7 @@ const convertTxtToPdf = async () => {
                     onClick={convertFile}
                     disabled={!outputType || loading}
                 >
-                    {loading ? "Конвертируется..." : "Конвертировать"}
+                    {loading ? t('converting') : t('convert')}
                 </button>
             </div>
 
@@ -353,18 +360,22 @@ const convertTxtToPdf = async () => {
 
             {convertedFile && (
                 <div className="mt-3 text-center">
-                    <h5>Конвертированный файл:</h5>
+                    <h5>{t('converted_file')}</h5>
                     <a href={convertedFile} download className="btn btn-success">
-                        Скачать конвертированный файл
+                    {t('download_converted_file')}
                     </a>
                 </div>
             )}
 
         <div className={cn.description}>
-            <h2>Преобразователь изображений</h2>
-            <p>На этой странице можно легко конвертировать изображения из одного формата в другой. Конвертер поддерживает популярные форматы, такие как JPEG, PNG, GIF и другие, что делает его идеальным инструментом для быстрой и качественной обработки изображений. Этот инструмент поможет подготовить изображения для сайтов, социальных сетей и других платформ с минимальными усилиями.</p>
+            <h2>{t('image_converters')}</h2>
+            <p>{t('image_converter_description')}</p>
         </div>
-
+        <Helmet>
+            <title>{t('image_converters')}</title>
+            <meta name="description" content={t('image_converter_description')} />
+            <meta name="keywords" content={t('image_page_keywords')} />
+        </Helmet>
         </div>
     );
 }

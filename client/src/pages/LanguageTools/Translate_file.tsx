@@ -7,11 +7,16 @@ import Select from 'react-select';
 import volume from '../../assets/volume.png';
 import mammoth from "mammoth";
 import { franc } from 'franc-min'; 
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from "../../components/LanguageSwitcher";
+import { Helmet } from 'react-helmet';
+
 
 export function Translate_file() {
     const apiKey = 'AIzaSyCiConrcZiaumOPZRNOxbryaUH-3udEODc';
+    const { t } = useTranslation();
     const [text, setText] = useState("");
-    const [sourceLanguage, setSourceLanguage] = useState({ value: "auto", label: "Определить автоматически" });
+    const [sourceLanguage, setSourceLanguage] = useState({ value: "auto", label: t('placeholder_detect_language') });
     const [targetLanguage, setTargetLanguage] = useState({ value: "en", label: "English" });
     const [translatedText, setTranslatedText] = useState("");
     const [recognition, setRecognition] = useState(null);
@@ -19,8 +24,9 @@ export function Translate_file() {
     const [isProcessing, setIsProcessing] = useState(false);
     const [uploadProgress, setUploadProgress] = useState(0);
 
+
     const languageOptions = [
-        { value: "auto", label: "Detect Automatically" },
+        { value: "auto", label: "Detect Language" },
         { value: "en", label: "English" },
         { value: "es", label: "Spanish" },
         { value: "fr", label: "French" },
@@ -205,13 +211,13 @@ export function Translate_file() {
             setTranslatedText(translated);
         } catch (error) {
             console.error("Ошибка перевода:", error);
-            setTranslatedText("Произошла ошибка при переводе.");
+            setTranslatedText(t('translation_error'));
         }
     }
 
     function speakText(text, language) {
         if (!text) {
-            alert("Пожалуйста, сначала выполните перевод.");
+            alert(t('perform_translation_first'));
             return;
         }
     
@@ -271,7 +277,7 @@ export function Translate_file() {
                         setIsProcessing(false);
                     })
                     .catch((error) => {
-                        console.error("Ошибка при чтении Word файла:", error);
+                        console.error(t('word_file_error'), error);
                         setIsProcessing(false);
                     });
             };
@@ -308,20 +314,20 @@ export function Translate_file() {
                     } else if (detectedLanguage === 'rus') {
                         language = 'rus'; // Если текст на русском
                     } else {
-                        console.log('Не удалось определить язык.');
+                        console.log(t('language_detection_failed'));
                     }
 
                     setText(text); // Выводим распознанный текст
                     setIsProcessing(false);
                 }).catch((error) => {
-                    console.error("Ошибка при распознавании текста с изображения:", error);
+                    console.error(t('ocr_error'), error);
                     setIsProcessing(false);
                 });
             };
 
             reader.readAsDataURL(uploadedFile);
         } else {
-            console.error("Неверный формат файла. Пожалуйста, загрузите файл DOCX или изображение.");
+            console.error(t('invalid_file_format'));
             setIsProcessing(false);
         }
     }
@@ -329,18 +335,21 @@ export function Translate_file() {
 
     function copyToClipboard(textToCopy) {
         navigator.clipboard.writeText(textToCopy);
-        alert("Текст скопирован в буфер обмена!");
+        alert(t('text_copied'));
     }
     
 
     return (
         <div className={cn.lol}>
             <div className={cn.title}>
-                <h3>Распознать текст с файла</h3>
+                <div className={cn.title_content}>
+                    <h3>{t('recognize_text')}</h3>
+                    <LanguageSwitcher/>
+                </div>
                 <ul>
                     <li><a href="/">
-                        <i className="material-symbols-outlined">translate</i> 
-                        <p>Перевести текст <span>122 языка</span> </p>
+                        <i className="material-symbols-outlined" translate="no">translate</i> 
+                        <p>{t('translate_text')} <span>{t('languages_count')}</span> </p>
                     </a></li>
                 </ul>
             </div>
@@ -359,7 +368,7 @@ export function Translate_file() {
                         <textarea
                             value={text}
                             onChange={(e) => setText(e.target.value)}
-                            placeholder="Введите текст для перевода..."
+                            placeholder={t('placeholder_enter_text')}
                         />
                         <div className={cn.equipments}>
                             <button onClick={startRecognition}>
@@ -407,7 +416,7 @@ export function Translate_file() {
 
             <div className={cn.fileUploadArea}>
                 <label htmlFor="fileInput" className={cn.uploadButton}>
-                    Загрузить изображение
+                    {t('upload_image')}
                 </label>
                 <input 
                     type="file" 
@@ -418,7 +427,7 @@ export function Translate_file() {
                     hidden 
                 />
                 <div className={cn.dragDrop}>
-                    <small>Поддерживаемые форматы: изображения, PDF, TXT, DOCX</small>
+                    <small>{t('supported_formats')}, PDF, TXT, DOCX</small>
                 </div>
                 {isProcessing && (
                     <div className={cn.progress}>
@@ -438,9 +447,14 @@ export function Translate_file() {
 
 
             <div className={cn.description}>
-                <h2>Переводчик по фото</h2>
-                <p>На этой странице можно загружать фотографии с текстом, и сервис автоматически распознает текст с помощью технологии оптического распознавания символов (OCR), а затем переводит его на 10 различных языков. Это идеальный инструмент для перевода текста с изображений, таких как вывески, документы, рекламные материалы и другие визуальные материалы.</p>
+                <h2>{t('photo_translator')}</h2>
+                <p>{t('photo_description')}</p>
             </div>  
+            <Helmet>
+                <title>{t('photo_translator')}</title>
+                <meta name="description" content={t('photo_description')} />
+                <meta name="keywords" content={t('photo_page_keywords')} />
+            </Helmet>
         </div>
     );
 }

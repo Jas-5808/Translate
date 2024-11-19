@@ -1,8 +1,11 @@
 import cn from "../style.module.css";
 import sairprogramming from '../../assets/sairprogramming.jpg';
 import sair_quiz from '../../assets/sair_quiz.jpg';
+import { useTranslation } from 'react-i18next';
 
 export function Partners() {
+    const { t } = useTranslation();
+
     const partners = [
         {
             id: 1,
@@ -23,7 +26,7 @@ export function Partners() {
 
     return (
         <div className="container ">
-            <h1 className="text-center mb-4">Наши Партнеры</h1>
+            <h1 className="text-center mb-4">{t('our_partners')}</h1>
             <div className="row">
                 {partners.map((partner) => (
                     <div key={partner.id} className="col-md-4 mb-4">
