@@ -10,6 +10,8 @@ import { franc } from 'franc-min';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from "../../components/LanguageSwitcher";
 import { Helmet } from 'react-helmet';
+import { useLocation } from 'react-router-dom';
+
 
 
 export function Translate_file() {
@@ -23,6 +25,14 @@ export function Translate_file() {
     const [file, setFile] = useState(null);
     const [isProcessing, setIsProcessing] = useState(false);
     const [uploadProgress, setUploadProgress] = useState(0);
+    const location = useLocation();
+
+    const getCurrentLanguage = () => {
+      const language = location.pathname.split('/')[1];  
+      return language || 'en'; 
+    };
+  
+    const currentLanguage = getCurrentLanguage();
 
 
     const languageOptions = [
@@ -451,9 +461,23 @@ export function Translate_file() {
                 <p>{t('photo_description')}</p>
             </div>  
             <Helmet>
+                <html lang={currentLanguage} />
                 <title>{t('photo_translator')}</title>
                 <meta name="description" content={t('photo_description')} />
                 <meta name="keywords" content={t('photo_page_keywords')} />
+
+
+                <link rel="alternate" href="https://sneptool.com/en/file" hrefLang="en" />
+                <link rel="alternate" href="https://sneptool.com/ru/file" hrefLang="ru" />
+                <link rel="alternate" href="https://sneptool.com/uz/file" hrefLang="uz" />
+                <link rel="alternate" href="https://sneptool.com/tr/file" hrefLang="tr" />
+                <link rel="alternate" href="https://sneptool.com/ky/file" hrefLang="ky" />
+                <link rel="alternate" href="https://sneptool.com/fr/file" hrefLang="fr" />
+                <link rel="alternate" href="https://sneptool.com/es/file" hrefLang="es" />
+                <link rel="alternate" href="https://sneptool.com/de/file" hrefLang="de" />
+                <link rel="alternate" href="https://sneptool.com/zh/file" hrefLang="zh" />
+                <link rel="alternate" href="https://sneptool.com/ar/file" hrefLang="ar" />
+                <link rel="alternate" href="https://sneptool.com/cs/file" hrefLang="cs" />
             </Helmet>
         </div>
     );

@@ -24,10 +24,8 @@ const LanguageSwitcher = () => {
   );
 
   useEffect(() => {
-    if (!i18n.language) {
-      i18n.changeLanguage('en');
-    }
-  }, [i18n]);
+    setSelectedOption(options.find(option => option.value === i18n.language) || options[0]);
+  }, [i18n.language]);
 
   const handleChange = (selected) => {
     setSelectedOption(selected);

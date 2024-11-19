@@ -5,6 +5,8 @@ import cn from "../style.module.css";
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from "../../components/LanguageSwitcher";
 import { Helmet } from 'react-helmet';
+import { useLocation } from 'react-router-dom';
+
 
 export function ImageCompression() {
     const [image, setImage] = useState(null);
@@ -15,6 +17,14 @@ export function ImageCompression() {
     const [showModal, setShowModal] = useState(false);
     const [modalImage, setModalImage] = useState("");
     const { t } = useTranslation();
+    const location = useLocation();
+
+    const getCurrentLanguage = () => {
+      const language = location.pathname.split('/')[1];  
+      return language || 'en'; 
+    };
+  
+    const currentLanguage = getCurrentLanguage();
 
 
     const handleImageUpload = async (event) => {
@@ -157,9 +167,23 @@ export function ImageCompression() {
             <p>{t('image_size_reduction_description')}</p>
         </div>
         <Helmet>
+            <html lang={currentLanguage} />
             <title>{t('image_size_reduction')}</title>
             <meta name="description" content={t('image_size_reduction_description')} />
             <meta name="keywords" content={t('imageSize_page_keywords')} />
+
+
+            <link rel="alternate" href="https://sneptool.com/en/imageCompression" hrefLang="en" />
+            <link rel="alternate" href="https://sneptool.com/ru/imageCompression" hrefLang="ru" />
+            <link rel="alternate" href="https://sneptool.com/uz/imageCompression" hrefLang="uz" />
+            <link rel="alternate" href="https://sneptool.com/tr/imageCompression" hrefLang="tr" />
+            <link rel="alternate" href="https://sneptool.com/ky/imageCompression" hrefLang="ky" />
+            <link rel="alternate" href="https://sneptool.com/fr/imageCompression" hrefLang="fr" />
+            <link rel="alternate" href="https://sneptool.com/es/imageCompression" hrefLang="es" />
+            <link rel="alternate" href="https://sneptool.com/de/imageCompression" hrefLang="de" />
+            <link rel="alternate" href="https://sneptool.com/zh/imageCompression" hrefLang="zh" />
+            <link rel="alternate" href="https://sneptool.com/ar/imageCompression" hrefLang="ar" />
+            <link rel="alternate" href="https://sneptool.com/cs/imageCompression" hrefLang="cs" />
         </Helmet>
 
         </>

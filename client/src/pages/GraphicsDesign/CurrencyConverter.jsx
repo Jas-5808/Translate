@@ -7,6 +7,8 @@ import cn from "../style.module.css";
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from "../../components/LanguageSwitcher";
 import { Helmet } from 'react-helmet';
+import { useLocation } from 'react-router-dom';
+
 
 export function FileConverter() {
     const [file, setFile] = useState(null);
@@ -20,6 +22,14 @@ export function FileConverter() {
     const [dragOver, setDragOver] = useState(false); 
     const [fileName, setFileName] = useState(""); 
     const { t } = useTranslation();
+    const location = useLocation();
+
+    const getCurrentLanguage = () => {
+      const language = location.pathname.split('/')[1];  
+      return language || 'en'; 
+    };
+  
+    const currentLanguage = getCurrentLanguage();
 
 
     pdfjsLib.GlobalWorkerOptions.workerSrc =
@@ -372,9 +382,22 @@ const convertTxtToPdf = async () => {
             <p>{t('image_converter_description')}</p>
         </div>
         <Helmet>
+            <html lang={currentLanguage} />
             <title>{t('image_converters')}</title>
             <meta name="description" content={t('image_converter_description')} />
             <meta name="keywords" content={t('image_page_keywords')} />
+
+            <link rel="alternate" href="https://sneptool.com/en/currencyConverter" hrefLang="en" />
+            <link rel="alternate" href="https://sneptool.com/ru/currencyConverter" hrefLang="ru" />
+            <link rel="alternate" href="https://sneptool.com/uz/currencyConverter" hrefLang="uz" />
+            <link rel="alternate" href="https://sneptool.com/tr/currencyConverter" hrefLang="tr" />
+            <link rel="alternate" href="https://sneptool.com/ky/currencyConverter" hrefLang="ky" />
+            <link rel="alternate" href="https://sneptool.com/fr/currencyConverter" hrefLang="fr" />
+            <link rel="alternate" href="https://sneptool.com/es/currencyConverter" hrefLang="es" />
+            <link rel="alternate" href="https://sneptool.com/de/currencyConverter" hrefLang="de" />
+            <link rel="alternate" href="https://sneptool.com/zh/currencyConverter" hrefLang="zh" />
+            <link rel="alternate" href="https://sneptool.com/ar/currencyConverter" hrefLang="ar" />
+            <link rel="alternate" href="https://sneptool.com/cs/currencyConverter" hrefLang="cs" />
         </Helmet>
         </div>
     );

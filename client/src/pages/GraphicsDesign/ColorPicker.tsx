@@ -4,7 +4,7 @@ import cn from "../style.module.css";
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from "../../components/LanguageSwitcher";
 import { Helmet } from 'react-helmet';
-
+import { useLocation } from 'react-router-dom';
 
 export function ColorPicker() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -16,6 +16,15 @@ export function ColorPicker() {
   const [hoveredArea, setHoveredArea] = useState<{ x: number, y: number }>({ x: 0, y: 0 });
   const [isZoomVisible, setIsZoomVisible] = useState<boolean>(false);
   const { t } = useTranslation();
+  const location = useLocation();
+
+  const getCurrentLanguage = () => {
+    const language = location.pathname.split('/')[1];  
+    return language || 'en'; 
+  };
+
+  const currentLanguage = getCurrentLanguage();
+
 
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -242,9 +251,22 @@ export function ColorPicker() {
         <p>{t('color_picker_description')}</p>
       </div>
       <Helmet>
+          <html lang={currentLanguage} />
           <title>{t('select_color_from_image')}</title>
           <meta name="description" content={t('color_picker_description')} />
           <meta name="keywords" content={t('colorPicker_page_keywords')} />
+
+          <link rel="alternate" href={`https://sneptool.com/en/colorPicker`} hrefLang="en" />
+          <link rel="alternate" href={`https://sneptool.com/ru/colorPicker`} hrefLang="ru" />
+          <link rel="alternate" href={`https://sneptool.com/uz/colorPicker`} hrefLang="uz" />
+          <link rel="alternate" href={`https://sneptool.com/tr/colorPicker`} hrefLang="tr" />
+          <link rel="alternate" href={`https://sneptool.com/ky/colorPicker`} hrefLang="ky" />
+          <link rel="alternate" href={`https://sneptool.com/fr/colorPicker`} hrefLang="fr" />
+          <link rel="alternate" href={`https://sneptool.com/es/colorPicker`} hrefLang="es" />
+          <link rel="alternate" href={`https://sneptool.com/de/colorPicker`} hrefLang="de" />
+          <link rel="alternate" href={`https://sneptool.com/zh/colorPicker`} hrefLang="zh" />
+          <link rel="alternate" href={`https://sneptool.com/ar/colorPicker`} hrefLang="ar" />
+          <link rel="alternate" href={`https://sneptool.com/cs/colorPicker`} hrefLang="cs" />
       </Helmet>
     </div>
   );

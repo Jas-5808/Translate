@@ -3,11 +3,20 @@ import cn from "../style.module.css";
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from "../../components/LanguageSwitcher";
 import { Helmet } from 'react-helmet';
+import { useLocation } from 'react-router-dom';
 
 
 export function ColorMixer() {
   const [colors, setColors] = useState(["#ff0000", "#0000ff"]);
   const { t } = useTranslation();
+  const location = useLocation();
+
+  const getCurrentLanguage = () => {
+    const language = location.pathname.split('/')[1];  
+    return language || 'en'; 
+  };
+
+  const currentLanguage = getCurrentLanguage();
 
 
   const handleColorChange = (index, newColor) => {
@@ -130,9 +139,22 @@ export function ColorMixer() {
         <p>{t('color_mixing_description')}</p>
       </div>
       <Helmet>
+          <html lang={currentLanguage} />
           <title>{t('color_mixer')}</title>
           <meta name="description" content={t('color_mixing_description')} />
           <meta name="keywords" content={t('colorMixing_page_keywords')} />
+
+          <link rel="alternate" href="https://sneptool.com/en/colorMixer" hrefLang="en" />
+          <link rel="alternate" href="https://sneptool.com/ru/colorMixer" hrefLang="ru" />
+          <link rel="alternate" href="https://sneptool.com/uz/colorMixer" hrefLang="uz" />
+          <link rel="alternate" href="https://sneptool.com/tr/colorMixer" hrefLang="tr" />
+          <link rel="alternate" href="https://sneptool.com/ky/colorMixer" hrefLang="ky" />
+          <link rel="alternate" href="https://sneptool.com/fr/colorMixer" hrefLang="fr" />
+          <link rel="alternate" href="https://sneptool.com/es/colorMixer" hrefLang="es" />
+          <link rel="alternate" href="https://sneptool.com/de/colorMixer" hrefLang="de" />
+          <link rel="alternate" href="https://sneptool.com/zh/colorMixer" hrefLang="zh" />
+          <link rel="alternate" href="https://sneptool.com/ar/colorMixer" hrefLang="ar" />
+          <link rel="alternate" href="https://sneptool.com/cs/colorMixer" hrefLang="cs" />
       </Helmet>
     </div>
   );

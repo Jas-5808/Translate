@@ -4,12 +4,20 @@ import { QRCodeCanvas } from "qrcode.react";
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import { Helmet } from 'react-helmet';
-
+import { useLocation } from 'react-router-dom';
 
 export function QRCodeGenerator() {
   const [url, setUrl] = useState("");
   const qrRef = useRef();
   const { t } = useTranslation();
+  const location = useLocation();
+
+  const getCurrentLanguage = () => {
+    const language = location.pathname.split('/')[1];  
+    return language || 'en'; 
+  };
+
+  const currentLanguage = getCurrentLanguage();
 
 
   const handleInputChange = (event) => {
@@ -77,9 +85,22 @@ export function QRCodeGenerator() {
           <p>{t('qr_code_creation_description')}</p>
       </div>
       <Helmet>
+          <html lang={currentLanguage} />
           <title>{t('qr_code_creation')}</title>
           <meta name="description" content={t('qr_code_creation_description')} />
           <meta name="keywords" content={t('qrCode_page_keywords')} />
+
+          <link rel="alternate" href={`https://sneptool.com/en/qrCodeGenerator`} hrefLang="en" />
+          <link rel="alternate" href={`https://sneptool.com/ru/qrCodeGenerator`} hrefLang="ru" />
+          <link rel="alternate" href={`https://sneptool.com/uz/qrCodeGenerator`} hrefLang="uz" />
+          <link rel="alternate" href={`https://sneptool.com/tr/qrCodeGenerator`} hrefLang="tr" />
+          <link rel="alternate" href={`https://sneptool.com/ky/qrCodeGenerator`} hrefLang="ky" />
+          <link rel="alternate" href={`https://sneptool.com/fr/qrCodeGenerator`} hrefLang="fr" />
+          <link rel="alternate" href={`https://sneptool.com/es/qrCodeGenerator`} hrefLang="es" />
+          <link rel="alternate" href={`https://sneptool.com/de/qrCodeGenerator`} hrefLang="de" />
+          <link rel="alternate" href={`https://sneptool.com/zh/qrCodeGenerator`} hrefLang="zh" />
+          <link rel="alternate" href={`https://sneptool.com/ar/qrCodeGenerator`} hrefLang="ar" />
+          <link rel="alternate" href={`https://sneptool.com/cs/qrCodeGenerator`} hrefLang="cs" />
       </Helmet>
     </div>
   );

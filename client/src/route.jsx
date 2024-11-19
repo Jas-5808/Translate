@@ -21,54 +21,109 @@ export const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
             {
-                path: "/",
+                path: "",
                 element: <Translate />,
             },
             {
-                path: "/file",
+                path: "file",
                 element: <Translate_file />,
             },
             {
-                path: "/about",
+                path: "about",
                 element: <About />,
             },
             {
-                path: "/colorPicker",
+                path: "colorPicker",
                 element: <ColorPicker />,
             },
             {
-                path: "/currencyConverter",
+                path: "currencyConverter",
                 element: <FileConverter />,
             },
             {
-                path: "/imageCompression",
+                path: "imageCompression",
                 element: <ImageCompression />,
             },
             {
-                path: "/shortener",
+                path: "shortener",
                 element: <Shortener />,
             },
             {
-                path: "/qrCodeGenerator",
+                path: "qrCodeGenerator",
                 element: <QRCodeGenerator />,
             },
             {
-                path: "/colorMixer",
+                path: "colorMixer",
                 element: <ColorMixer />,
             },
             {
-                path: "/abduvoxit",
+                path: "abduvoxit",
                 element: <Abduvoxit />,
             },
             {
-                path: "/jasur",
+                path: "jasur",
                 element: <Jasur />,
             },
             {
-                path: "/partners",
+                path: "partners",
                 element: <Partners />,
             },
 
         ],
-    }
+    },
+    {
+        path: "/:lang",
+        element: <App />,
+        errorElement: <ErrorPage />,
+        children: [
+          {
+            path: "",
+            element: <Translate />, 
+          },
+          {
+            path: "file",
+            element: <Translate_file />,
+          },
+          {
+            path: "about",
+            element: <About />,
+          },
+          {
+            path: "colorPicker",
+            element: <ColorPicker />,
+          },
+          {
+            path: "currencyConverter",
+            element: <FileConverter />,
+          },
+          {
+            path: "imageCompression",
+            element: <ImageCompression />,
+          },
+          {
+            path: "shortener",
+            element: <Shortener />,
+          },
+          {
+            path: "qrCodeGenerator",
+            element: <QRCodeGenerator />,
+          },
+          {
+            path: "colorMixer",
+            element: <ColorMixer />,
+          },
+          {
+            path: "abduvoxit",
+            element: <Abduvoxit />,
+          },
+          {
+            path: "jasur",
+            element: <Jasur />,
+          },
+          {
+            path: "partners",
+            element: <Partners />,
+          },
+        ],
+    },
 ]);

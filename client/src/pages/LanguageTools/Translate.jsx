@@ -7,6 +7,8 @@ import cn from "../style.module.css";
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from "../../components/LanguageSwitcher";
 import { Helmet } from 'react-helmet';
+import { useLocation } from 'react-router-dom';
+
 
 export function Translate() {
     const apiKey = 'AIzaSyCiConrcZiaumOPZRNOxbryaUH-3udEODc';
@@ -24,6 +26,14 @@ export function Translate() {
     const [translatedCharCount, setTranslatedCharCount] = useState(0);
     const [containers, setContainers] = useState([{ id: 0, text: "", translatedText: "", targetLanguage: "en" }]);
     const { t } = useTranslation();
+    const location = useLocation();
+
+    const getCurrentLanguage = () => {
+      const language = location.pathname.split('/')[1];  
+      return language || 'en'; 
+    };
+  
+    const currentLanguage = getCurrentLanguage();
 
     const maxContainers = 8;
     const languageNames = {
@@ -410,9 +420,22 @@ export function Translate() {
                 <p>{t('multilingual_description')}</p>
             </div>
             <Helmet>
+                <html lang={currentLanguage} />
                 <title>{t('multilingual_translator')}</title>
                 <meta name="description" content={t('multilingual_description')} />
                 <meta name="keywords" content={t('multilingual_page_keywords')} />
+
+                <link rel="alternate" href="https://sneptool.com/en/" hrefLang="en" />
+                <link rel="alternate" href="https://sneptool.com/ru/" hrefLang="ru" />
+                <link rel="alternate" href="https://sneptool.com/uz/" hrefLang="uz" />
+                <link rel="alternate" href="https://sneptool.com/tr/" hrefLang="tr" />
+                <link rel="alternate" href="https://sneptool.com/ky/" hrefLang="ky" />
+                <link rel="alternate" href="https://sneptool.com/fr/" hrefLang="fr" />
+                <link rel="alternate" href="https://sneptool.com/es/" hrefLang="es" />
+                <link rel="alternate" href="https://sneptool.com/de/" hrefLang="de" />
+                <link rel="alternate" href="https://sneptool.com/zh/" hrefLang="zh" />
+                <link rel="alternate" href="https://sneptool.com/ar/" hrefLang="ar" />
+                <link rel="alternate" href="https://sneptool.com/cs/" hrefLang="cs" />
             </Helmet>
         </div>
     );
