@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import cn from "../style.module.css";
 import { useTranslation } from 'react-i18next';
-import LanguageSwitcher from "../../components/LanguageSwitcher";
-import { Helmet } from 'react-helmet';
 import { useLocation } from 'react-router-dom';
 
+const LanguageSwitcher = lazy(() => import("../../components/LanguageSwitcher"));
+const Helmet = lazy(() => import('react-helmet').then(module => ({ default: module.Helmet })));
+const Description = lazy(() => import('../../components/Description'));
 
-export function ColorMixer() {
+const ColorMixer = () => {
   const [colors, setColors] = useState(["#ff0000", "#0000ff"]);
   const { t } = useTranslation();
   const location = useLocation();
@@ -68,9 +69,11 @@ export function ColorMixer() {
     <div>
         <div className={cn.title}>
           <div className={cn.title_content}>
-                    <h3>{t('color_mixer_tool')}</h3>
-                    <LanguageSwitcher/>
-                </div>
+              <h3>{t('color_mixer_tool')}</h3>
+              <Suspense fallback={null}>
+                <LanguageSwitcher/>
+              </Suspense>
+          </div>
           <ul>
               <li><a href="/colorPicker">
                   <i className="material-symbols-outlined" translate="no">palette</i>
@@ -134,28 +137,35 @@ export function ColorMixer() {
         </ul>
       </div>
 
-      <div className={cn.description}>
-        <h2>{t('color_mixer')}</h2>
-        <p>{t('color_mixing_description')}</p>
-      </div>
-      <Helmet>
-          <html lang={currentLanguage} />
-          <title>{t('color_mixer')}</title>
-          <meta name="description" content={t('color_mixing_description')} />
-          <meta name="keywords" content={t('colorMixing_page_keywords')} />
+      <Suspense fallback={null}>
+        <Description 
+          title="color_mixer" 
+          description="color_mixing_description" 
+        />
+      </Suspense>
 
-          <link rel="alternate" href="https://sneptool.com/en/colorMixer" hrefLang="en" />
-          <link rel="alternate" href="https://sneptool.com/ru/colorMixer" hrefLang="ru" />
-          <link rel="alternate" href="https://sneptool.com/uz/colorMixer" hrefLang="uz" />
-          <link rel="alternate" href="https://sneptool.com/tr/colorMixer" hrefLang="tr" />
-          <link rel="alternate" href="https://sneptool.com/ky/colorMixer" hrefLang="ky" />
-          <link rel="alternate" href="https://sneptool.com/fr/colorMixer" hrefLang="fr" />
-          <link rel="alternate" href="https://sneptool.com/es/colorMixer" hrefLang="es" />
-          <link rel="alternate" href="https://sneptool.com/de/colorMixer" hrefLang="de" />
-          <link rel="alternate" href="https://sneptool.com/zh/colorMixer" hrefLang="zh" />
-          <link rel="alternate" href="https://sneptool.com/ar/colorMixer" hrefLang="ar" />
-          <link rel="alternate" href="https://sneptool.com/cs/colorMixer" hrefLang="cs" />
-      </Helmet>
+
+      <Suspense fallback={null}>
+        <Helmet>
+            <html lang={currentLanguage} />
+            <title>{t('color_mixer')}</title>
+            <meta name="description" content={t('color_mixing_description')} />
+            <meta name="keywords" content={t('colorMixing_page_keywords')} />
+
+            <link rel="alternate" href="https://sneptool.com/en/colorMixer" hrefLang="en" />
+            <link rel="alternate" href="https://sneptool.com/ru/colorMixer" hrefLang="ru" />
+            <link rel="alternate" href="https://sneptool.com/uz/colorMixer" hrefLang="uz" />
+            <link rel="alternate" href="https://sneptool.com/tr/colorMixer" hrefLang="tr" />
+            <link rel="alternate" href="https://sneptool.com/ky/colorMixer" hrefLang="ky" />
+            <link rel="alternate" href="https://sneptool.com/fr/colorMixer" hrefLang="fr" />
+            <link rel="alternate" href="https://sneptool.com/es/colorMixer" hrefLang="es" />
+            <link rel="alternate" href="https://sneptool.com/de/colorMixer" hrefLang="de" />
+            <link rel="alternate" href="https://sneptool.com/zh/colorMixer" hrefLang="zh" />
+            <link rel="alternate" href="https://sneptool.com/ar/colorMixer" hrefLang="ar" />
+            <link rel="alternate" href="https://sneptool.com/cs/colorMixer" hrefLang="cs" />
+        </Helmet>
+      </Suspense>
+
     </div>
   );
 }

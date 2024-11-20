@@ -1,6 +1,6 @@
 import cn from "./mainCss.module.css"
 
-export function Header(){
+const Header = () =>{
 
     return (
         <>
@@ -10,4 +10,6 @@ export function Header(){
         </>
     )
 }
+
+export default Header;
     

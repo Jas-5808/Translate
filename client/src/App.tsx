@@ -1,11 +1,12 @@
 import './App.css'
 import { Outlet, useParams, useNavigate } from 'react-router-dom'
-import { Header } from './components/Header'
-import { Footer } from './components/Footer'
-import { Leftside } from './components/Leftside'
-import { useEffect } from 'react'
+import Header from './components/Header'
+import Leftside from './components/Leftside'
+import { useEffect, lazy, Suspense, } from 'react'
 import { useTranslation } from 'react-i18next';
 import '../i18n';
+
+const Footer = lazy(() => import('./components/Footer'));
 
 function App() {
   const { lang } = useParams(); 
@@ -31,7 +32,9 @@ function App() {
           <div className="main">
             <Outlet />
           </div>
-          <Footer />
+          <Suspense fallback={null}>
+            <Footer />
+          </Suspense>
         </div>
       </div>
     </>

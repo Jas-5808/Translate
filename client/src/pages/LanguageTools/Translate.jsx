@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, lazy, Suspense } from "react";
 import axios from 'axios';
 import Select from 'react-select';
 import { FaMicrophone, FaCopy } from 'react-icons/fa';
@@ -9,8 +9,10 @@ import LanguageSwitcher from "../../components/LanguageSwitcher";
 import { Helmet } from 'react-helmet';
 import { useLocation } from 'react-router-dom';
 
+const Description = lazy(() => import('../../components/Description'));
 
-export function Translate() {
+
+const Translate = () => {
     const apiKey = 'AIzaSyCiConrcZiaumOPZRNOxbryaUH-3udEODc';
     const [text, setText] = useState("");
     const [sourceLanguage, setSourceLanguage] = useState(null);
@@ -415,10 +417,13 @@ export function Translate() {
 
             </div>
             
-            <div className={cn.description}>
-                <h2>{t('multilingual_translator')}</h2>
-                <p>{t('multilingual_description')}</p>
-            </div>
+            <Suspense fallback={null}>
+                <Description 
+                title="multilingual_translator" 
+                description="multilingual_description" 
+                />
+            </Suspense>
+
             <Helmet>
                 <html lang={currentLanguage} />
                 <title>{t('multilingual_translator')}</title>
@@ -440,3 +445,5 @@ export function Translate() {
         </div>
     );
 }
+
+export default Translate;

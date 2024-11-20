@@ -3,7 +3,7 @@ import sairprogramming from '../../assets/sairprogramming.jpg';
 import sair_quiz from '../../assets/sair_quiz.jpg';
 import { useTranslation } from 'react-i18next';
 
-export function Partners() {
+const Partners = () => {
     const { t } = useTranslation();
 
     const partners = [
@@ -35,6 +35,7 @@ export function Partners() {
                                 src={partner.logo}
                                 alt={partner.name}
                                 className={`card-img-top ${cn.partnerLogo}`}
+                                loading="lazy"
                             />
                             <div className="card-body">
                                 <h5 className="card-title">{partner.name}</h5>
@@ -47,3 +48,5 @@ export function Partners() {
         </div>
     );
 }
+
+export default Partners;

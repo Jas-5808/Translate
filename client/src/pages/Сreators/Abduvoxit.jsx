@@ -1,6 +1,6 @@
 import cn from "../style.module.css";
 
-export function Abduvoxit() {
+const Abduvoxit = () => {
   return (
     <div className={cn.aboutPage}>
       <h1>Abduvoxit</h1>

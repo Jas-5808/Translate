@@ -1,9 +1,10 @@
 import cn from "../style.module.css";
 
-export function Jasur(){
+const Jasur = () => {
     return(
         <>
             <h1>Jasur</h1>
         </>
     )
 }
+export default Jasur;

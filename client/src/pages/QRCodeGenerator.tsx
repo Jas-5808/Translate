@@ -1,12 +1,16 @@
 import cn from "./style.module.css";
-import React, { useState, useRef } from "react";
-import { QRCodeCanvas } from "qrcode.react";
+import React, { useState, useRef, lazy, Suspense } from "react";
 import { useTranslation } from 'react-i18next';
-import LanguageSwitcher from "../components/LanguageSwitcher";
-import { Helmet } from 'react-helmet';
 import { useLocation } from 'react-router-dom';
 
-export function QRCodeGenerator() {
+const LanguageSwitcher = lazy(() => import("../components/LanguageSwitcher"));
+const Helmet = lazy(() => import('react-helmet').then(module => ({ default: module.Helmet })));
+const QRCodeCanvas = lazy(() => import("qrcode.react").then(module => ({ default: module.QRCodeCanvas })));
+
+const Description = lazy(() => import('../components/Description'));
+
+
+const QRCodeGenerator = () => {
   const [url, setUrl] = useState("");
   const qrRef = useRef();
   const { t } = useTranslation();
@@ -18,7 +22,6 @@ export function QRCodeGenerator() {
   };
 
   const currentLanguage = getCurrentLanguage();
-
 
   const handleInputChange = (event) => {
     setUrl(event.target.value);
@@ -37,21 +40,24 @@ export function QRCodeGenerator() {
   return (
     <div className="container p-0">
       <div className={cn.title}>
-          <div className={cn.title_content}>
-                    <h3>{t('qr_code_generator')}</h3>
-                    <LanguageSwitcher/>
-                </div>
-          <ul>
-              <li><a href="/shortener">
-                  <i className="material-symbols-outlined" translate="no">link</i>
-                  <p>{t('shorten_link')} <span>.pdf, .docx, .txt</span> </p>
-              </a></li>
-          </ul>
+        <div className={cn.title_content}>
+          <h3>{t('qr_code_generator')}</h3>
+          <Suspense fallback={null}>
+            <LanguageSwitcher/>
+          </Suspense>
+        </div>
+        <ul>
+          <li><a href="/shortener">
+            <i className="material-symbols-outlined" translate="no">link</i>
+            <p>{t('shorten_link')} <span>.pdf, .docx, .txt</span> </p>
+          </a></li>
+        </ul>
       </div>
+
       <div className="card shadow p-4">
         <div className="mb-3">
           <label htmlFor="urlInput" className="form-label">
-          {t('enter_url')}
+            {t('enter_url')}
           </label>
           <input
             id="urlInput"
@@ -62,12 +68,16 @@ export function QRCodeGenerator() {
             onChange={handleInputChange}
           />
         </div>
+
         {url && (
           <div className="text-center my-4" ref={qrRef}>
-            <QRCodeCanvas value={url} size={200} />
+            <Suspense fallback={null}>
+              <QRCodeCanvas value={url} size={200} />
+            </Suspense>
             <p className="mt-2">{t('scan_to_visit')} {url}</p>
           </div>
         )}
+
         <div className="d-flex justify-content-center">
           <button
             className="btn btn-primary"
@@ -79,12 +89,15 @@ export function QRCodeGenerator() {
         </div>
       </div>
 
-                  
-      <div className={cn.description}>
-          <h2>{t('qr_code_creation')}</h2>
-          <p>{t('qr_code_creation_description')}</p>
-      </div>
-      <Helmet>
+      <Suspense fallback={null}>
+          <Description 
+          title="qr_code_creation" 
+          description="qr_code_creation_description" 
+          />
+      </Suspense>
+
+      <Suspense fallback={null}>
+        <Helmet>
           <html lang={currentLanguage} />
           <title>{t('qr_code_creation')}</title>
           <meta name="description" content={t('qr_code_creation_description')} />
@@ -101,7 +114,11 @@ export function QRCodeGenerator() {
           <link rel="alternate" href={`https://sneptool.com/zh/qrCodeGenerator`} hrefLang="zh" />
           <link rel="alternate" href={`https://sneptool.com/ar/qrCodeGenerator`} hrefLang="ar" />
           <link rel="alternate" href={`https://sneptool.com/cs/qrCodeGenerator`} hrefLang="cs" />
-      </Helmet>
+        </Helmet>
+      </Suspense>
+      
     </div>
   );
 }
+
+export default QRCodeGenerator;

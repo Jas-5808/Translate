@@ -1,6 +1,6 @@
 // import cn from "./style.module.css";
 
-export function Shortener(){
+const Shortener = () => {
     return(
         <>
             <div className="errorPage">
@@ -13,3 +13,5 @@ export function Shortener(){
         </>
     )
 }
+
+export default Shortener;

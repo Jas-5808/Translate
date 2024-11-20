@@ -5,7 +5,7 @@ import facebook from '../assets/facebook.png';
 import telegram from '../assets/telegram.png';
 import { useTranslation } from 'react-i18next';
 
-export function Footer(){
+const Footer = () =>{
     const { t } = useTranslation();
 
     return (
@@ -32,9 +32,9 @@ export function Footer(){
                         <div className={cn.social_links}>
                             <span>{t('social_media')}</span>
                             <ul>
-                                <li><a href=""><img src={telegram} alt="" /></a></li>
-                                <li><a href=""><img src={instagram} alt="" /></a></li>
-                                <li><a href=""><img src={facebook} alt="" /></a></li>
+                                <li><a href=""><img src={telegram} alt="" loading="lazy"/></a></li>
+                                <li><a href=""><img src={instagram} alt="" loading="lazy"/></a></li>
+                                <li><a href=""><img src={facebook} alt="" loading="lazy"/></a></li>
                             </ul>
                         </div>
                     </div>
@@ -44,4 +44,5 @@ export function Footer(){
         </>
     )
 }
-    
+
+export default Footer;

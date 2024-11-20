@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
 
 
-export function About() {
+const About = () => {
     const [selectedTemplate, setSelectedTemplate] = useState(null); 
     const { t } = useTranslation();
 
@@ -81,6 +81,7 @@ export function About() {
                                 src={abduvoxit}
                                 alt="Abduvoxit"
                                 className="card-img-top"
+                                loading="lazy"
                             />
                             <div className="card-body text-center">
                                 <h3 className="card-title">Abduvoxit</h3>
@@ -97,6 +98,7 @@ export function About() {
                                 src={jasur}
                                 alt="Jasur"
                                 className="card-img-top"
+                                loading="lazy"
                             />
                             <div className="card-body text-center">
                                 <h3 className="card-title">Jasur</h3>
@@ -133,6 +135,7 @@ export function About() {
                                         src={template.image}
                                         alt={template.name}
                                         className="card-img-top"
+                                        loading="lazy"
                                     />
                                     <div className="card-body text-center">
                                         <h5 className="card-title">{template.name}</h5>
@@ -159,6 +162,7 @@ export function About() {
                                     src={selectedTemplate.image}
                                     alt={selectedTemplate.name}
                                     className="img-fluid mb-3"
+                                    loading="lazy"
                                 />
                                 <p>{selectedTemplate.description}</p>
                                 <p className="text-primary fw-bold">{selectedTemplate.price}</p>
@@ -181,3 +185,5 @@ export function About() {
         </>
     );
 }
+
+export default About;

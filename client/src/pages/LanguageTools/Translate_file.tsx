@@ -1,5 +1,5 @@
 import cn from "../style.module.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import axios from 'axios';
 import { FaMicrophone, FaCopy } from 'react-icons/fa';
 import Tesseract from 'tesseract.js';
@@ -13,8 +13,10 @@ import { Helmet } from 'react-helmet';
 import { useLocation } from 'react-router-dom';
 
 
+const Description = lazy(() => import('../../components/Description'));
 
-export function Translate_file() {
+
+const Translate_file = () => {
     const apiKey = 'AIzaSyCiConrcZiaumOPZRNOxbryaUH-3udEODc';
     const { t } = useTranslation();
     const [text, setText] = useState("");
@@ -456,10 +458,13 @@ export function Translate_file() {
             </div>
 
 
-            <div className={cn.description}>
-                <h2>{t('photo_translator')}</h2>
-                <p>{t('photo_description')}</p>
-            </div>  
+            <Suspense fallback={null}>
+                <Description 
+                title="photo_translator" 
+                description="photo_description" 
+                />
+            </Suspense>
+
             <Helmet>
                 <html lang={currentLanguage} />
                 <title>{t('photo_translator')}</title>
@@ -482,3 +487,6 @@ export function Translate_file() {
         </div>
     );
 }
+
+
+export default Translate_file;

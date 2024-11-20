@@ -6,7 +6,7 @@ import { Settings } from "../pages/Settings";
 import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 
-export function Leftside() {
+const Leftside = () => {
     const location = useLocation();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { t } = useTranslation();
@@ -65,3 +65,5 @@ export function Leftside() {
         </div>
     );
 }
+
+export default Leftside;

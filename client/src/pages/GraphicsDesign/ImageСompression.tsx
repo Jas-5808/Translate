@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import imageCompression from 'browser-image-compression';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import cn from "../style.module.css";
 import { useTranslation } from 'react-i18next';
-import LanguageSwitcher from "../../components/LanguageSwitcher";
-import { Helmet } from 'react-helmet';
 import { useLocation } from 'react-router-dom';
 
+const LanguageSwitcher = lazy(() => import("../../components/LanguageSwitcher"));
+const Helmet = lazy(() => import('react-helmet').then(module => ({ default: module.Helmet })));
+const Description = lazy(() => import('../../components/Description'));
 
-export function ImageCompression() {
+const ImageCompression = () => {
     const [image, setImage] = useState(null);
     const [compressedImage, setCompressedImage] = useState(null);
     const [imageSize, setImageSize] = useState(null);
@@ -90,7 +91,9 @@ export function ImageCompression() {
                 <div className={cn.title}>
                     <div className={cn.title_content}>
                         <h3>{t('image_compression')}</h3>
-                        <LanguageSwitcher/>
+                        <Suspense fallback={null}>
+                            <LanguageSwitcher />
+                        </Suspense>
                     </div>
                     <ul>
                         <li><a href="/currencyConverter">
@@ -162,30 +165,37 @@ export function ImageCompression() {
                 </div>
             )}
 
-        <div className={cn.description}>
-            <h2>{t('image_size_reduction')}</h2>
-            <p>{t('image_size_reduction_description')}</p>
-        </div>
-        <Helmet>
-            <html lang={currentLanguage} />
-            <title>{t('image_size_reduction')}</title>
-            <meta name="description" content={t('image_size_reduction_description')} />
-            <meta name="keywords" content={t('imageSize_page_keywords')} />
 
+        <Suspense fallback={null}>
+            <Description 
+            title="image_size_reduction" 
+            description="image_size_reduction_description" 
+            />
+        </Suspense>
+        
+        <Suspense fallback={null}>
+            <Helmet>
+                <html lang={currentLanguage} />
+                <title>{t('image_size_reduction')}</title>
+                <meta name="description" content={t('image_size_reduction_description')} />
+                <meta name="keywords" content={t('imageSize_page_keywords')} />
 
-            <link rel="alternate" href="https://sneptool.com/en/imageCompression" hrefLang="en" />
-            <link rel="alternate" href="https://sneptool.com/ru/imageCompression" hrefLang="ru" />
-            <link rel="alternate" href="https://sneptool.com/uz/imageCompression" hrefLang="uz" />
-            <link rel="alternate" href="https://sneptool.com/tr/imageCompression" hrefLang="tr" />
-            <link rel="alternate" href="https://sneptool.com/ky/imageCompression" hrefLang="ky" />
-            <link rel="alternate" href="https://sneptool.com/fr/imageCompression" hrefLang="fr" />
-            <link rel="alternate" href="https://sneptool.com/es/imageCompression" hrefLang="es" />
-            <link rel="alternate" href="https://sneptool.com/de/imageCompression" hrefLang="de" />
-            <link rel="alternate" href="https://sneptool.com/zh/imageCompression" hrefLang="zh" />
-            <link rel="alternate" href="https://sneptool.com/ar/imageCompression" hrefLang="ar" />
-            <link rel="alternate" href="https://sneptool.com/cs/imageCompression" hrefLang="cs" />
-        </Helmet>
+                <link rel="alternate" href="https://sneptool.com/en/imageCompression" hrefLang="en" />
+                <link rel="alternate" href="https://sneptool.com/ru/imageCompression" hrefLang="ru" />
+                <link rel="alternate" href="https://sneptool.com/uz/imageCompression" hrefLang="uz" />
+                <link rel="alternate" href="https://sneptool.com/tr/imageCompression" hrefLang="tr" />
+                <link rel="alternate" href="https://sneptool.com/ky/imageCompression" hrefLang="ky" />
+                <link rel="alternate" href="https://sneptool.com/fr/imageCompression" hrefLang="fr" />
+                <link rel="alternate" href="https://sneptool.com/es/imageCompression" hrefLang="es" />
+                <link rel="alternate" href="https://sneptool.com/de/imageCompression" hrefLang="de" />
+                <link rel="alternate" href="https://sneptool.com/zh/imageCompression" hrefLang="zh" />
+                <link rel="alternate" href="https://sneptool.com/ar/imageCompression" hrefLang="ar" />
+                <link rel="alternate" href="https://sneptool.com/cs/imageCompression" hrefLang="cs" />
+            </Helmet>
+        </Suspense>
 
         </>
     );
 }
+
+export default ImageCompression;

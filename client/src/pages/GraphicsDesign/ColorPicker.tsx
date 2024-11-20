@@ -1,12 +1,14 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, lazy, Suspense  } from 'react';
 import { FaCopy } from 'react-icons/fa';
 import cn from "../style.module.css";
 import { useTranslation } from 'react-i18next';
-import LanguageSwitcher from "../../components/LanguageSwitcher";
-import { Helmet } from 'react-helmet';
 import { useLocation } from 'react-router-dom';
 
-export function ColorPicker() {
+const LanguageSwitcher = lazy(() => import("../../components/LanguageSwitcher"));
+const Helmet = lazy(() => import('react-helmet').then(module => ({ default: module.Helmet })));
+const Description = lazy(() => import('../../components/Description'));
+
+const ColorPicker = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [color, setColor] = useState<string>('#ffffff');
   const [rgbColor, setRgbColor] = useState<string>('rgb(255, 255, 255)');
@@ -155,9 +157,11 @@ export function ColorPicker() {
 
       <div className={cn.title}>
           <div className={cn.title_content}>
-                    <h3>{t('define_pixel_color')}</h3>
-                    <LanguageSwitcher/>
-                </div>
+              <h3>{t('define_pixel_color')}</h3>
+              <Suspense fallback={null}>
+                <LanguageSwitcher/>
+              </Suspense>
+          </div>
           <ul>
               <li><a href="/colorMixer">
                   <i className="material-symbols-outlined" translate="no">colors</i>
@@ -246,28 +250,38 @@ export function ColorPicker() {
         </label>
       </div>
 
-      <div className={cn.description}>
-        <h2>{t('select_color_from_image')}</h2>
-        <p>{t('color_picker_description')}</p>
-      </div>
-      <Helmet>
-          <html lang={currentLanguage} />
-          <title>{t('select_color_from_image')}</title>
-          <meta name="description" content={t('color_picker_description')} />
-          <meta name="keywords" content={t('colorPicker_page_keywords')} />
 
-          <link rel="alternate" href={`https://sneptool.com/en/colorPicker`} hrefLang="en" />
-          <link rel="alternate" href={`https://sneptool.com/ru/colorPicker`} hrefLang="ru" />
-          <link rel="alternate" href={`https://sneptool.com/uz/colorPicker`} hrefLang="uz" />
-          <link rel="alternate" href={`https://sneptool.com/tr/colorPicker`} hrefLang="tr" />
-          <link rel="alternate" href={`https://sneptool.com/ky/colorPicker`} hrefLang="ky" />
-          <link rel="alternate" href={`https://sneptool.com/fr/colorPicker`} hrefLang="fr" />
-          <link rel="alternate" href={`https://sneptool.com/es/colorPicker`} hrefLang="es" />
-          <link rel="alternate" href={`https://sneptool.com/de/colorPicker`} hrefLang="de" />
-          <link rel="alternate" href={`https://sneptool.com/zh/colorPicker`} hrefLang="zh" />
-          <link rel="alternate" href={`https://sneptool.com/ar/colorPicker`} hrefLang="ar" />
-          <link rel="alternate" href={`https://sneptool.com/cs/colorPicker`} hrefLang="cs" />
-      </Helmet>
+      
+      <Suspense fallback={null}>
+        <Description 
+          title="select_color_from_image" 
+          description="color_picker_description" 
+        />
+      </Suspense>
+
+      <Suspense fallback={null}>
+        <Helmet>
+            <html lang={currentLanguage} />
+            <title>{t('select_color_from_image')}</title>
+            <meta name="description" content={t('color_picker_description')} />
+            <meta name="keywords" content={t('colorPicker_page_keywords')} />
+
+            <link rel="alternate" href={`https://sneptool.com/en/colorPicker`} hrefLang="en" />
+            <link rel="alternate" href={`https://sneptool.com/ru/colorPicker`} hrefLang="ru" />
+            <link rel="alternate" href={`https://sneptool.com/uz/colorPicker`} hrefLang="uz" />
+            <link rel="alternate" href={`https://sneptool.com/tr/colorPicker`} hrefLang="tr" />
+            <link rel="alternate" href={`https://sneptool.com/ky/colorPicker`} hrefLang="ky" />
+            <link rel="alternate" href={`https://sneptool.com/fr/colorPicker`} hrefLang="fr" />
+            <link rel="alternate" href={`https://sneptool.com/es/colorPicker`} hrefLang="es" />
+            <link rel="alternate" href={`https://sneptool.com/de/colorPicker`} hrefLang="de" />
+            <link rel="alternate" href={`https://sneptool.com/zh/colorPicker`} hrefLang="zh" />
+            <link rel="alternate" href={`https://sneptool.com/ar/colorPicker`} hrefLang="ar" />
+            <link rel="alternate" href={`https://sneptool.com/cs/colorPicker`} hrefLang="cs" />
+        </Helmet>
+      </Suspense>
+
     </div>
   );
 }
+
+export default ColorPicker;

@@ -1,16 +1,18 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, lazy, Suspense  } from "react";
 import * as pdfjsLib from "pdfjs-dist";
 import mammoth from "mammoth";
 import { jsPDF } from "jspdf";
 import JSZip from "jszip";
 import cn from "../style.module.css";
 import { useTranslation } from 'react-i18next';
-import LanguageSwitcher from "../../components/LanguageSwitcher";
-import { Helmet } from 'react-helmet';
 import { useLocation } from 'react-router-dom';
 
+const LanguageSwitcher = lazy(() => import("../../components/LanguageSwitcher"));
+const Helmet = lazy(() => import('react-helmet').then(module => ({ default: module.Helmet })));
+const Description = lazy(() => import('../../components/Description'));
 
-export function FileConverter() {
+
+const FileConverter = () => {
     const [file, setFile] = useState(null);
     const [inputType, setInputType] = useState("");
     const [outputType, setOutputType] = useState("");
@@ -298,7 +300,9 @@ const convertTxtToPdf = async () => {
             <div className={cn.title}>
                 <div className={cn.title_content}>
                     <h3>{t('image_converter')}</h3>
-                    <LanguageSwitcher/>
+                    <Suspense fallback={null}>
+                        <LanguageSwitcher/>
+                    </Suspense>
                 </div>
                 <ul>
                     <li><a href="/imageCompression">
@@ -377,28 +381,37 @@ const convertTxtToPdf = async () => {
                 </div>
             )}
 
-        <div className={cn.description}>
-            <h2>{t('image_converters')}</h2>
-            <p>{t('image_converter_description')}</p>
-        </div>
-        <Helmet>
-            <html lang={currentLanguage} />
-            <title>{t('image_converters')}</title>
-            <meta name="description" content={t('image_converter_description')} />
-            <meta name="keywords" content={t('image_page_keywords')} />
 
-            <link rel="alternate" href="https://sneptool.com/en/currencyConverter" hrefLang="en" />
-            <link rel="alternate" href="https://sneptool.com/ru/currencyConverter" hrefLang="ru" />
-            <link rel="alternate" href="https://sneptool.com/uz/currencyConverter" hrefLang="uz" />
-            <link rel="alternate" href="https://sneptool.com/tr/currencyConverter" hrefLang="tr" />
-            <link rel="alternate" href="https://sneptool.com/ky/currencyConverter" hrefLang="ky" />
-            <link rel="alternate" href="https://sneptool.com/fr/currencyConverter" hrefLang="fr" />
-            <link rel="alternate" href="https://sneptool.com/es/currencyConverter" hrefLang="es" />
-            <link rel="alternate" href="https://sneptool.com/de/currencyConverter" hrefLang="de" />
-            <link rel="alternate" href="https://sneptool.com/zh/currencyConverter" hrefLang="zh" />
-            <link rel="alternate" href="https://sneptool.com/ar/currencyConverter" hrefLang="ar" />
-            <link rel="alternate" href="https://sneptool.com/cs/currencyConverter" hrefLang="cs" />
-        </Helmet>
+        <Suspense fallback={null}>
+            <Description 
+            title="image_converters" 
+            description="image_converter_description" 
+            />
+        </Suspense>
+
+        <Suspense fallback={null}>
+            <Helmet>
+                <html lang={currentLanguage} />
+                <title>{t('image_converters')}</title>
+                <meta name="description" content={t('image_converter_description')} />
+                <meta name="keywords" content={t('image_page_keywords')} />
+
+                <link rel="alternate" href="https://sneptool.com/en/currencyConverter" hrefLang="en" />
+                <link rel="alternate" href="https://sneptool.com/ru/currencyConverter" hrefLang="ru" />
+                <link rel="alternate" href="https://sneptool.com/uz/currencyConverter" hrefLang="uz" />
+                <link rel="alternate" href="https://sneptool.com/tr/currencyConverter" hrefLang="tr" />
+                <link rel="alternate" href="https://sneptool.com/ky/currencyConverter" hrefLang="ky" />
+                <link rel="alternate" href="https://sneptool.com/fr/currencyConverter" hrefLang="fr" />
+                <link rel="alternate" href="https://sneptool.com/es/currencyConverter" hrefLang="es" />
+                <link rel="alternate" href="https://sneptool.com/de/currencyConverter" hrefLang="de" />
+                <link rel="alternate" href="https://sneptool.com/zh/currencyConverter" hrefLang="zh" />
+                <link rel="alternate" href="https://sneptool.com/ar/currencyConverter" hrefLang="ar" />
+                <link rel="alternate" href="https://sneptool.com/cs/currencyConverter" hrefLang="cs" />
+            </Helmet>
+        </Suspense>
+
         </div>
     );
 }
+
+export default FileConverter;

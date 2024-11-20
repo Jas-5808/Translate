@@ -166,3 +166,14 @@
         font-size: 1rem;
     }
 }
+
+
+.description{
+    margin-top: 100px;
+}
+.description h2{
+    font-size: 40px;
+}
+.description p{
+    font-size: 20px;
+}
