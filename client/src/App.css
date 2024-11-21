@@ -16,3 +16,23 @@
   flex: 1 1 auto;
   margin-bottom: 56px;
 }
+
+@media(max-width: 1024px){
+  .wrapper{
+    margin-left: 270px;
+  }
+}
+@media(max-width: 768px){
+  .wrapper{
+    margin-left: 220px;
+  }
+}
+@media (max-width: 500px) {
+  .wrapper{
+    margin-left: 0;
+    padding: 0;
+  }
+  .main{
+    padding: 30px 15px 0;
+  }
+}

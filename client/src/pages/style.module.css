@@ -73,7 +73,6 @@
     font-size: 40px;
     font-weight: 600;
     color: black;
-
 }
 .language_box{
     display: flex;
@@ -498,4 +497,43 @@ textarea {
 .dark_mode {
     background-color: #333;
     color: white;
+}
+
+@media(max-width: 1024px){
+    .title h3{
+        font-size: 35px;
+    }
+    .microphone{
+        width: 100%;
+    }    
+}
+@media(max-width: 768px){
+    .title h3{
+        font-size: 26px;
+    }
+    .mixing_examples ul span{
+        padding: 5px 10px;
+    }
+    .resoltColor h2{
+        font-size: 18px;
+    }
+    .resoltColor h2 span{
+        font-size: 20px;
+    }
+}
+@media (max-width: 500px) {
+    .title h3{
+        width: 70%;
+        font-size: 22px;
+    }
+    .mixing_examples ul span{
+        padding: 3px 8px;
+        font-size: 14px;
+    }
+    .resoltColor h2{
+        font-size: 16px;
+    }
+    .resoltColor h2 span{
+        font-size: 18px;
+    }
 }

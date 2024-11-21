@@ -122,7 +122,7 @@ const About = () => {
 
                 <div className="mt-5" id="order-site">
                     <h2 className="mb-3">{t('pricing_for_templates')}</h2>
-                    <div className="row">
+                    <div className="row" style={{ display: "flex", rowGap: "16px" }}>
                         {templates.map((template) => (
                             <div
                                 key={template.id}
@@ -151,7 +151,7 @@ const About = () => {
 
             {selectedTemplate && (
                 <div className="modal show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
-                    <div className="modal-dialog modal-lg">
+                    <div className="modal-dialog modal-lg ">
                         <div className="modal-content">
                             <div className="modal-header">
                                 <h5 className="modal-title">{selectedTemplate.name}</h5>

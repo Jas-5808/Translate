@@ -3,6 +3,7 @@ import logo from '../assets/logo.webp';
 import instagram from '../assets/instagram.png';
 import facebook from '../assets/facebook.png';
 import telegram from '../assets/telegram.png';
+import youtube from '../assets/youtube.png';
 import { useTranslation } from 'react-i18next';
 
 const Footer = () =>{
@@ -35,6 +36,7 @@ const Footer = () =>{
                                 <li><a href=""><img src={telegram} alt="" loading="lazy"/></a></li>
                                 <li><a href=""><img src={instagram} alt="" loading="lazy"/></a></li>
                                 <li><a href=""><img src={facebook} alt="" loading="lazy"/></a></li>
+                                <li><a href="https://www.youtube.com/@sairprogramming"><img src={youtube} alt="" loading="lazy"/></a></li>
                             </ul>
                         </div>
                     </div>
