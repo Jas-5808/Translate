@@ -104,6 +104,25 @@
     "contact_for_website_development": "Sayt yaratishni buyurtma qilish uchun <a href=\"https://t.me/abduvoxit260803\">biz bilan bog'laning</a> va loyiha haqida ma'lumot bering. Talablaringizga qarab narxlar baholanadi.",
     "pricing_for_templates": "Sayt shablonlari narxlari",
 
+    "shorten_link_online": "Havolani qisqartirish onlayn",
+    "enter_link": "Havolani kiriting:",
+    "shorten": "Qisqartirish",
+    "shortened_link": "Qisqartirilgan havola:",
+    "quick_link_shortening": "Tezkor havola qisqartirish",
+    "description": "Ushbu sahifada siz har qanday havolani tez va oson qisqartirishingiz mumkin. Uzun URLni kirish maydoniga joylashtiring va qisqa, toza havolani oling, foydalanishga tayyor. Ushbu xizmat ijtimoiy tarmoqlar, marketing kampaniyalari, elektron pochta yoki shaxsiy foydalanish uchun havolalarni soddalashtirish uchun juda mos keladi.",
+
+    "password_generator": "Parol Generatori",
+    "50_characters": "50 belgilar",
+    "generated_password": "Yaratilgan parol:",
+    "password_length": "Parol uzunligi:",
+    "include_uppercase": "Katta harflar qo'shish",
+    "include_numbers": "Raqamlarni qo'shish",
+    "include_symbols": "Simvollarni qo'shish",
+    "generate": "Yaratish",
+    "password_generator_online": "Online parol generatori",
+    "generator_description": "Ushbu sahifada siz tez va oson tarzda xavfsiz parol yaratishingiz mumkin. Faqatgina parol uzunligi va maxsus simvollarni qo'shish parametrlarini sozlang, so'ngra noyob parol yaratish uchun tugmani bosing. Xizmat turli hisoblar va onlayn xizmatlar uchun xavfsiz parollar yaratishda juda mos keladi.",
+
+
     "our_partners": "Hamkorlarimiz",
 
 
@@ -117,6 +136,9 @@
     "order_website": "Veb-sayt yaratish yoki buyurtma berish",
     "order_website_description": "Maxsus veb-sayt yarating yoki tayyor shablonlar va dizaynlarni sotib oling. Tez va arzon veb-sayt ishlab chiqish xizmatlari.",
     "order_website_keywords": "sayt yaratish, sayt buyurtma berish, sayt shablonlarini sotib olish, veb-dizayn, sayt ishlab chiqish, maxsus sayt, sayt dizayni, HTML shablonlar, sayt shablonlari",
+    "shortener_page_keywords": "Havolani qisqartirish, Tezkor havolalarni qisqartirish, Onlayn havolalarni qisqartirish, Qisqa havolalar, Qisqa havola yaratish, Havola uzunligini qisqartirish, Ijtimoiy tarmoqlar uchun qisqa havolalar, Qisqa URL, Havolalarni qisqartirish asbobi, Qulay havolalarni qisqartirish, Havolalarni bepul qisqartirish, silkani qisqartirish, online qisqartirish",
+    "passwordGenerator_page_keywords": "parol generatori, parol yaratish, xavfsiz parol, online parol generatori, tasodifiy parol generatori, raqamlar va simvollar bilan parol, katta harflar bilan parol, akkaunt parol generatori, uzun parol, noyob parol, xavfsiz parol yaratish",
+
 
     "something_went_wrong": "Biror narsa noto'g'ri ketdi",
     "go_back": "Orqaga"

@@ -104,6 +104,25 @@
     "contact_for_website_development": "To order website development, <a href=\"https://t.me/abduvoxit260803\">contact us</a> and tell us about your project. We will discuss all the details and offer an individual price estimate based on your requirements.",
     "pricing_for_templates": "Prices for website templates",
 
+    "shorten_link_online": "Shorten link online",
+    "enter_link": "Enter link:",
+    "shorten": "Shorten",
+    "shortened_link": "Shortened link:",
+    "quick_link_shortening": "Quick link shortening",
+    "description": "On this page, you can quickly and easily shorten any link. Simply paste a long URL in the input field, and you'll get a short, neat link ready for use. This service is perfect for simplifying links for social media, marketing campaigns, emails, or personal use.",
+
+    "password_generator": "Password Generator",
+    "50_characters": "50 characters",
+    "generated_password": "Generated Password:",
+    "password_length": "Password Length:",
+    "include_uppercase": "Include Uppercase Letters",
+    "include_numbers": "Include Numbers",
+    "include_symbols": "Include Symbols",
+    "generate": "Generate",
+    "password_generator_online": "Online Password Generator",
+    "generator_description": "On this page, you can quickly and easily generate a secure password. Just adjust the settings such as password length and special characters, then click to create a unique password. This service is perfect for creating secure passwords for various accounts and online services.",
+
+
     "our_partners": "Our Partners",
 
 
@@ -117,7 +136,8 @@
     "order_website": "Order or Create a Website",
     "order_website_description": "Order a custom website or buy ready-made templates and website layouts. Fast and affordable website development services.",
     "order_website_keywords": "create a website, order a website, buy website templates, website design, website development, custom website, website layouts, HTML templates, website templates",
-
+    "shortener_page_keywords": "Shorten link, Quick link shortening, Online link shortening, Short links, Short link generator, Reduce link length, Short links for social networks, Short URL, Link shortening tool, Convenient link shortening, Free link shortening",
+    "passwordGenerator_page_keywords": "password generator, create password, secure password, online password generator, random password generator, password with numbers and symbols, password with uppercase letters, account password generator, long password, unique password, create a secure password",
 
     "something_went_wrong": "Something went wrong",
     "go_back": "Go back"

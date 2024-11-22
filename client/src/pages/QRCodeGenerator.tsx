@@ -1,5 +1,5 @@
 import cn from "./style.module.css";
-import React, { useState, useRef, lazy, Suspense } from "react";
+import { useState, useRef, lazy, Suspense } from "react";
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 
@@ -49,7 +49,11 @@ const QRCodeGenerator = () => {
         <ul>
           <li><a href="/shortener">
             <i className="material-symbols-outlined" translate="no">link</i>
-            <p>{t('shorten_link')} <span>.pdf, .docx, .txt</span> </p>
+            <p>{t('shorten_link')} <span>https, http, ftp</span> </p>
+          </a></li>
+          <li><a href="/passwordGenerator">
+            <i className="material-symbols-outlined" translate="no">lock</i>
+            <p>{t('password_generator')} <span>{t('50_characters')}</span> </p>
           </a></li>
         </ul>
       </div>

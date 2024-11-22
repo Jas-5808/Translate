@@ -1,4 +1,4 @@
-import React, { useState, lazy, Suspense } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import imageCompression from 'browser-image-compression';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import cn from "../style.module.css";

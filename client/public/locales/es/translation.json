@@ -104,6 +104,25 @@
     "contact_for_website_development": "Contáctanos para pedir tu sitio web a través de <a href=\"https://t.me/abduvoxit260803\">este enlace</a> y proporciona la información sobre tu proyecto.",
     "pricing_for_templates": "Precios para plantillas de sitios web",
 
+    "shorten_link_online": "Acortar enlace en línea",
+    "enter_link": "Introduce el enlace:",
+    "shorten": "Acortar",
+    "shortened_link": "Enlace acortado:",
+    "quick_link_shortening": "Acortamiento rápido de enlaces",
+    "description": "En esta página, puedes acortar rápidamente cualquier enlace. Simplemente pega una URL larga en el campo de entrada y obtendrás un enlace corto y ordenado listo para usar. Este servicio es perfecto para simplificar enlaces para redes sociales, campañas de marketing, correos electrónicos o uso personal.",
+
+    "password_generator": "Generador de Contraseñas",
+    "50_characters": "50 caracteres",
+    "generated_password": "Contraseña generada:",
+    "password_length": "Longitud de la contraseña:",
+    "include_uppercase": "Incluir letras mayúsculas",
+    "include_numbers": "Incluir números",
+    "include_symbols": "Incluir símbolos",
+    "generate": "Generar",
+    "password_generator_online": "Generador de Contraseñas en Línea",
+    "generator_description": "En esta página, puede generar rápidamente una contraseña segura. Simplemente configure los parámetros como la longitud de la contraseña y la inclusión de caracteres especiales, y luego haga clic para crear una contraseña única. Este servicio es perfecto para crear contraseñas seguras para varias cuentas y servicios en línea.",
+
+
     "our_partners": "Nuestros socios",
 
 
@@ -117,6 +136,9 @@
     "order_website": "Crear o pedir un sitio web",
     "order_website_description": "Pide un sitio web personalizado o compra plantillas y diseños listos para usar. Desarrollo rápido y asequible de sitios web.",
     "order_website_keywords": "crear un sitio web, pedir un sitio web, comprar plantillas de sitios web, diseño web, desarrollo de sitios web, sitio web personalizado, diseño de sitios web, plantillas HTML, plantillas de sitios web",
+    "shortener_page_keywords": "Acortar enlace, Acortamiento rápido de enlaces, Acortar enlaces en línea, Enlaces cortos, Generador de enlaces cortos, Reducir la longitud del enlace, Enlaces cortos para redes sociales, URL corta, Herramienta para acortar enlaces, Acortamiento de enlaces conveniente, Acortamiento de enlaces gratuito",
+    "passwordGenerator_page_keywords": "generador de contraseñas, crear contraseña, contraseña segura, generador de contraseñas en línea, generador de contraseñas aleatorias, contraseña con números y símbolos, contraseña con letras mayúsculas, generador de contraseñas para cuentas, contraseña larga, contraseña única, crear una contraseña segura",
+
 
     "something_went_wrong": "Algo salió mal",
     "go_back": "Regresar"

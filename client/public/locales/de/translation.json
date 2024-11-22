@@ -104,6 +104,25 @@
     "contact_for_website_development": "Kontaktieren Sie uns, um Ihre Website über <a href=\"https://t.me/abduvoxit260803\">diesen Link</a> zu bestellen und uns Informationen über Ihr Projekt zu geben.",
     "pricing_for_templates": "Preise für Website-Vorlagen",
 
+    "shorten_link_online": "Link online kürzen",
+    "enter_link": "Link eingeben:",
+    "shorten": "Kürzen",
+    "shortened_link": "Gekürzter Link:",
+    "quick_link_shortening": "Schnelles Linkkürzen",
+    "description": "Auf dieser Seite können Sie schnell und einfach einen beliebigen Link kürzen. Fügen Sie einfach eine lange URL in das Eingabefeld ein, und Sie erhalten einen kurzen, übersichtlichen Link, der zur Verwendung bereit ist. Dieser Dienst eignet sich perfekt, um Links für soziale Medien, Marketingkampagnen, E-Mails oder den persönlichen Gebrauch zu vereinfachen.",
+
+    "password_generator": "Passwort Generator",
+    "50_characters": "50 Zeichen",
+    "generated_password": "Generiertes Passwort:",
+    "password_length": "Passwortlänge:",
+    "include_uppercase": "Großbuchstaben einbeziehen",
+    "include_numbers": "Zahlen einbeziehen",
+    "include_symbols": "Symbole einbeziehen",
+    "generate": "Generieren",
+    "password_generator_online": "Online Passwort Generator",
+    "generator_description": "Auf dieser Seite können Sie schnell und einfach ein sicheres Passwort generieren. Passen Sie einfach die Einstellungen wie Passwortlänge und Sonderzeichen an und klicken Sie auf die Schaltfläche, um ein einzigartiges Passwort zu erstellen. Dieser Dienst ist perfekt für die Erstellung sicherer Passwörter für verschiedene Konten und Online-Dienste.",
+  
+    
     "our_partners": "Unsere Partner",
 
 
@@ -117,6 +136,9 @@
     "order_website": "Website erstellen oder bestellen",
     "order_website_description": "Bestellen Sie eine maßgeschneiderte Website oder kaufen Sie vorgefertigte Vorlagen und Designs. Schnelle und erschwingliche Website-Entwicklung.",
     "order_website_keywords": "Website erstellen, Website bestellen, Website-Vorlagen kaufen, Webdesign, Website-Entwicklung, maßgeschneiderte Website, Website-Layouts, HTML-Vorlagen, Website-Vorlagen",
+    "shortener_page_keywords": "Link kürzen, Schnelles Linkkürzen, Online-Linkkürzen, Kurze Links, Kurzlink-Generator, Linklänge reduzieren, Kurze Links für soziale Netzwerke, Kurze URL, Linkkürzungs-Tool, Bequemes Linkkürzen, Kostenloses Linkkürzen",
+    "passwordGenerator_page_keywords": "Passwort Generator, Passwort erstellen, sicheres Passwort, Online Passwort Generator, zufälliger Passwort Generator, Passwort mit Zahlen und Symbolen, Passwort mit Großbuchstaben, Passwort Generator für Konten, langes Passwort, einzigartiges Passwort, sicheres Passwort erstellen",
+
 
     "something_went_wrong": "Etwas ist schiefgelaufen",
     "go_back": "Zurück"

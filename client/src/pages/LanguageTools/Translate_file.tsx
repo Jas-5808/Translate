@@ -1,5 +1,5 @@
 import cn from "../style.module.css";
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import axios from 'axios';
 import { FaMicrophone, FaCopy } from 'react-icons/fa';
 import Tesseract from 'tesseract.js';

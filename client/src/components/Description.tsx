@@ -1,8 +1,11 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import cn from "./mainCss.module.css"
 
-const Description = ({ title, description }) => {
+interface DescriptionProps {
+  title: string; 
+  description: string; 
+}
+const Description: React.FC<DescriptionProps> = ({ title, description }) => {
   const { t } = useTranslation();
 
   return (

@@ -104,6 +104,26 @@
     "contact_for_website_development": "Bir web sitesi sipariş etmek için <a href=\"https://t.me/abduvoxit260803\">bize ulaşın</a> ve projeniz hakkında bilgi verin. Tüm detayları tartışarak, gereksinimlerinize göre bireysel bir maliyet değerlendirmesi sunarız.",
     "pricing_for_templates": "Web Sitesi Şablon Fiyatları",
 
+    "shorten_link_online": "Çevrimiçi bağlantıyı kısalt",
+    "enter_link": "Bağlantıyı girin:",
+    "shorten": "Kısalt",
+    "shortened_link": "Kısaltılmış bağlantı:",
+    "quick_link_shortening": "Hızlı bağlantı kısaltma",
+    "description": "Bu sayfada herhangi bir bağlantıyı hızlı ve kolay bir şekilde kısaltabilirsiniz. Uzun bir URL'yi giriş alanına yapıştırın ve kullanıma hazır kısa bir bağlantı elde edin. Bu hizmet, sosyal medya, pazarlama kampanyaları, e-postalar veya kişisel kullanım için bağlantıları basitleştirmek için mükemmeldir.",
+
+
+    "password_generator": "Şifre Üretici",
+    "50_characters": "50 karakter",
+    "generated_password": "Üretilen Şifre:",
+    "password_length": "Şifre Uzunluğu:",
+    "include_uppercase": "Büyük Harfler Dahil Et",
+    "include_numbers": "Rakamlar Dahil Et",
+    "include_symbols": "Semboller Dahil Et",
+    "generate": "Üret",
+    "password_generator_online": "Online Şifre Üretici",
+    "generator_description": "Bu sayfada, güvenli bir şifreyi hızlı ve kolay bir şekilde oluşturabilirsiniz. Şifre uzunluğu ve özel karakterler gibi ayarları yapın ve ardından benzersiz bir şifre oluşturmak için butona tıklayın. Bu hizmet, çeşitli hesaplar ve çevrimiçi hizmetler için güvenli şifreler oluşturmak için mükemmeldir.",
+
+
     "our_partners": "Ortaklarımız",
 
 
@@ -117,6 +137,9 @@
     "order_website": "Web Sitesi Oluşturma veya Sipariş Etme",
     "order_website_description": "Özel bir web sitesi oluşturun veya hazır şablonlar ve tasarımlar satın alın. Hızlı ve uygun fiyatlı web sitesi geliştirme hizmetleri.",
     "order_website_keywords": "web sitesi oluşturma, web sitesi siparişi, web sitesi şablonları satın alma, web tasarımı, web sitesi geliştirme, özel web sitesi, site tasarımı, HTML şablonları, site şablonları",
+    "shortener_page_keywords": "Bağlantıyı kısalt, Hızlı bağlantı kısaltma, Çevrimiçi bağlantı kısaltma, Kısa bağlantılar, Kısa bağlantı oluşturucu, Bağlantı uzunluğunu azalt, Sosyal ağlar için kısa bağlantılar, Kısa URL, Bağlantı kısaltma aracı, Kolay bağlantı kısaltma, Ücretsiz bağlantı kısaltma",
+    "passwordGenerator_page_keywords": "şifre üretici, şifre oluştur, güvenli şifre, online şifre üretici, rastgele şifre üretici, rakamlar ve sembollerle şifre, büyük harfli şifre, hesap şifre üretici, uzun şifre, benzersiz şifre, güvenli şifre oluştur",
+
 
     "something_went_wrong": "Bir şeyler yanlış gitti",
     "go_back": "Geri"

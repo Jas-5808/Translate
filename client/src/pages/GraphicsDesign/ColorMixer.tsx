@@ -1,4 +1,4 @@
-import React, { useState, lazy, Suspense } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import cn from "../style.module.css";
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';

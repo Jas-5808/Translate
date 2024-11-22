@@ -15,6 +15,7 @@ const ColorMixer = lazy(() => import("./pages/GraphicsDesign/ColorMixer"));
 const Abduvoxit = lazy(() => import("./pages/Сreators/Abduvoxit"));
 const Jasur = lazy(() => import("./pages/Сreators/Jasur"));
 const Partners = lazy(() => import("./pages/Сreators/Partners"));
+const PasswordGenerator = lazy(() => import("./pages/PasswordGenerator"));
 
 export const router = createBrowserRouter([
     {
@@ -118,6 +119,14 @@ export const router = createBrowserRouter([
                     </Suspense>
                 ),
             },
+            {
+                path: "passwordGenerator",
+                element: (
+                    <Suspense fallback={null}>
+                        <PasswordGenerator />
+                    </Suspense>
+                ),
+            },
         ],
     },
     {
@@ -218,6 +227,14 @@ export const router = createBrowserRouter([
                 element: (
                     <Suspense fallback={null}>
                         <Partners />
+                    </Suspense>
+                ),
+            },
+            {
+                path: "passwordGenerator",
+                element: (
+                    <Suspense fallback={null}>
+                        <PasswordGenerator />
                     </Suspense>
                 ),
             },

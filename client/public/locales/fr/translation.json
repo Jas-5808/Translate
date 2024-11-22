@@ -104,6 +104,26 @@
     "contact_for_website_development": "Contactez-nous pour la commande de site web via <a href=\"https://t.me/abduvoxit260803\">ce lien</a> et fournissez les informations concernant votre projet.",
     "pricing_for_templates": "Tarifs pour les modèles de sites web",
 
+    "shorten_link_online": "Raccourcir le lien en ligne",
+    "enter_link": "Entrez le lien :",
+    "shorten": "Raccourcir",
+    "shortened_link": "Lien raccourci :",
+    "quick_link_shortening": "Raccourcissement rapide des liens",
+    "description": "Sur cette page, vous pouvez rapidement et facilement raccourcir n'importe quel lien. Il vous suffit de coller une URL longue dans le champ de saisie, et vous obtiendrez un lien court et propre prêt à l'emploi. Ce service est parfait pour simplifier les liens pour les réseaux sociaux, les campagnes marketing, les e-mails ou un usage personnel.",
+
+    "password_generator": "Générateur de Mot de Passe",
+    "50_characters": "50 caractères",
+    "generated_password": "Mot de passe généré :",
+    "password_length": "Longueur du mot de passe :",
+    "include_uppercase": "Inclure des lettres majuscules",
+    "include_numbers": "Inclure des chiffres",
+    "include_symbols": "Inclure des symboles",
+    "generate": "Générer",
+    "password_generator_online": "Générateur de Mot de Passe en Ligne",
+    "generator_description": "Sur cette page, vous pouvez générer rapidement et facilement un mot de passe sécurisé. Il vous suffit de définir des paramètres tels que la longueur du mot de passe et la présence de caractères spéciaux, puis de cliquer pour créer un mot de passe unique. Ce service est idéal pour créer des mots de passe sécurisés pour différents comptes et services en ligne.",
+  
+    
+
     "our_partners": "Nos partenaires",
 
 
@@ -117,6 +137,9 @@
     "order_website": "Créer ou commander un site web",
     "order_website_description": "Commandez un site web personnalisé ou achetez des modèles et des maquettes prêts à l'emploi. Développement de sites web rapide et abordable.",
     "order_website_keywords": "créer un site web, commander un site web, acheter des modèles de sites web, web design, développement de site web, site web personnalisé, maquettes de sites web, modèles HTML, modèles de sites web",
+    "shortener_page_keywords": "Raccourcir le lien, Raccourcissement rapide des liens, Raccourcissement de lien en ligne, Liens courts, Générateur de liens courts, Réduire la longueur du lien, Liens courts pour les réseaux sociaux, URL courte, Outil de raccourcissement de lien, Raccourcissement de lien pratique, Raccourcissement de lien gratuit",
+    "passwordGenerator_page_keywords": "générateur de mot de passe, créer mot de passe, mot de passe sécurisé, générateur de mot de passe en ligne, générateur de mot de passe aléatoire, mot de passe avec chiffres et symboles, mot de passe avec lettres majuscules, générateur de mot de passe pour compte, mot de passe long, mot de passe unique, créer un mot de passe sécurisé",
+
 
     "something_went_wrong": "Quelque chose a mal tourné",
     "go_back": "Retour"

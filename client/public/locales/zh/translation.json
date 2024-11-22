@@ -104,6 +104,25 @@
     "contact_for_website_development": "请通过<a href=\"https://t.me/abduvoxit260803\">此链接</a>联系我们，提供有关您项目的信息并订购您的网站。",
     "pricing_for_templates": "模板定价",
 
+    "shorten_link_online": "在线缩短链接",
+    "enter_link": "输入链接：",
+    "shorten": "缩短",
+    "shortened_link": "缩短的链接：",
+    "quick_link_shortening": "快速链接缩短",
+    "description": "在此页面上，您可以快速轻松地缩短任何链接。只需将长URL粘贴到输入框中，您将获得一个简短、整洁的链接，随时可以使用。此服务非常适合简化社交媒体、营销活动、电子邮件或个人使用的链接。",
+
+    "password_generator": "密码生成器",
+    "50_characters": "50个字符",
+    "generated_password": "生成的密码：",
+    "password_length": "密码长度：",
+    "include_uppercase": "包含大写字母",
+    "include_numbers": "包含数字",
+    "include_symbols": "包含符号",
+    "generate": "生成",
+    "password_generator_online": "在线密码生成器",
+    "generator_description": "在此页面上，您可以快速轻松地生成安全的密码。只需调整设置，如密码长度和特殊字符，然后单击按钮以创建唯一的密码。此服务非常适合为各种帐户和在线服务创建安全的密码。",
+
+
     "our_partners": "我们的合作伙伴",
 
 
@@ -117,6 +136,9 @@
     "order_website": "创建或订购网站",
     "order_website_description": "订购定制网站或购买现成的模板和布局。快速且实惠的网站开发。",
     "order_website_keywords": "创建网站, 订购网站, 购买网站模板, 网站设计, 网站开发, 定制网站, 网站布局, HTML模板, 网站模板",
+    "shortener_page_keywords": "缩短链接, 快速链接缩短, 在线链接缩短, 短链接, 短链接生成器, 缩短链接长度, 社交网络的短链接, 短网址, 链接缩短工具, 方便的链接缩短, 免费链接缩短",
+    "passwordGenerator_page_keywords": "密码生成器，创建密码，安全密码，在线密码生成器，随机密码生成器，带数字和符号的密码，带大写字母的密码，帐户密码生成器，长密码，唯一密码，创建安全密码",
+
 
     "something_went_wrong": "出了点问题",
     "go_back": "返回"
