@@ -122,7 +122,15 @@
     "password_generator_online": "Online Passwort Generator",
     "generator_description": "Auf dieser Seite können Sie schnell und einfach ein sicheres Passwort generieren. Passen Sie einfach die Einstellungen wie Passwortlänge und Sonderzeichen an und klicken Sie auf die Schaltfläche, um ein einzigartiges Passwort zu erstellen. Dieser Dienst ist perfekt für die Erstellung sicherer Passwörter für verschiedene Konten und Online-Dienste.",
   
-    
+    "card_number_copied": "Kartennummer kopiert!",
+    "copy_error": "Fehler beim Kopieren: ",
+    "support_message": "Wenn Sie unser Projekt unterstützen möchten, können Sie Gelder auf eine der folgenden Karten überweisen:",
+    "visa_card": "1. Visa Karte",
+    "card_number_label": "Kartennummer:",
+    "wallet_number_label": "Wallet-Nummer:",
+    "thank_you_message": "Jede Unterstützung ist für uns wichtig. Vielen Dank für Ihre Hilfe!",
+  
+
     "our_partners": "Unsere Partner",
 
 

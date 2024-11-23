@@ -123,6 +123,14 @@
     "generator_description": "On this page, you can quickly and easily generate a secure password. Just adjust the settings such as password length and special characters, then click to create a unique password. This service is perfect for creating secure passwords for various accounts and online services.",
 
 
+    "card_number_copied": "Card number copied!",
+    "copy_error": "Error copying: ",
+    "support_message": "If you would like to support our project, you can transfer funds to one of the following cards:",
+    "visa_card": "1. Visa Card",
+    "card_number_label": "Card number:",
+    "wallet_number_label": "Wallet number:",
+    "thank_you_message": "Any support is important to us. Thank you for your help!",
+
     "our_partners": "Our Partners",
 
 

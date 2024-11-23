@@ -122,6 +122,14 @@
     "password_generator_online": "Online generátor hesel",
     "generator_description": "Na této stránce si můžete rychle a snadno vygenerovat bezpečné heslo. Stačí nastavit parametry, jako je délka hesla a přítomnost speciálních znaků, a poté kliknout pro vytvoření jedinečného hesla. Tato služba je ideální pro vytváření bezpečných hesel pro různé účty a online služby.",
 
+    "card_number_copied": "Číslo karty bylo zkopírováno!",
+    "copy_error": "Chyba při kopírování: ",
+    "support_message": "Pokud chcete podpořit náš projekt, můžete převést prostředky na jednu z následujících karet:",
+    "visa_card": "1. Visa karta",
+    "card_number_label": "Číslo karty:",
+    "wallet_number_label": "Číslo peněženky:",
+    "thank_you_message": "Každá podpora je pro nás důležitá. Děkujeme za vaši pomoc!",
+
     
     "our_partners": "Naši partneři",
 

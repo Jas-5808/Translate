@@ -123,6 +123,14 @@
     "password_generator_online": "Online Şifre Üretici",
     "generator_description": "Bu sayfada, güvenli bir şifreyi hızlı ve kolay bir şekilde oluşturabilirsiniz. Şifre uzunluğu ve özel karakterler gibi ayarları yapın ve ardından benzersiz bir şifre oluşturmak için butona tıklayın. Bu hizmet, çeşitli hesaplar ve çevrimiçi hizmetler için güvenli şifreler oluşturmak için mükemmeldir.",
 
+    "card_number_copied": "Kart numarası kopyalandı!",
+    "copy_error": "Kopyalama hatası: ",
+    "support_message": "Projeyi desteklemek isterseniz, aşağıdaki kartlardan birine para transferi yapabilirsiniz:",
+    "visa_card": "1. Visa Kartı",
+    "card_number_label": "Kart numarası:",
+    "wallet_number_label": "Cüzdan numarası:",
+    "thank_you_message": "Her türlü destek bizim için önemlidir. Yardımınız için teşekkür ederiz!",
+  
 
     "our_partners": "Ortaklarımız",
 

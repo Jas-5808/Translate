@@ -2,20 +2,20 @@ import cn from "./mainCss.module.css";
 import logo from '../assets/logo.webp';
 import 'font-awesome/css/font-awesome.min.css';
 import { useLocation } from "react-router-dom";
-import { Settings } from "../pages/Settings";
-import { useState } from "react";
+// import { Settings } from "../pages/Settings";
+// import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 
 const Leftside = () => {
     const location = useLocation();
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    // const [isModalOpen, setIsModalOpen] = useState(false);
     const { t } = useTranslation();
 
 
-    const toggleModal = () => {
-        setIsModalOpen(!isModalOpen);
-        console.log("isModalOpen:", !isModalOpen); 
-    };
+    // const toggleModal = () => {
+    //     setIsModalOpen(!isModalOpen);
+    //     console.log("isModalOpen:", !isModalOpen); 
+    // };
     
     return (
         <div className={cn.leftside}>
@@ -52,16 +52,16 @@ const Leftside = () => {
                             </a>
                         </li>
                     </ul>
-                    <a
+                    {/* <a
                         href="#"
                         className={cn.settings}
                         onClick={(e) => { e.preventDefault(); toggleModal(); }}
                     >
                         <i className="material-symbols-outlined fs-5" translate="no">settings</i> {t('settings')}
-                    </a>
+                    </a> */}
                 </div>
             </div>
-            {isModalOpen && <Settings closeModal={toggleModal} />}
+            {/* {isModalOpen && <Settings closeModal={toggleModal} />} */}
         </div>
     );
 }

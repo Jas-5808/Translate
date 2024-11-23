@@ -122,6 +122,14 @@
     "password_generator_online": "在线密码生成器",
     "generator_description": "在此页面上，您可以快速轻松地生成安全的密码。只需调整设置，如密码长度和特殊字符，然后单击按钮以创建唯一的密码。此服务非常适合为各种帐户和在线服务创建安全的密码。",
 
+    "card_number_copied": "卡号已复制！",
+    "copy_error": "复制错误：",
+    "support_message": "如果您想支持我们的项目，您可以将资金转移到以下任何一张卡上：",
+    "visa_card": "1. Visa卡",
+    "card_number_label": "卡号：",
+    "wallet_number_label": "钱包号：",
+    "thank_you_message": "任何支持对我们都很重要。感谢您的帮助！",
+
 
     "our_partners": "我们的合作伙伴",
 

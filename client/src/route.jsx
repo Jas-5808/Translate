@@ -16,6 +16,8 @@ const Abduvoxit = lazy(() => import("./pages/Сreators/Abduvoxit"));
 const Jasur = lazy(() => import("./pages/Сreators/Jasur"));
 const Partners = lazy(() => import("./pages/Сreators/Partners"));
 const PasswordGenerator = lazy(() => import("./pages/PasswordGenerator"));
+const Reviews = lazy(() => import("./pages/Reviews"));
+const SupportPage = lazy(() => import("./pages/SupportPage"));
 
 export const router = createBrowserRouter([
     {
@@ -127,6 +129,22 @@ export const router = createBrowserRouter([
                     </Suspense>
                 ),
             },
+            {
+                path: "reviews",
+                element: (
+                    <Suspense fallback={null}>
+                        <Reviews />
+                    </Suspense>
+                ),
+            },
+            {
+                path: "supportPage",
+                element: (
+                    <Suspense fallback={null}>
+                        <SupportPage />
+                    </Suspense>
+                ),
+            },
         ],
     },
     {
@@ -235,6 +253,22 @@ export const router = createBrowserRouter([
                 element: (
                     <Suspense fallback={null}>
                         <PasswordGenerator />
+                    </Suspense>
+                ),
+            },
+            {
+                path: "reviews",
+                element: (
+                    <Suspense fallback={null}>
+                        <Reviews />
+                    </Suspense>
+                ),
+            },
+            {
+                path: "supportPage",
+                element: (
+                    <Suspense fallback={null}>
+                        <SupportPage />
                     </Suspense>
                 ),
             },

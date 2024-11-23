@@ -122,6 +122,14 @@
     "password_generator_online": "Online parol generatori",
     "generator_description": "Ushbu sahifada siz tez va oson tarzda xavfsiz parol yaratishingiz mumkin. Faqatgina parol uzunligi va maxsus simvollarni qo'shish parametrlarini sozlang, so'ngra noyob parol yaratish uchun tugmani bosing. Xizmat turli hisoblar va onlayn xizmatlar uchun xavfsiz parollar yaratishda juda mos keladi.",
 
+    "card_number_copied": "Karta raqami nusxalandi!",
+    "copy_error": "Nusxalashda xato: ",
+    "support_message": "Agar siz loyihamizni qo'llab-quvvatlamoqchi bo'lsangiz, quyidagi kartalardan biriga mablag' o'tkazishingiz mumkin:",
+    "visa_card": "1. Visa karta",
+    "card_number_label": "Karta raqami:",
+    "wallet_number_label": "Hamyon raqami:",
+    "thank_you_message": "Har qanday yordam biz uchun muhim. Yordamingiz uchun rahmat!",
+
 
     "our_partners": "Hamkorlarimiz",
 

@@ -122,6 +122,14 @@
     "password_generator_online": "Generador de Contraseñas en Línea",
     "generator_description": "En esta página, puede generar rápidamente una contraseña segura. Simplemente configure los parámetros como la longitud de la contraseña y la inclusión de caracteres especiales, y luego haga clic para crear una contraseña única. Este servicio es perfecto para crear contraseñas seguras para varias cuentas y servicios en línea.",
 
+    "card_number_copied": "¡Número de tarjeta copiado!",
+    "copy_error": "Error al copiar: ",
+    "support_message": "Si desea apoyar nuestro proyecto, puede transferir fondos a una de las siguientes tarjetas:",
+    "visa_card": "1. Tarjeta Visa",
+    "card_number_label": "Número de tarjeta:",
+    "wallet_number_label": "Número de billetera:",
+    "thank_you_message": "¡Cualquier apoyo es importante para nosotros. Gracias por tu ayuda!",
+
 
     "our_partners": "Nuestros socios",
 

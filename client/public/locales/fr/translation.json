@@ -123,6 +123,14 @@
     "generator_description": "Sur cette page, vous pouvez générer rapidement et facilement un mot de passe sécurisé. Il vous suffit de définir des paramètres tels que la longueur du mot de passe et la présence de caractères spéciaux, puis de cliquer pour créer un mot de passe unique. Ce service est idéal pour créer des mots de passe sécurisés pour différents comptes et services en ligne.",
   
     
+    "card_number_copied": "Numéro de carte copié!",
+    "copy_error": "Erreur lors de la copie: ",
+    "support_message": "Si vous souhaitez soutenir notre projet, vous pouvez transférer des fonds sur l'une des cartes suivantes :",
+    "visa_card": "1. Carte Visa",
+    "card_number_label": "Numéro de carte:",
+    "wallet_number_label": "Numéro de portefeuille:",
+    "thank_you_message": "Toute aide est importante pour nous. Merci pour votre aide!",
+
 
     "our_partners": "Nos partenaires",
 
