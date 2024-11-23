@@ -499,6 +499,10 @@ textarea {
     color: white;
 }
 
+.card_img{
+    height: 190px;
+}
+
 @media(max-width: 1024px){
     .title h3{
         font-size: 35px;

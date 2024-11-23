@@ -4,14 +4,17 @@ import jasur from '../assets/photo_2023-04-22_10-55-11.jpg';
 import youtubeTemplate from '../assets/youtube_img.jpg';
 import Movie_App from '../assets/Movie_App.jpg';
 import portfolio from '../assets/portfolio.png';
+import company_img from '../assets/company_img.png';
+import Headphones_img from '../assets/Headphones_img.png';
+import Admin_img from '../assets/Admin.jpg';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
-
-
+import cn from "./style.module.css";
 const About = () => {
     const [selectedTemplate, setSelectedTemplate] = useState(null); 
     const { t } = useTranslation();
-
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 9;
 
     const templates = [
         {
@@ -35,6 +38,27 @@ const About = () => {
             price: '$2',
             image: portfolio,
         },
+        {
+            id: 4,
+            name: 'Портфолио для работы',
+            description: 'Качественная верстка страницы YouTube с адаптивным дизайном. Это шаблон с возможностью адаптироваться под разные устройства и экраны, что делает его универсальным для разных типов пользователей.',
+            price: '$5',
+            image: company_img,
+        },
+        {
+            id: 5,
+            name: 'Портфолио для работы',
+            description: 'Качественная верстка страницы YouTube с адаптивным дизайном. Это шаблон с возможностью адаптироваться под разные устройства и экраны, что делает его универсальным для разных типов пользователей.',
+            price: '$4',
+            image: Headphones_img,
+        },
+        {
+            id: 6,
+            name: 'Портфолио для работы',
+            description: 'Качественная верстка страницы YouTube с адаптивным дизайном. Это шаблон с возможностью адаптироваться под разные устройства и экраны, что делает его универсальным для разных типов пользователей.',
+            price: '$2',
+            image: Admin_img,
+        },
     ];
 
     useEffect(() => {
@@ -51,7 +75,7 @@ const About = () => {
 
         return () => clearTimeout(timeoutId);
     }, []);
-    
+
     const handleCardClick = (template) => {
         setSelectedTemplate(template);
     };
@@ -64,7 +88,13 @@ const About = () => {
         return description.length > 50 ? description.substring(0, 50) + '...' : description;
     };
 
+    const indexOfLastTemplate = currentPage * itemsPerPage;
+    const indexOfFirstTemplate = indexOfLastTemplate - itemsPerPage;
+    const currentTemplates = templates.slice(indexOfFirstTemplate, indexOfLastTemplate);
 
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    const totalPages = Math.ceil(templates.length / itemsPerPage);
 
     return (
         <>
@@ -75,7 +105,7 @@ const About = () => {
                 </p>
 
                 <div className="row">
-                    <a href="/abduvoxit" className="col-md-6 mb-4 text-decoration-none">
+                    <a href="https://t.me/abduvoxit260803" className="col-md-6 mb-4 text-decoration-none">
                         <div className="card shadow-sm">
                             <img
                                 src={abduvoxit}
@@ -92,7 +122,7 @@ const About = () => {
                         </div>
                     </a>
 
-                    <a href="/jasur" className="col-md-6 mb-4 text-decoration-none">
+                    <a href="https://t.me/int_5808" className="col-md-6 mb-4 text-decoration-none">
                         <div className="card shadow-sm">
                             <img
                                 src={jasur}
@@ -117,13 +147,12 @@ const About = () => {
                         __html: t('contact_for_website_development')
                         }}
                     />
-
                 </div>
 
                 <div className="mt-5" id="order-site">
                     <h2 className="mb-3">{t('pricing_for_templates')}</h2>
                     <div className="row" style={{ display: "flex", rowGap: "16px" }}>
-                        {templates.map((template) => (
+                        {currentTemplates.map((template) => (
                             <div
                                 key={template.id}
                                 className="col-md-4"
@@ -134,7 +163,7 @@ const About = () => {
                                     <img
                                         src={template.image}
                                         alt={template.name}
-                                        className="card-img-top"
+                                        className={cn.card_img}
                                         loading="lazy"
                                     />
                                     <div className="card-body text-center">
@@ -146,6 +175,24 @@ const About = () => {
                             </div>
                         ))}
                     </div>
+                </div>
+
+                <div className="d-flex justify-content-center mt-4">
+                    <ul className="pagination">
+                        {[...Array(totalPages)].map((_, index) => (
+                            <li
+                                key={index + 1}
+                                className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}
+                            >
+                                <button
+                                    className="page-link"
+                                    onClick={() => paginate(index + 1)}
+                                >
+                                    {index + 1}
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
 
@@ -167,21 +214,16 @@ const About = () => {
                                 <p>{selectedTemplate.description}</p>
                                 <p className="text-primary fw-bold">{selectedTemplate.price}</p>
                             </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" onClick={closeModal}>
-                                    Закрыть
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </div>
             )}
 
-        <Helmet>
-            <title>{t('order_website')}</title>
-            <meta name="description" content={t('order_website_description')} />
-            <meta name="keywords" content={t('order_website_keywords')} />
-        </Helmet>
+            <Helmet>
+                <title>{t('order_website')}</title>
+                <meta name="description" content={t('order_website_description')} />
+                <meta name="keywords" content={t('order_website_keywords')} />
+            </Helmet>
         </>
     );
 }
