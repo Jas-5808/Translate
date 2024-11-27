@@ -163,9 +163,8 @@ textarea {
     justify-content: center;
     margin-top: 20px;
 }
-
-.uploadButton {
-    background-color: #0077ff; 
+.uploadButton,
+.uploadButton2 {
     color: white;
     padding: 10px 20px;
     font-size: 16px;
@@ -177,10 +176,20 @@ textarea {
     margin-bottom: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+.uploadButton{
+    background-color: #0077ff; 
+}
+.uploadButton2{
+    background-color: #4CAF50;
+}
 
 .uploadButton:hover {
     background-color: #2196F3; 
 }
+.uploadButton2:hover {
+    background-color: #53bf57; 
+}
+
 
 .fileInput {
     display: none; 
