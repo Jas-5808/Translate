@@ -21,6 +21,9 @@
     "multilingual_description": "Bu sayfada metin girerek onu 10 farklı dile anında çevirebilirsiniz. Bu çevirmen, metni aynı anda birden fazla dile çevirmek isteyenler için mükemmel bir araçtır; böylece diller arasında ayrı ayrı işlem yapmaya gerek kalmadan hızlı bir şekilde anlayabilirsiniz.",
     "placeholder_detect_language": "Dili Algıla",
     "placeholder_enter_text": "Çevirmek için metin girin...",
+    "add_language": "Dil Ekle",
+    "translate": "Çevir",
+    "translated_text": "Çevrilmiş Metin",
 
     "recognize_text": "Dosyadan Metin Tanı",
     "translate_text": "Metni Çevir",

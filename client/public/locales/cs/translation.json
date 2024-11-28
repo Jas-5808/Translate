@@ -21,6 +21,9 @@
     "multilingual_description": "Na této stránce můžete zadat text a okamžitě jej přeložit do 10 různých jazyků. Tento nástroj je užitečný pro uživatele, kteří potřebují překlad do několika jazyků současně, aniž by museli překládat pro každý jazyk zvlášť.",
     "placeholder_detect_language": "Detekovat jazyk",
     "placeholder_enter_text": "Zadejte text pro překlad...",
+    "add_language": "Přidat jazyk",
+    "translate": "Přeložit",
+    "translated_text": "Přeložený text",
 
     "recognize_text": "Rozpoznat text v obrázku",
     "translate_text": "Přeložit text",

@@ -21,6 +21,9 @@
     "multilingual_description": "Bu sahifada siz matnni kiriting va uni 10 ta turli tilda tezkor tarjima qiling. Ushbu tarjimon bir vaqtning o'zida bir nechta tillarga tarjima qilish imkonini beradi, bu matnni turli tillarda tushunishni tezlashtiradi va qulay qiladi.",
     "placeholder_detect_language": "Tilni aniqlash",
     "placeholder_enter_text": "Tarjima uchun matnni kiriting...",
+    "add_language": "Til qo‘shish",
+    "translate": "Tarjima qilish",
+    "translated_text": "Tarjima qilingan matn",
 
     "recognize_text": "Fayldan matnni aniqlash",
     "translate_text": "Matnni tarjima qilish",

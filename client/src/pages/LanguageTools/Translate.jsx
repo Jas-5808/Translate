@@ -253,7 +253,7 @@ const Translate = () => {
                   return translatedText;
                 } catch (error) {
                   console.error('Ошибка перевода строки:', error);
-                  return 'Ошибка перевода';
+                  return text;
                 }
               })
             );
@@ -394,7 +394,7 @@ const Translate = () => {
                         onInput={() => handleAutoResize(index)} // Динамически растягиваем каждый блок
                         rows="4"
                         cols="50"
-                        placeholder="Переведенный текст"
+                        placeholder={t('translated_text')}
                         style={{ resize: 'none', width: '100%' }} // Запрещаем изменять размер
                         />
 
@@ -421,8 +421,8 @@ const Translate = () => {
         </div>
   
         <div class="d-flex gap-3 mb-3">
-            <button onClick={addBlock} className={cn.uploadButton2}>Добавить блок перевода</button>
-            <button onClick={translateText} className={cn.uploadButton}>Перевести</button>
+            <button onClick={addBlock} className={cn.uploadButton2}>{t('add_language')}</button>
+            <button onClick={translateText} className={cn.uploadButton}>{t('translate')}</button>
         </div>
 
         <Suspense fallback={null}>

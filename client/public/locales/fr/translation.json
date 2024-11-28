@@ -21,6 +21,9 @@
     "multilingual_description": "Sur cette page, vous pouvez entrer un texte et le traduire instantanément dans 10 langues différentes. Ce traducteur est un excellent outil pour ceux qui veulent traduire des textes dans plusieurs langues à la fois sans avoir besoin de traduire chaque langue séparément, facilitant ainsi la compréhension immédiate.",
     "placeholder_detect_language": "Détecter la langue",
     "placeholder_enter_text": "Entrez du texte à traduire...",
+    "add_language": "Ajouter une langue",
+    "translate": "Traduire",
+    "translated_text": "Texte traduit",
 
     "recognize_text": "Reconnaître le texte dans l'image",
     "translate_text": "Traduire le texte",

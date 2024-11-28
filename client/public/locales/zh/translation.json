@@ -21,6 +21,9 @@
     "multilingual_description": "在此页面，您可以输入文本，并立即将其翻译成10种不同的语言。这个翻译器是一个很好的工具，适用于那些想要同时翻译多种语言而不需要逐个翻译的用户，这样可以迅速理解内容。",
     "placeholder_detect_language": "检测语言",
     "placeholder_enter_text": "输入要翻译的文本...",
+    "add_language": "添加语言",
+    "translate": "翻译",
+    "translated_text": "翻译后的文本",
 
     "recognize_text": "识别图像中的文本",
     "translate_text": "翻译文本",

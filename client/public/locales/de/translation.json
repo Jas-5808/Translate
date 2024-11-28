@@ -21,6 +21,9 @@
     "multilingual_description": "Auf dieser Seite können Sie einen Text eingeben und ihn sofort in 10 verschiedene Sprachen übersetzen lassen. Dieser Übersetzer ist ein hervorragendes Werkzeug für diejenigen, die Texte gleichzeitig in mehreren Sprachen übersetzen möchten, ohne jede Sprache einzeln zu übersetzen, was eine sofortige Verständlichkeit ermöglicht.",
     "placeholder_detect_language": "Sprache erkennen",
     "placeholder_enter_text": "Text zum Übersetzen eingeben...",
+    "add_language": "Sprache hinzufügen",
+    "translate": "Übersetzen",
+    "translated_text": "Übersetzter Text",
 
     "recognize_text": "Text aus dem Bild erkennen",
     "translate_text": "Text übersetzen",

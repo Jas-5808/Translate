@@ -21,6 +21,9 @@
     "multilingual_description": "On this page, you can input text and instantly translate it into 10 different languages. This translator allows you to get translations into multiple languages at once, which is perfect for those who want to quickly understand text in different languages without doing it one at a time.",
     "placeholder_detect_language": "Detect Language",
     "placeholder_enter_text": "Enter text for translation...",
+    "add_language": "Add Language",
+    "translate": "Translate",
+    "translated_text": "Translated Text",
 
     "recognize_text": "Recognize text from file",
     "translate_text": "Translate text",
