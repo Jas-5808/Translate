@@ -22,7 +22,7 @@ const Leftside = () => {
             <div className={cn.leftside_content}>
                 <a href="/" className={cn.logo_text}>
                     <img src={logo} className={cn.logo} alt="logo" />
-                    SnepTool
+                    SnepTools
                 </a>
                 <div className={cn.menuWrapper}>
                     <ul className={cn.menu}>

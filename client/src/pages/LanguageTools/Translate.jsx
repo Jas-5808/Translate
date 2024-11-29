@@ -234,10 +234,17 @@ const Translate = () => {
           if (block.targetLanguage) {
             const translations = await Promise.all(
               lines.map(async (line) => {
+                const sourceLang = sourceLanguage.value;
+                const targetLang = block.targetLanguage.value;
+
+                if (sourceLang === targetLang) {
+                  return line; // Возвращаем саму строку, если исходный и целевой язык одинаковы
+                }
+
                 const body = {
                   q: line.trim(),
-                  source: sourceLanguage.value,
-                  target: block.targetLanguage.value,
+                  source: sourceLang,
+                  target: targetLang,
                 };
   
                 try {

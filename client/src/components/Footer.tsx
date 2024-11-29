@@ -15,7 +15,7 @@ const Footer = () =>{
                 <div className={cn.footer_content}>
                     <a href="/" className={cn.logo_text}>
                         <img src={logo} className={cn.logo} alt="logo" />
-                        SnepTool
+                        SnepTools
                     </a>
                     <div className={cn.footer_list}>
                         <ul className={cn.footer_menu}>
