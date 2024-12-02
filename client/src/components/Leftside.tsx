@@ -51,6 +51,11 @@ const Leftside = () => {
                                 <i className="fa fa-info-circle"></i> {t('about_us')}
                             </a>
                         </li>
+                        <li className={`${cn.menuItem} ${location.pathname === '/speedTest' ? cn.active : ''}`}>
+                            <a href="/speedTest" className={cn.menuLink}>
+                                <i className="material-symbols-outlined fs-5" translate="no">ST</i> {t('Speed_Test')}
+                            </a>
+                        </li>
                     </ul>
                     {/* <a
                         href="#"
