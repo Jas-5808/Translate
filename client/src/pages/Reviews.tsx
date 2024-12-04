@@ -134,21 +134,13 @@ function Reviews() {
         ) : (
           <ul className="list-group">
             {reviews.map((reviewItem) => (
-              <li
-                key={reviewItem.id || reviewItem.name}
-                className="list-group-item d-flex justify-content-between align-items-start"
-              >
+              <li key={reviewItem.id || reviewItem.name} className="list-group-item d-flex justify-content-between align-items-start">
                 <div>
                   <span className="fw-bold">{reviewItem.name}</span>:
                   <span className="ms-2">{reviewItem.coment}</span>
                 </div>
                 {deleteMode && (
-                  <button
-                    className="btn btn-danger btn-sm"
-                    onClick={() => handleDelete(reviewItem.id)}
-                  >
-                    Удалить
-                  </button>
+                  <button className="btn btn-danger btn-sm" onClick={() => handleDelete(reviewItem.id)}> Удалить </button>
                 )}
               </li>
             ))}
