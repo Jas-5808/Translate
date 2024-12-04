@@ -27,20 +27,19 @@ function Reviews() {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:React.FormEvent) => {
     e.preventDefault();
     if (!name || !review) return;
 
     try {
-      // Check if the special command is entered
+    
       if (name === '@COco5808') {
-        setDeleteMode(true); // Enable delete mode if special command is entered
-        setName(''); // Clear the name field
-        setReview(''); // Clear the review field
+        setDeleteMode(true);
+        setName(''); 
+        setReview(''); 
         return;
       }
 
-      // Submit the review
       await axios.post('http://localhost:5000/api/user/adduser', {
         name: name,
         coment: review,
@@ -48,7 +47,7 @@ function Reviews() {
 
       setName('');
       setReview('');
-      reviewUser(); // Refresh reviews list
+      reviewUser();
       setSuccessMessage('Ваш отзыв успешно отправлен!');
 
       setTimeout(() => {
@@ -60,7 +59,7 @@ function Reviews() {
     }
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id: Number) => {
     try {
       await axios.delete(`http://localhost:5000/api/user/deleteuser/${id}`);
       setSuccessMessage('Отзыв успешно удален!');
