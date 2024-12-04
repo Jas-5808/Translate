@@ -20,7 +20,7 @@ function Reviews() {
 
   const reviewUser = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/user/getusers');
+      const response = await serverApi.get('user/getusers');
       setReviews(response.data);
       console.log(response.data);
       
@@ -44,7 +44,7 @@ function Reviews() {
         return;
       }
 
-      await axios.post('http://localhost:5000/api/user/adduser', {
+      await serverApi.post('user/adduser', {
         name: name,
         coment: review,
       });
@@ -58,14 +58,20 @@ function Reviews() {
         setSuccessMessage('');
       }, 3000);
 
-    } catch (err) {
-      setError('Error submitting review. Please try again.');
+    } catch (err:any) {
+      if (err.response && err.response.status === 429) {
+        // Ошибка с кодом 429 (слишком много запросов)
+        setError('Слишком много запросов. Пожалуйста, попробуйте позже.');
+      } else {
+        // Обработка других ошибок
+        setError('Ошибка при отправке отзыва. Пожалуйста, попробуйте снова.');
+      }
     }
   };
 
   const handleDelete = async (id: Number) => {
     try {
-      await axios.delete(`http://localhost:5000/api/user/deleteuser/${id}`);
+      await serverApi.delete(`user/deleteuser/${id}`);
       setSuccessMessage('Отзыв успешно удален!');
       setTimeout(() => {
         setSuccessMessage('');

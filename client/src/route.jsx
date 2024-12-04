@@ -18,7 +18,6 @@ const Partners = lazy(() => import("./pages/Сreators/Partners"));
 const PasswordGenerator = lazy(() => import("./pages/PasswordGenerator"));
 const Reviews = lazy(() => import("./pages/Reviews"));
 const SupportPage = lazy(() => import("./pages/SupportPage"));
-const SpeedTest = lazy(() => import("./pages/SpeedTest"));
 
 export const router = createBrowserRouter([
     {
@@ -55,14 +54,6 @@ export const router = createBrowserRouter([
                 element: (
                     <Suspense fallback={null}>
                         <ColorPicker />
-                    </Suspense>
-                ),
-            },
-            {
-                path: "speedTest",
-                element: (
-                    <Suspense fallback={null}>
-                        <SpeedTest />
                     </Suspense>
                 ),
             },
