@@ -1,5 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
+import cn from "./style.module.css";
+import { useTranslation } from 'react-i18next';
+import serverApi from '../serverApi';
+
+const LanguageSwitcher = lazy(() => import("../components/LanguageSwitcher"));
 
 function Reviews() {
   const [name, setName] = useState('');
@@ -8,8 +12,8 @@ function Reviews() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  const [deleteMode, setDeleteMode] = useState(false); // State to track if delete mode is activated
-
+  const [deleteMode, setDeleteMode] = useState(false);
+  const { t } = useTranslation();
   useEffect(() => {
     reviewUser();
   }, []);
@@ -73,8 +77,15 @@ function Reviews() {
   };
 
   return (
-    <div className="container mt-5">
-      <h2>Отзывы</h2>
+    <div className="container p-0">
+      <div className={cn.title}>
+        <div className={cn.title_content}>
+          <h3>{t('reviews')}</h3>
+          <Suspense fallback={null}>
+            <LanguageSwitcher/>
+          </Suspense>
+        </div>
+      </div>
 
       {error && <div className="alert alert-danger">{error}</div>}
 
