@@ -136,6 +136,21 @@
 
     "our_partners": "Unsere Partner",
 
+    "name": "Name",
+    "review": "Bewertung",
+    "submit_review": "Bewertung absenden",
+    "attention": "Achtung!",
+    "review_deletion_available": "Bewertungen können gelöscht werden.",
+    "all_reviews": "Alle Bewertungen:",
+    "loading_reviews": "Bewertungen werden geladen...",
+    "delete": "Löschen",
+    "review_deleted_successfully": "Bewertung erfolgreich gelöscht!",
+    "review_submitted_successfully": "Ihre Bewertung wurde erfolgreich gesendet!",
+    "one_message_per_hour": "Sie können nur eine Nachricht pro Stunde senden. Bitte versuchen Sie es später noch einmal.",
+    "review_submission_error": "Fehler beim Absenden der Bewertung. Bitte versuchen Sie es erneut.",
+    "enter_your_name": "Geben Sie Ihren Namen ein",
+    "enter_your_review": "Geben Sie Ihre Bewertung ein",
+
 
     "multilingual_page_keywords": "mehrsprachig, Übersetzer, Übersetzer für 122 Sprachen, kostenloser Übersetzer, Übersetzung mehrerer Sprachen, mehrsprachige Übersetzung, Online-Übersetzer, Multitasking-Übersetzer, mehrere Sprachen übersetzen, kostenloser Übersetzer, Übersetzung in Echtzeit, mehrsprachige Übersetzungen, Sprachunterstützung, mehrsprachige Lösungen, mehrsprachiges Tool",
     "photo_page_keywords": "Dateiübersetzer, Textextraktion aus Dateien, Datei hochladen und übersetzen, Text von Bildern übersetzen, übersetzten Text bearbeiten, übersetzten Text kopieren, Text in Sprache, Sprachübersetzung, Text aus Dateien übersetzen, OCR-Textübersetzung, kostenloser Dateiübersetzer, mehrsprachiger Dateiübersetzer, Texterkennung in Bildern, Textextraktion aus Dokumenten, Dokumente übersetzen, Übersetzungen bearbeiten und anhören",

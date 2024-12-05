@@ -136,6 +136,21 @@
 
     "our_partners": "Hamkorlarimiz",
 
+    "name": "Ism",
+    "review": "Fikr",
+    "submit_review": "Fikrni yuborish",
+    "attention": "Diqqat!",
+    "review_deletion_available": "Fikrlarni o'chirish mumkin.",
+    "all_reviews": "Barcha fikrlar:",
+    "loading_reviews": "Fikrlar yuklanmoqda...",
+    "delete": "O'chirish",
+    "review_deleted_successfully": "Fikr muvaffaqiyatli o'chirildi!",
+    "review_submitted_successfully": "Sizning fikringiz muvaffaqiyatli yuborildi!",
+    "one_message_per_hour": "Siz bir soatda faqat birta xabar yuborishingiz mumkin. Iltimos, keyinroq qayta urinib ko'ring.",
+    "review_submission_error": "Fikrni yuborishda xatolik yuz berdi. Iltimos, yana bir bor urinib ko'ring.",
+    "enter_your_name": "Ismingizni kiriting",
+    "enter_your_review": "Fikringizni kiriting",
+
 
     "multilingual_page_keywords": "ko'p tilli, tarjimon, 122 tilda tarjimon, bepul tarjimon, bir nechta tilda tarjima, ko'p tilli tarjima, onlayn tarjimon, ko'p vazifali tarjimon, bir nechta tildagi tarjima, bepul tarjimon, real vaqt tarjimasi, ko'p tilli tarjimalar, tilni qo'llab-quvvatlash, ko'p tilli echimlar, ko'p tilli vosita",
     "photo_page_keywords": "fayllar tarjimoni, fayllardan matnni ajratib olish, fayllarni yuklab tarjima qilish, tasvirdan matnni tarjima qilish, tarjima qilingan matnni tahrirlash, tarjima qilingan matnni nusxalash, matnni ovozga aylantirish, ovozli tarjima, fayllardan matnni tarjima qilish, OCR matnni tarjima qilish, bepul fayl tarjimoni, ko'p tilli fayl tarjimoni, tasvordagi matnni tanish, hujjatlarni tarjima qilish, tarjimalarni tahrirlash va tinglash",

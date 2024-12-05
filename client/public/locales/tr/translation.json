@@ -137,6 +137,21 @@
 
     "our_partners": "Ortaklarımız",
 
+    "name": "Ad",
+    "review": "Yorum",
+    "submit_review": "Yorumu Gönder",
+    "attention": "Dikkat!",
+    "review_deletion_available": "Yorum silme işlemi yapılabilir.",
+    "all_reviews": "Tüm Yorumlar:",
+    "loading_reviews": "Yorumlar yükleniyor...",
+    "delete": "Sil",
+    "review_deleted_successfully": "Yorum başarıyla silindi!",
+    "review_submitted_successfully": "Yorumunuz başarıyla gönderildi!",
+    "one_message_per_hour": "Sadece bir mesaj gönderebilirsiniz. Lütfen daha sonra tekrar deneyin.",
+    "review_submission_error": "Yorum gönderme hatası. Lütfen tekrar deneyin.",
+    "enter_your_name": "Adınızı girin",
+    "enter_your_review": "Yorumunuzu girin",
+
 
     "multilingual_page_keywords": "çok dilli, çevirmen, 122 dilde çevirmen, ücretsiz çevirmen, birden fazla dilde çeviri, çok dilli çeviri, çevrimiçi çevirmen, çok görevli çevirmen, birden fazla dili çevir, ücretsiz çevirmen, gerçek zamanlı çeviri, çok dilli çeviriler, dil desteği, çok dilli çözümler, çok dilli araç",
     "photo_page_keywords": "dosya çevirmeni, dosyalardan metin çıkarma, dosya yükleyip çeviri yapma, resimlerden metin çevirme, çevrilmiş metni düzenleme, çevrilmiş metni kopyalama, metni sese dönüştürme, sesli çeviri, dosyalardan metin çevirisi, OCR metin çevirisi, ücretsiz dosya çevirmeni, çok dilli dosya çevirmeni, resimlerdeki metni tanıma, belgelerden metin çıkarma, belge çevirisi, çevirileri düzenleme ve dinleme",

@@ -136,6 +136,21 @@
 
     "our_partners": "Our Partners",
 
+    "name": "Name",
+    "review": "Review",
+    "submit_review": "Submit Review",
+    "attention": "Attention!",
+    "review_deletion_available": "Review deletion available.",
+    "all_reviews": "All Reviews:",
+    "loading_reviews": "Loading reviews...",
+    "delete": "Delete",
+    "review_deleted_successfully": "Review successfully deleted!",
+    "review_submitted_successfully": "Your review has been submitted successfully!",
+    "one_message_per_hour": "You can only submit one message per hour. Please try again later.",
+    "review_submission_error": "Error submitting review. Please try again.",
+    "enter_your_name": "Enter your name",
+    "enter_your_review": "Enter your review",
+
 
     "multilingual_page_keywords": "multilingual, translator, 122 language translator, free translator, translate multiple languages, multilingual translation, online translator, multitasking translator, translate several languages, free translation service, real-time translation, multilingual solutions, language support, multilingual tool",
     "photo_page_keywords": "file translator, text extraction from files, upload and translate files, translate text from images, edit translated text, copy translated text, text-to-speech, voice translation, file-based text translation, OCR text translation, free file translator, multilingual file translator, image text recognition, document text extraction, translate document files, edit and listen to translations",

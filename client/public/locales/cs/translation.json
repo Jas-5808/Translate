@@ -136,6 +136,22 @@
     
     "our_partners": "Naši partneři",
 
+    "name": "Jméno",
+    "review": "Recenze",
+    "submit_review": "Odeslat recenzi",
+    "attention": "Pozor!",
+    "review_deletion_available": "Odstranění recenzí je k dispozici.",
+    "all_reviews": "Všechny recenze:",
+    "loading_reviews": "Načítání recenzí...",
+    "delete": "Smazat",
+    "review_deleted_successfully": "Recenze byla úspěšně smazána!",
+    "review_submitted_successfully": "Vaše recenze byla úspěšně odeslána!",
+    "one_message_per_hour": "Můžete odeslat pouze jednu zprávu za hodinu. Zkuste to prosím znovu později.",
+    "review_submission_error": "Chyba při odesílání recenze. Zkuste to prosím znovu.",
+    "enter_your_name": "Zadejte své jméno",
+    "enter_your_review": "Zadejte svou recenzi",
+
+
     "multilingual_page_keywords": "vícejazyčný, překladač, překladač do 122 jazyků, bezplatný překladač, překlad několika jazyků, vícejazyčný překlad, online překladač, multitask překladač, přeložit několik jazyků, bezplatný překladač, překlad v reálném čase, vícejazyčné překlady, jazyková podpora, vícejazyčná řešení, vícejazyčný nástroj",
     "photo_page_keywords": "překladač souborů, extrakce textu ze souborů, nahrávání a překlad souborů, překlad textu z obrázků, úprava přeloženého textu, kopírování přeloženého textu, text na řeč, hlasový překlad, překlad textů z dokumentů, OCR překlad textu, bezplatný překladač souborů, vícejazyčný překladač souborů, rozpoznávání textu na obrázcích, extrakce textu z dokumentů, překlad dokumentů, úprava a poslech překladů",
     "imageSize_page_keywords": "komprese obrázků, bezplatná komprese obrázků, zmenšení velikosti obrázků, rychlá komprese obrázků, online komprese obrázků, zmenšení velikosti obrázků, komprese obrázků beze ztráty kvality, optimalizace obrázků, komprese PNG, komprese JPEG, nástroj na zmenšení velikosti obrázků, rychlá komprese obrázků, komprese obrázků pro weby, komprese obrázků pro sociální sítě, bezplatný online kompresor obrázků, snadná komprese obrázků, rychlá optimalizace obrázků",

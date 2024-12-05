@@ -136,6 +136,21 @@
 
     "our_partners": "Nuestros socios",
 
+    "name": "Nombre",
+    "review": "Reseña",
+    "submit_review": "Enviar reseña",
+    "attention": "¡Atención!",
+    "review_deletion_available": "Eliminación de reseñas disponible.",
+    "all_reviews": "Todas las reseñas:",
+    "loading_reviews": "Cargando reseñas...",
+    "delete": "Eliminar",
+    "review_deleted_successfully": "¡Reseña eliminada con éxito!",
+    "review_submitted_successfully": "¡Tu reseña ha sido enviada con éxito!",
+    "one_message_per_hour": "Solo puedes enviar un mensaje por hora. Por favor, inténtalo de nuevo más tarde.",
+    "review_submission_error": "Error al enviar la reseña. Por favor, inténtalo de nuevo.",
+    "enter_your_name": "Ingresa tu nombre",
+    "enter_your_review": "Ingresa tu reseña",
+
 
     "multilingual_page_keywords": "multilingüe, traductor, traductor en 122 idiomas, traductor gratuito, traducción de varios idiomas, traducción multilingüe, traductor en línea, traductor multitarea, traducir varios idiomas, traductor gratuito, traducción en tiempo real, traducciones multilingües, soporte de idiomas, soluciones multilingües, herramienta multilingüe",
     "photo_page_keywords": "traductor de archivos, extracción de texto de archivos, carga y traducción de archivos, traducción de texto desde imágenes, edición del texto traducido, copiar el texto traducido, texto a voz, traducción por voz, traducción de texto desde archivos, traducción OCR de texto, traductor de archivos gratuito, traductor multilingüe de archivos, reconocimiento de texto en imágenes, extracción de texto desde documentos, traducción de documentos, edición y escucha de traducciones",

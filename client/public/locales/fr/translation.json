@@ -137,6 +137,21 @@
 
     "our_partners": "Nos partenaires",
 
+    "name": "Nom",
+    "review": "Avis",
+    "submit_review": "Soumettre un avis",
+    "attention": "Attention!",
+    "review_deletion_available": "La suppression des avis est disponible.",
+    "all_reviews": "Tous les avis :",
+    "loading_reviews": "Chargement des avis...",
+    "delete": "Supprimer",
+    "review_deleted_successfully": "L'avis a été supprimé avec succès !",
+    "review_submitted_successfully": "Votre avis a été soumis avec succès !",
+    "one_message_per_hour": "Vous pouvez soumettre un seul message par heure. Veuillez réessayer plus tard.",
+    "review_submission_error": "Erreur lors de l'envoi de l'avis. Veuillez réessayer.",
+    "enter_your_name": "Entrez votre nom",
+    "enter_your_review": "Entrez votre avis",
+
 
     "multilingual_page_keywords": "multilingue, traducteur, traducteur en 122 langues, traducteur gratuit, traduction de plusieurs langues, traduction multilingue, traducteur en ligne, traducteur multitâche, traduire plusieurs langues, traducteur gratuit, traduction en temps réel, traductions multilingues, support linguistique, solutions multilingues, outil multilingue",
     "photo_page_keywords": "traducteur de fichiers, extraction de texte à partir de fichiers, téléchargement et traduction de fichiers, traduction de texte à partir d'images, édition du texte traduit, copier le texte traduit, texte en parole, traduction vocale, traduction de texte depuis des fichiers, OCR traduction de texte, traducteur de fichiers gratuit, traducteur de fichiers multilingue, reconnaissance de texte dans les images, extraction de texte à partir de documents, traduction de documents, édition et écoute des traductions",

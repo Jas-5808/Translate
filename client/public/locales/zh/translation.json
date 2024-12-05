@@ -136,6 +136,21 @@
 
     "our_partners": "我们的合作伙伴",
 
+    "name": "姓名",
+    "review": "评论",
+    "submit_review": "提交评论",
+    "attention": "注意!",
+    "review_deletion_available": "可以删除评论。",
+    "all_reviews": "所有评论：",
+    "loading_reviews": "加载评论中...",
+    "delete": "删除",
+    "review_deleted_successfully": "评论已成功删除!",
+    "review_submitted_successfully": "您的评论已成功提交!",
+    "one_message_per_hour": "每小时只能发送一条消息。请稍后再试。",
+    "review_submission_error": "提交评论时出错。请再试一次。",
+    "enter_your_name": "请输入您的姓名",
+    "enter_your_review": "请输入您的评论",
+
 
     "multilingual_page_keywords": "多语言, 翻译器, 122种语言的翻译器, 免费翻译器, 多语言翻译, 在线翻译器, 多任务翻译器, 翻译多种语言, 免费翻译, 实时翻译, 多语言翻译, 语言支持, 多语言解决方案, 多语言工具",
     "photo_page_keywords": "文件翻译器, 从文件中提取文本, 上传并翻译文件, 从图片中翻译文本, 编辑翻译文本, 复制翻译文本, 文字转语音, 语音翻译, 从文件中翻译文本, OCR文本翻译, 免费文件翻译器, 多语言文件翻译器, 图片中的文本识别, 从文档中提取文本, 文档翻译, 编辑并聆听翻译",

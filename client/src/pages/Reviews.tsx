@@ -52,7 +52,7 @@ function Reviews() {
       setName('');
       setReview('');
       reviewUser();
-      setSuccessMessage('Ваш отзыв успешно отправлен!');
+      setSuccessMessage(t("review_submitted_successfully"));
 
       setTimeout(() => {
         setSuccessMessage('');
@@ -61,10 +61,10 @@ function Reviews() {
     } catch (err:any) {
       if (err.response && err.response.status === 429) {
         // Ошибка с кодом 429 (слишком много запросов)
-        setError('Слишком много запросов. Пожалуйста, попробуйте позже.');
+        setError(t("one_message_per_hour"));
       } else {
         // Обработка других ошибок
-        setError('Ошибка при отправке отзыва. Пожалуйста, попробуйте снова.');
+        setError(t("review_submission_error"));
       }
     }
   };
@@ -72,7 +72,7 @@ function Reviews() {
   const handleDelete = async (id: Number) => {
     try {
       await serverApi.delete(`user/deleteuser/${id}`);
-      setSuccessMessage('Отзыв успешно удален!');
+      setSuccessMessage(t("review_deleted_successfully"));
       setTimeout(() => {
         setSuccessMessage('');
       }, 3000);
@@ -110,43 +110,45 @@ function Reviews() {
 
       <form onSubmit={handleSubmit} className="mt-4">
         <div className="mb-3">
-          <label htmlFor="name" className="form-label">Имя:</label>
+          <label htmlFor="name" className="form-label">{t('name')}</label>
           <input
             type="text"
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Введите ваше имя"
+            placeholder={t('enter_your_name')}
             className="form-control"
             required
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="review" className="form-label">Отзыв:</label>
+          <label htmlFor="review" className="form-label">{t('review')}</label>
           <textarea
             id="review"
             value={review}
             onChange={(e) => setReview(e.target.value)}
-            placeholder="Введите ваш отзыв"
+            placeholder={t('enter_your_review')}
             className="form-control"
             required
+            maxLength={250}
+            minLength={4}
           ></textarea>
         </div>
         <button type="submit" className="btn btn-primary">
-          Отправить отзыв
+          {t('submit_review')}
         </button>
       </form>
 
       {deleteMode && (
         <div className="alert alert-warning mt-4">
-          <strong>Внимание!</strong> Удаление отзывов доступно.
+          <strong>{t('attention')}</strong> {t('review_deletion_available')}
         </div>
       )}
 
       <div className="mt-4">
-        <h3>Все отзывы:</h3>
+        <h3>{t('all_reviews')}</h3>
         {loading ? (
-          <div>Loading reviews...</div>
+          <div>{t('loading_reviews')}</div>
         ) : (
           <ul className="list-group">
             {reviews.map((reviewItem) => (
@@ -156,7 +158,7 @@ function Reviews() {
                   <span className="ms-2">{reviewItem.coment}</span>
                 </div>
                 {deleteMode && (
-                  <button className="btn btn-danger btn-sm" onClick={() => handleDelete(reviewItem.id)}> Удалить </button>
+                  <button className="btn btn-danger btn-sm" onClick={() => handleDelete(reviewItem.id)}> {t('delete')} </button>
                 )}
               </li>
             ))}
