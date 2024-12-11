@@ -14,14 +14,14 @@ app.use(cors());
 app.use(express.json());
 
 app.use(express.static(__dirname + '/public'));
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // Routes
 app.use('/api/speed', speedRoutes);
 app.use('/api/user', userRoutes);
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
   });
 
 const PORT = process.env.PORT || 5000;

@@ -1,0 +1,1 @@
+import{u as e,j as s,f as i}from"./index-DMOjk18q.js";const c=({title:r,description:t})=>{const{t:n}=e();return s.jsxs("div",{className:i.description,children:[s.jsx("h2",{children:n(r)}),s.jsx("p",{children:n(t)})]})};export{c as default};
