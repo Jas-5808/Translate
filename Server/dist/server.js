@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const speed_1 = __importDefault(require("../src/routes/speed"));
-const user_1 = __importDefault(require("../src/routes/user"));
-const logger_1 = require("../src/middlewares/logger");
+const speed_1 = __importDefault(require("./routes/speed"));
+const user_1 = __importDefault(require("./routes/user"));
+const logger_1 = require("./middlewares/logger");
 const path_1 = __importDefault(require("path"));
 const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();

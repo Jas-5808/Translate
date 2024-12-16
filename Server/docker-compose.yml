@@ -1,0 +1,18 @@
+services:
+  node-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    container_name: node-app
+    networks:
+      - app-network
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+
+networks:
+  app-network:
+    driver: bridge
